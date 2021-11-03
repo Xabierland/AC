@@ -1,0 +1,38 @@
+A51 MACRO ASSEMBLER  EJERCICIO_1                                                          09/29/2021 19:12:01 PAGE     1
+
+
+MACRO ASSEMBLER A51 V6.14
+OBJECT MODULE PLACED IN .\Ejercicio 1.OBJ
+ASSEMBLER INVOKED BY: C:\Keil\C51\BIN\A51.EXE .\Ejercicio 1.a SET(SMALL) DEBUG EP
+
+LOC  OBJ            LINE     SOURCE
+
+                       1     ;Ejercicios preliminares arquitectura de computadores Philips 80c552
+                       2     ;1. Realizar un programa en ensamblador que ejecute las siguientes acciones:
+0000                   3     ORG 0x00
+0000 0102              4     AJMP INICIO
+0002                   5     INICIO:
+                       6     ;a) Carga en A el valor inmediato 10H
+0002 7410              7     MOV A, #10H
+                       8     ;b) Carga el contenido de A (10H) en la dir. 60H
+0004 F560              9     MOV 60H, A
+                      10     ;c) Carga en B el contenido de la dir. 60H (10H)
+0006 8560F0           11     MOV B, 60H
+                      12     
+                      13     END
+A51 MACRO ASSEMBLER  EJERCICIO_1                                                          09/29/2021 19:12:01 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+B. . . . . . . . .  D ADDR   00F0H   A   
+INICIO . . . . . .  C ADDR   0002H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

@@ -1,0 +1,49 @@
+A51 MACRO ASSEMBLER  EJERCICIO_2                                                          09/29/2021 19:25:10 PAGE     1
+
+
+MACRO ASSEMBLER A51 V6.14
+OBJECT MODULE PLACED IN .\Ejercicio 2.OBJ
+ASSEMBLER INVOKED BY: C:\Keil\C51\BIN\A51.EXE .\Ejercicio 2.a SET(SMALL) DEBUG EP
+
+LOC  OBJ            LINE     SOURCE
+
+                       1     ;2. Realizar un programa en ensamblador que realice las siguientes acciones:
+0000                   2     ORG 0x00
+0000 0102              3     AJMP INICIO
+0002                   4     INICIO:
+                       5     ;a) Almacenar dos valores (0FH y 11H) en las posiciones de RAM 80H y 81H de la memoria alta
+                              (se requiere el uso de punteros)
+0002 780F              6     MOV R0, #0FH
+0004 7911              7     MOV R1, #11H
+0006 8680              8     MOV 80H, @R0
+0008 8781              9     MOV 81H, @R1
+                      10     
+                      11     ;b) Sumar los dos valores y dejar el resultado en la posición de RAM baja 7FH
+000A E580             12     MOV A, 80H
+000C 2581             13     ADD A, 81H
+000E F57F             14     MOV 7FH, A
+                      15     
+                      16     ;c) Llevar el resultado de la posición 7FH a la dirección FFH (se requiere el uso de punter
+                             os)
+0010 A87F             17     MOV R0, 7FH
+0012                  18     MOV FFH, @R0
+*** _____________________________^
+*** ERROR #A45 IN 18 (.\Ejercicio 2.a, LINE 18): UNDEFINED SYMBOL (PASS-2)
+                      19     
+                      20     END
+A51 MACRO ASSEMBLER  EJERCICIO_2                                                          09/29/2021 19:25:10 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+FFH. . . . . . . .    ----   -----       
+INICIO . . . . . .  C ADDR   0002H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 1 ERROR(S)
