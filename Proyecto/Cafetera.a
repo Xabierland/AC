@@ -1,0 +1,23 @@
+;********************************INICIALIZAR VARIABLE
+ESTADO EQU R0
+EVENTO EQU R1
+
+org 0x00
+AJMP INICIO
+
+org 0x80
+INICIO:
+	ACALL INIT	;Llamamos a las inicializaciones
+
+PRINCIPAL:
+	ACALL GEV	; Generador de Eventos
+	ACALL FSM 	; Maquina de estados finita
+	AJMP PRINCIPAL	; Vuelve a Principal de forma recursiva 
+INIT:
+
+GEV:
+
+FSM:
+
+	
+

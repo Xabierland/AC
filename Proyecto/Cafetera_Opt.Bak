@@ -10,8 +10,9 @@
  DaveTm { 0,0,0,0,0,0,0,0 }
 
 Target (Target 1), 0x0000 // Tools: 'MCS-51'
-GRPOPT 1,(Source Group 1),0,0,0
+GRPOPT 1,(Source Group 1),1,0,0
 
+OPTFFF 1,1,2,0,0,1,1,0,<.\Cafetera.a><Cafetera.a> { 44,0,0,0,2,0,0,0,3,0,0,0,255,255,255,255,255,255,255,255,248,255,255,255,225,255,255,255,26,0,0,0,26,0,0,0,166,4,0,0,150,1,0,0 }
 
 
 TARGOPT 1, (Target 1)
@@ -21,7 +22,7 @@ TARGOPT 1, (Target 1)
   OPTLX 120,65,8,<.\>
   OPTLT 1,1,1,0,1,1,0,1,0,0,0
   OPTXL 1,1,1,1,1,1,1,0,0
-  OPTFL 0,0,1
+  OPTFL 1,0,1
   OPTBL 0,(Data Sheet)<DATASHTS\PHILIPS\8XC552.PDF>
   OPTBL 1,(Add on databooks)<DATASHTS\ADDBOOKS.PDF>
   OPTBL 2,(Programmer's Guide & Instruction Set Manual)<DATASHTS\PHILIPS\UPROGGUI.PDF>
