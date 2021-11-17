@@ -1,0 +1,206 @@
+A51 MACRO ASSEMBLER  CAFETERA                                                             11/17/2021 23:00:46 PAGE     1
+
+
+MACRO ASSEMBLER A51 V6.14
+OBJECT MODULE PLACED IN .\Cafetera.OBJ
+ASSEMBLER INVOKED BY: C:\Keil\C51\BIN\A51.EXE .\Cafetera.a SET(SMALL) DEBUG EP
+
+LOC  OBJ            LINE     SOURCE
+
+                       1     ;********************************VARIABLES GLOBALES
+  REG                  2     ESTADO          EQU     R7
+  REG                  3     EVENTO          EQU     R6
+  0030                 4     DISPLAY1        EQU     0x30
+  0031                 5     DISPLAY2        EQU     0x31
+                       6     ;********************************VARIABLES VASO
+  00B1                 7     P_HAY_VASO      EQU     P3.1
+  0093                 8     SN_PONER_VASO   EQU     P1.3
+  0000                 9     NO_ESTA_VASO    EQU     0X20.0
+                      10     ;********************************VARIABLES AGUA
+  00B0                11     P_LLENO_AGUA    EQU     P3.0
+  0087                12     P_LLENAR_AGUA   EQU     P0.7
+  0008                13     ESTA_VACIO      EQU     0X21.0
+                      14     
+                      15     ;**********************************************INIT INSTRUCCION 0X00
+0000                  16     ORG 0x00
+0000 017B             17             AJMP MAIN
+                      18     
+                      19     ;INTERRUPCIONES
+                      20     
+                      21     ;PROGRAMA PRINCIPAL
+007B                  22     ORG 0x7B
+007B                  23     MAIN:
+007B 1181             24             ACALL INIT
+                      25     
+007D                  26     LOOP:
+007D 118E             27             ACALL MAQ_EST
+007F 017D             28             AJMP LOOP
+                      29     
+0081                  30     INIT:
+0081 7F02             31             MOV ESTADO,#0X02
+0083 7E00             32             MOV EVENTO,#0X00
+0085 C293             33             CLR SN_PONER_VASO
+0087 D200             34             SETB NO_ESTA_VASO
+0089 C287             35             CLR P_LLENAR_AGUA
+008B D208             36             SETB ESTA_VACIO
+                      37     
+008D 22               38             RET
+                      39     
+                      40     ;**********************************************MAQUINA DE ESTADOS
+008E                  41     MAQ_EST:
+008E EF               42             MOV A, ESTADO
+008F 23               43             RL A
+0090 900094           44             MOV DPTR, #TABLAESTADO
+0093 73               45             JMP @A+DPTR
+0094                  46     TABLAESTADO:
+0094 019A             47             AJMP ESPERA             ;#0X00
+0096 019B             48             AJMP PONER_VASO         ;#0X01
+                      49     ;       AJMP ECHAR_CAFE         ;#0X02
+                      50     ;       AJMP MOLER_CAFE         ;#0X03
+0098 01C3             51             AJMP ECHAR_AGUA         ;#0X04  
+                      52     
+                      53     
+                      54     
+                      55     ;**********************************************ESTADO 0: ESPERA
+009A                  56     ESPERA:
+009A 22               57             RET
+                      58     
+A51 MACRO ASSEMBLER  CAFETERA                                                             11/17/2021 23:00:46 PAGE     2
+
+                      59     ;**********************************************ESTADO 1: PONER_VASO
+009B                  60     PONER_VASO:
+009B 11D1             61             ACALL E2_GENERADOR_EVENTOS
+009D EE               62             MOV A, EVENTO
+009E 23               63             RL A
+009F 9000A3           64             MOV DPTR, #TABLA_E1_EVENTOS
+00A2 73               65             JMP @A+DPTR
+                      66     
+00A3                  67     TABLA_E1_EVENTOS:
+00A3 01BA             68             AJMP E1_EVENTO_0
+00A5 01BB             69             AJMP E1_EVENTO_1
+00A7 01C0             70             AJMP E1_EVENTO_2
+                      71     
+00A9                  72     E1_GENERADOR_EVENTOS:
+00A9 20B10B           73             JB P_HAY_VASO, E1_PASAR_SIG_ESTADO
+00AC 200003           74             JB NO_ESTA_VASO, E1_PONER_VASO
+00AF 7E00             75             MOV EVENTO, #0X00
+00B1 22               76             RET
+                      77     
+00B2                  78     E1_PONER_VASO:
+00B2 7E02             79             MOV EVENTO, #0X02
+00B4 C200             80             CLR NO_ESTA_VASO
+00B6 22               81             RET
+                      82     
+00B7                  83     E1_PASAR_SIG_ESTADO:
+00B7 7E01             84             MOV EVENTO, #0X01
+00B9 22               85             RET
+                      86     
+00BA                  87     E1_EVENTO_0:
+00BA 22               88             RET
+                      89     
+00BB                  90     E1_EVENTO_1:
+00BB 7F02             91             MOV ESTADO, #0X02
+00BD C293             92             CLR SN_PONER_VASO
+                      93             ;ENCENDER MOLINILLO
+                      94             ;PROGRAMAR TIMER
+00BF 22               95             RET
+                      96     
+00C0                  97     E1_EVENTO_2:
+00C0 D293             98             SETB SN_PONER_VASO
+00C2 22               99             RET
+                     100     
+                     101     
+                     102     ;**********************************************ESTADO 4: ECHAR AGUA
+00C3                 103     ECHAR_AGUA:
+00C3 11D1            104             ACALL E2_GENERADOR_EVENTOS
+00C5 EE              105             MOV A, EVENTO
+00C6 23              106             RL A
+00C7 9000CB          107             MOV DPTR, #TABLA_E2_EVENTOS
+00CA 73              108             JMP @A+DPTR
+00CB                 109     TABLA_E2_EVENTOS:
+00CB 01BA            110             AJMP E1_EVENTO_0
+00CD 01BB            111             AJMP E1_EVENTO_1
+00CF 01C0            112             AJMP E1_EVENTO_2
+                     113     
+00D1                 114     E2_GENERADOR_EVENTOS:
+00D1 20B00B          115             JB P_LLENO_AGUA, E2_PASAR_SIG_ESTADO
+00D4 200803          116             JB ESTA_VACIO, E2_ECHAR_AGUA
+00D7 7E00            117             MOV EVENTO, #0X00
+00D9 22              118             RET
+                     119     
+00DA                 120     E2_ECHAR_AGUA:
+00DA 7E02            121             MOV EVENTO, #0X02
+00DC C208            122             CLR ESTA_VACIO
+00DE 22              123             RET
+                     124     
+A51 MACRO ASSEMBLER  CAFETERA                                                             11/17/2021 23:00:46 PAGE     3
+
+00DF                 125     E2_PASAR_SIG_ESTADO:
+00DF 7E01            126             MOV EVENTO, #0X01
+00E1 22              127             RET
+                     128     
+00E2                 129     E2_EVENTO_0:
+00E2 22              130             RET
+                     131     
+00E3                 132     E2_EVENTO_1:
+00E3 7F05            133             MOV ESTADO, #0X05
+00E5 C287            134             CLR P_LLENAR_AGUA
+00E7 22              135             RET
+                     136     
+00E8                 137     E2_EVENTO_2:
+00E8 D287            138             SETB P_LLENAR_AGUA
+00EA 22              139             RET
+                     140     
+                     141     
+                     142     
+                     143     END
+                             
+A51 MACRO ASSEMBLER  CAFETERA                                                             11/17/2021 23:00:46 PAGE     4
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E               T Y P E  V A L U E   ATTRIBUTES
+
+DISPLAY1 . . . . . .  N NUMB   0030H   A   
+DISPLAY2 . . . . . .  N NUMB   0031H   A   
+E1_EVENTO_0. . . . .  C ADDR   00BAH   A   
+E1_EVENTO_1. . . . .  C ADDR   00BBH   A   
+E1_EVENTO_2. . . . .  C ADDR   00C0H   A   
+E1_GENERADOR_EVENTOS  C ADDR   00A9H   A   
+E1_PASAR_SIG_ESTADO.  C ADDR   00B7H   A   
+E1_PONER_VASO. . . .  C ADDR   00B2H   A   
+E2_ECHAR_AGUA. . . .  C ADDR   00DAH   A   
+E2_EVENTO_0. . . . .  C ADDR   00E2H   A   
+E2_EVENTO_1. . . . .  C ADDR   00E3H   A   
+E2_EVENTO_2. . . . .  C ADDR   00E8H   A   
+E2_GENERADOR_EVENTOS  C ADDR   00D1H   A   
+E2_PASAR_SIG_ESTADO.  C ADDR   00DFH   A   
+ECHAR_AGUA . . . . .  C ADDR   00C3H   A   
+ESPERA . . . . . . .  C ADDR   009AH   A   
+ESTADO . . . . . . .    REG    R7          
+ESTA_VACIO . . . . .  B ADDR   0021H.0 A   
+EVENTO . . . . . . .    REG    R6          
+INIT . . . . . . . .  C ADDR   0081H   A   
+LOOP . . . . . . . .  C ADDR   007DH   A   
+MAIN . . . . . . . .  C ADDR   007BH   A   
+MAQ_EST. . . . . . .  C ADDR   008EH   A   
+NO_ESTA_VASO . . . .  B ADDR   0020H.0 A   
+P0 . . . . . . . . .  D ADDR   0080H   A   
+P1 . . . . . . . . .  D ADDR   0090H   A   
+P3 . . . . . . . . .  D ADDR   00B0H   A   
+PONER_VASO . . . . .  C ADDR   009BH   A   
+P_HAY_VASO . . . . .  B ADDR   00B0H.1 A   
+P_LLENAR_AGUA. . . .  B ADDR   0080H.7 A   
+P_LLENO_AGUA . . . .  B ADDR   00B0H.0 A   
+SN_PONER_VASO. . . .  B ADDR   0090H.3 A   
+TABLAESTADO. . . . .  C ADDR   0094H   A   
+TABLA_E1_EVENTOS . .  C ADDR   00A3H   A   
+TABLA_E2_EVENTOS . .  C ADDR   00CBH   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)
