@@ -1,18 +1,18 @@
-;********************************VARIABLES GLOBALES
+;**********************************************	VARIABLES GLOBALES
 ESTADO		EQU 	R7
 EVENTO		EQU	R6
 DISPLAY1	EQU 	0x30
 DISPLAY2	EQU 	0x31
-;********************************VARIABLES VASO
+;**********************************************	VARIABLES VASO
 P_HAY_VASO	EQU	P3.1
 SN_PONER_VASO	EQU	P1.3
 NO_ESTA_VASO	EQU	0X20.0
-;********************************VARIABLES AGUA
+;**********************************************	VARIABLES AGUA
 P_LLENO_AGUA	EQU	P3.0
 P_LLENAR_AGUA	EQU 	P0.7
 ESTA_VACIO	EQU	0X21.0
 
-;**********************************************INIT INSTRUCCION 0X00
+;**********************************************	MAIN, LOOP & INIT
 ORG 0x00
 	AJMP MAIN
 
@@ -28,7 +28,7 @@ LOOP:
 	AJMP LOOP
 
 INIT:
-	MOV ESTADO,#0X02
+	MOV ESTADO,#0X00
 	MOV EVENTO,#0X00
 	CLR SN_PONER_VASO
 	SETB NO_ESTA_VASO
@@ -37,7 +37,7 @@ INIT:
 
 	RET
 
-;**********************************************MAQUINA DE ESTADOS
+;**********************************************	MAQUINA DE ESTADOS
 MAQ_EST:
 	MOV A, ESTADO
 	RL A
@@ -52,11 +52,11 @@ TABLAESTADO:
 
 
 
-;**********************************************ESTADO 0: ESPERA
+;**********************************************	ESTADO 0: ESPERA
 ESPERA:
 	RET
 
-;**********************************************ESTADO 1: PONER_VASO
+;**********************************************	ESTADO 1: PONER_VASO
 PONER_VASO:
 	ACALL E2_GENERADOR_EVENTOS
 	MOV A, EVENTO
@@ -99,13 +99,14 @@ E1_EVENTO_2:
 	RET
 
 
-;**********************************************ESTADO 4: ECHAR AGUA
+;**********************************************	ESTADO 4: ECHAR AGUA
 ECHAR_AGUA:
 	ACALL E2_GENERADOR_EVENTOS
 	MOV A, EVENTO
 	RL A
 	MOV DPTR, #TABLA_E2_EVENTOS
 	JMP @A+DPTR
+
 TABLA_E2_EVENTOS:
 	AJMP E2_EVENTO_0
 	AJMP E2_EVENTO_1
@@ -132,7 +133,7 @@ E2_EVENTO_0:
 E2_EVENTO_1:
 	MOV ESTADO, #0X05
 	CLR P_LLENAR_AGUA
-	;COMPLETAR
+	;PRECONDICIONES PROXIMO ESTADO
 	RET
 
 E2_EVENTO_2:
@@ -140,6 +141,6 @@ E2_EVENTO_2:
 	RET
 
 
-
+;**********************************************FIN
 END
 

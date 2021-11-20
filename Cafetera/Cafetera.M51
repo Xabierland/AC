@@ -1,4 +1,4 @@
-BL51 BANKED LINKER/LOCATER V4.14                                                        11/17/2021  23:00:46  PAGE 1
+BL51 BANKED LINKER/LOCATER V4.14                                                        11/17/2021  23:23:31  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V4.14, INVOKED BY:
@@ -59,7 +59,7 @@ SYMBOL TABLE OF MODULE:  Cafetera (CAFETERA)
   B:0080H.7       SYMBOL        P_LLENAR_AGUA
   B:00B0H.0       SYMBOL        P_LLENO_AGUA
   B:0090H.3       SYMBOL        SN_PONER_VASO
-BL51 BANKED LINKER/LOCATER V4.14                                                      11/17/2021  23:00:46  PAGE 2
+BL51 BANKED LINKER/LOCATER V4.14                                                      11/17/2021  23:23:31  PAGE 2
 
 
   C:0094H         SYMBOL        TABLAESTADO
@@ -112,27 +112,27 @@ SYMBOL TABLE OF MODULE:  Cafetera (CAFETERA)
   C:00C6H         LINE#         106
   C:00C7H         LINE#         107
   C:00CAH         LINE#         108
-  C:00CBH         LINE#         110
-  C:00CDH         LINE#         111
-  C:00CFH         LINE#         112
-  C:00D1H         LINE#         115
-  C:00D4H         LINE#         116
-  C:00D7H         LINE#         117
-  C:00D9H         LINE#         118
-BL51 BANKED LINKER/LOCATER V4.14                                                      11/17/2021  23:00:46  PAGE 3
+  C:00CBH         LINE#         111
+  C:00CDH         LINE#         112
+  C:00CFH         LINE#         113
+  C:00D1H         LINE#         116
+  C:00D4H         LINE#         117
+  C:00D7H         LINE#         118
+  C:00D9H         LINE#         119
+BL51 BANKED LINKER/LOCATER V4.14                                                      11/17/2021  23:23:31  PAGE 3
 
 
-  C:00DAH         LINE#         121
-  C:00DCH         LINE#         122
-  C:00DEH         LINE#         123
-  C:00DFH         LINE#         126
-  C:00E1H         LINE#         127
-  C:00E2H         LINE#         130
-  C:00E3H         LINE#         133
-  C:00E5H         LINE#         134
-  C:00E7H         LINE#         135
-  C:00E8H         LINE#         138
-  C:00EAH         LINE#         139
+  C:00DAH         LINE#         122
+  C:00DCH         LINE#         123
+  C:00DEH         LINE#         124
+  C:00DFH         LINE#         127
+  C:00E1H         LINE#         128
+  C:00E2H         LINE#         131
+  C:00E3H         LINE#         134
+  C:00E5H         LINE#         135
+  C:00E7H         LINE#         137
+  C:00E8H         LINE#         140
+  C:00EAH         LINE#         141
   -------         ENDMOD        CAFETERA
 
 LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

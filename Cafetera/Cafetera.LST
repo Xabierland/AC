@@ -1,4 +1,4 @@
-A51 MACRO ASSEMBLER  CAFETERA                                                             11/17/2021 23:00:46 PAGE     1
+A51 MACRO ASSEMBLER  CAFETERA                                                             11/17/2021 23:23:31 PAGE     1
 
 
 MACRO ASSEMBLER A51 V6.14
@@ -7,21 +7,21 @@ ASSEMBLER INVOKED BY: C:\Keil\C51\BIN\A51.EXE .\Cafetera.a SET(SMALL) DEBUG EP
 
 LOC  OBJ            LINE     SOURCE
 
-                       1     ;********************************VARIABLES GLOBALES
+                       1     ;********************************************** VARIABLES GLOBALES
   REG                  2     ESTADO          EQU     R7
   REG                  3     EVENTO          EQU     R6
   0030                 4     DISPLAY1        EQU     0x30
   0031                 5     DISPLAY2        EQU     0x31
-                       6     ;********************************VARIABLES VASO
+                       6     ;********************************************** VARIABLES VASO
   00B1                 7     P_HAY_VASO      EQU     P3.1
   0093                 8     SN_PONER_VASO   EQU     P1.3
   0000                 9     NO_ESTA_VASO    EQU     0X20.0
-                      10     ;********************************VARIABLES AGUA
+                      10     ;********************************************** VARIABLES AGUA
   00B0                11     P_LLENO_AGUA    EQU     P3.0
   0087                12     P_LLENAR_AGUA   EQU     P0.7
   0008                13     ESTA_VACIO      EQU     0X21.0
                       14     
-                      15     ;**********************************************INIT INSTRUCCION 0X00
+                      15     ;********************************************** MAIN, LOOP & INIT
 0000                  16     ORG 0x00
 0000 017B             17             AJMP MAIN
                       18     
@@ -37,7 +37,7 @@ LOC  OBJ            LINE     SOURCE
 007F 017D             28             AJMP LOOP
                       29     
 0081                  30     INIT:
-0081 7F02             31             MOV ESTADO,#0X02
+0081 7F00             31             MOV ESTADO,#0X00
 0083 7E00             32             MOV EVENTO,#0X00
 0085 C293             33             CLR SN_PONER_VASO
 0087 D200             34             SETB NO_ESTA_VASO
@@ -46,7 +46,7 @@ LOC  OBJ            LINE     SOURCE
                       37     
 008D 22               38             RET
                       39     
-                      40     ;**********************************************MAQUINA DE ESTADOS
+                      40     ;********************************************** MAQUINA DE ESTADOS
 008E                  41     MAQ_EST:
 008E EF               42             MOV A, ESTADO
 008F 23               43             RL A
@@ -61,13 +61,13 @@ LOC  OBJ            LINE     SOURCE
                       52     
                       53     
                       54     
-                      55     ;**********************************************ESTADO 0: ESPERA
+                      55     ;********************************************** ESTADO 0: ESPERA
 009A                  56     ESPERA:
 009A 22               57             RET
                       58     
-A51 MACRO ASSEMBLER  CAFETERA                                                             11/17/2021 23:00:46 PAGE     2
+A51 MACRO ASSEMBLER  CAFETERA                                                             11/17/2021 23:23:31 PAGE     2
 
-                      59     ;**********************************************ESTADO 1: PONER_VASO
+                      59     ;********************************************** ESTADO 1: PONER_VASO
 009B                  60     PONER_VASO:
 009B 11D1             61             ACALL E2_GENERADOR_EVENTOS
 009D EE               62             MOV A, EVENTO
@@ -110,52 +110,54 @@ LOC  OBJ            LINE     SOURCE
 00C2 22               99             RET
                      100     
                      101     
-                     102     ;**********************************************ESTADO 4: ECHAR AGUA
+                     102     ;********************************************** ESTADO 4: ECHAR AGUA
 00C3                 103     ECHAR_AGUA:
 00C3 11D1            104             ACALL E2_GENERADOR_EVENTOS
 00C5 EE              105             MOV A, EVENTO
 00C6 23              106             RL A
 00C7 9000CB          107             MOV DPTR, #TABLA_E2_EVENTOS
 00CA 73              108             JMP @A+DPTR
-00CB                 109     TABLA_E2_EVENTOS:
-00CB 01BA            110             AJMP E1_EVENTO_0
-00CD 01BB            111             AJMP E1_EVENTO_1
-00CF 01C0            112             AJMP E1_EVENTO_2
-                     113     
-00D1                 114     E2_GENERADOR_EVENTOS:
-00D1 20B00B          115             JB P_LLENO_AGUA, E2_PASAR_SIG_ESTADO
-00D4 200803          116             JB ESTA_VACIO, E2_ECHAR_AGUA
-00D7 7E00            117             MOV EVENTO, #0X00
-00D9 22              118             RET
-                     119     
-00DA                 120     E2_ECHAR_AGUA:
-00DA 7E02            121             MOV EVENTO, #0X02
-00DC C208            122             CLR ESTA_VACIO
-00DE 22              123             RET
-                     124     
-A51 MACRO ASSEMBLER  CAFETERA                                                             11/17/2021 23:00:46 PAGE     3
+                     109     
+00CB                 110     TABLA_E2_EVENTOS:
+00CB 01E2            111             AJMP E2_EVENTO_0
+00CD 01E3            112             AJMP E2_EVENTO_1
+00CF 01E8            113             AJMP E2_EVENTO_2
+                     114     
+00D1                 115     E2_GENERADOR_EVENTOS:
+00D1 20B00B          116             JB P_LLENO_AGUA, E2_PASAR_SIG_ESTADO
+00D4 200803          117             JB ESTA_VACIO, E2_ECHAR_AGUA
+00D7 7E00            118             MOV EVENTO, #0X00
+00D9 22              119             RET
+                     120     
+00DA                 121     E2_ECHAR_AGUA:
+00DA 7E02            122             MOV EVENTO, #0X02
+00DC C208            123             CLR ESTA_VACIO
+00DE 22              124             RET
+A51 MACRO ASSEMBLER  CAFETERA                                                             11/17/2021 23:23:31 PAGE     3
 
-00DF                 125     E2_PASAR_SIG_ESTADO:
-00DF 7E01            126             MOV EVENTO, #0X01
-00E1 22              127             RET
-                     128     
-00E2                 129     E2_EVENTO_0:
-00E2 22              130             RET
-                     131     
-00E3                 132     E2_EVENTO_1:
-00E3 7F05            133             MOV ESTADO, #0X05
-00E5 C287            134             CLR P_LLENAR_AGUA
-00E7 22              135             RET
-                     136     
-00E8                 137     E2_EVENTO_2:
-00E8 D287            138             SETB P_LLENAR_AGUA
-00EA 22              139             RET
-                     140     
-                     141     
+                     125     
+00DF                 126     E2_PASAR_SIG_ESTADO:
+00DF 7E01            127             MOV EVENTO, #0X01
+00E1 22              128             RET
+                     129     
+00E2                 130     E2_EVENTO_0:
+00E2 22              131             RET
+                     132     
+00E3                 133     E2_EVENTO_1:
+00E3 7F05            134             MOV ESTADO, #0X05
+00E5 C287            135             CLR P_LLENAR_AGUA
+                     136             ;PRECONDICIONES PROXIMO ESTADO
+00E7 22              137             RET
+                     138     
+00E8                 139     E2_EVENTO_2:
+00E8 D287            140             SETB P_LLENAR_AGUA
+00EA 22              141             RET
                      142     
-                     143     END
+                     143     
+                     144     ;**********************************************FIN
+                     145     END
                              
-A51 MACRO ASSEMBLER  CAFETERA                                                             11/17/2021 23:00:46 PAGE     4
+A51 MACRO ASSEMBLER  CAFETERA                                                             11/17/2021 23:23:31 PAGE     4
 
 SYMBOL TABLE LISTING
 ------ ----- -------
