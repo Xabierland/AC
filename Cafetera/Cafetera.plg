@@ -1,23 +1,23 @@
 Build target 'Target 1'
 assembling Cafetera.a...
-.\Cafetera.a(46): error A45: UNDEFINED SYMBOL (PASS-2)
-.\Cafetera.a(47): error A45: UNDEFINED SYMBOL (PASS-2)
-.\Cafetera.a(48): error A45: UNDEFINED SYMBOL (PASS-2)
-.\Cafetera.a(99): error A9: SYNTAX ERROR
+.\Cafetera.a(67): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a(74): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a(75): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a(76): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a(77): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a(79): error A9: SYNTAX ERROR
+.\Cafetera.a(188): error A45: UNDEFINED SYMBOL (PASS-2)
 Target not created
 Build target 'Target 1'
 assembling Cafetera.a...
-linking...
-"Cafetera" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-assembling Cafetera.a...
-.\Cafetera.a(116): error A38: NUMBER OF OPERANDS DOES NOT MATCH INSTRUCTION
-.\Cafetera.a(116): error A9: SYNTAX ERROR
+.\Cafetera.a(67): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a(78): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a(79): error A45: UNDEFINED SYMBOL (PASS-2)
 Target not created
 Build target 'Target 1'
 assembling Cafetera.a...
-linking...
-"Cafetera" - 0 Error(s), 0 Warning(s).
+.\Cafetera.a(67): error A45: UNDEFINED SYMBOL (PASS-2)
+Target not created
 Build target 'Target 1'
 assembling Cafetera.a...
 linking...

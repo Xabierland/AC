@@ -3,6 +3,11 @@ ESTADO		EQU 	R7
 EVENTO		EQU	R6
 DISPLAY1	EQU 	0x30
 DISPLAY2	EQU 	0x31
+;**********************************************	VARIABLES ESPERA
+M_05		EQU	P1.0
+M_10		EQU	P1.1
+M_20		EQU	P1.2
+
 ;**********************************************	VARIABLES VASO
 P_HAY_VASO	EQU	P3.1
 SN_PONER_VASO	EQU	P1.3
@@ -11,6 +16,11 @@ NO_ESTA_VASO	EQU	0X20.0
 P_LLENO_AGUA	EQU	P3.0
 P_LLENAR_AGUA	EQU 	P0.7
 ESTA_VACIO	EQU	0X21.0
+
+
+;**********************************************	VARIABLES PWM
+PWM_FLAG	EQU	0
+PWM0		EQU	128		;Si 0 son 0V y 255 son 5V -> 128 son 50%
 
 ;**********************************************	MAIN, LOOP & INIT
 ORG 0x00
@@ -28,7 +38,7 @@ LOOP:
 	AJMP LOOP
 
 INIT:
-	MOV ESTADO,#0X00
+	MOV ESTADO,#0X01
 	MOV EVENTO,#0X00
 	CLR SN_PONER_VASO
 	SETB NO_ESTA_VASO
@@ -54,20 +64,39 @@ TABLAESTADO:
 
 ;**********************************************	ESTADO 0: ESPERA
 ESPERA:
+	ACALL E0_GENERADOR_EVENTOS
+	MOV A, EVENTO
+	RL A
+	MOV DPTR, #TABLA_E0_EVENTOS
+	JMP @A+DPTR
+
+E0_GENERADOR_EVENTOS:
+	JB M_05, E0_ENTRA_MONEDA
+
+E0_ENTRA_MONEDA:
+
+
+TABLA_E0_EVENTOS:
+	AJMP E0_EVENTO_0
+	AJMP E0_EVENTO_1
+	AJMP E0_EVENTO_2
+	AJMP E0_EVENTO_3
+
+E0_EVENTO_0:
 	RET
 
+E0_EVENTO_1:
+
+E0_EVENTO_2:
+
+E0_EVENTO_3:
 ;**********************************************	ESTADO 1: PONER_VASO
 PONER_VASO:
-	ACALL E2_GENERADOR_EVENTOS
+	ACALL E1_GENERADOR_EVENTOS
 	MOV A, EVENTO
 	RL A
 	MOV DPTR, #TABLA_E1_EVENTOS
 	JMP @A+DPTR
-
-TABLA_E1_EVENTOS:
-	AJMP E1_EVENTO_0
-	AJMP E1_EVENTO_1
-	AJMP E1_EVENTO_2
 
 E1_GENERADOR_EVENTOS:
 	JB P_HAY_VASO, E1_PASAR_SIG_ESTADO
@@ -83,6 +112,11 @@ E1_PONER_VASO:
 E1_PASAR_SIG_ESTADO:
 	MOV EVENTO, #0X01
 	RET
+
+TABLA_E1_EVENTOS:
+	AJMP E1_EVENTO_0
+	AJMP E1_EVENTO_1
+	AJMP E1_EVENTO_2
 
 E1_EVENTO_0:
 	RET
@@ -141,6 +175,38 @@ E2_EVENTO_2:
 	RET
 
 
+;**********************************************	PWM
+PWM_SETUP:
+	MOV TMOD,#00H		;Timer 0 en modo 0
+	MOV PWM0, #160
+	SETB EA;		;Activar Interrupciones
+	SETB ET0		;Activar las interrupciones del timer 0
+	SETB TR0		;Empezar el timer
+
+TIMER_0_INTERRUPT:
+	JB PWM_FLAG, HIGH_DONE	;Si la flag esta en 1 saltamos a High_Done. Si no seguimos con Low_Done
+
+LOW_DONE:
+	SETB PWM_FLAG		;Pones la flag en 1		
+	MOV TH0,PWM0		;Cargamos el valor mas alto del timer con el valor guardado en R7
+	CLR TF0			;Limpiamos la flag del timer
+	RETI	
+
+HIGH_DONE:
+	CLR PWM_FLAG		;Ponew la flag en 0	
+	MOV A, #0FFH		;Movemos el valor 255 a A
+	CLR C			;Limpiamos C que es el bit de llevada para que no afecte a la resta
+	SUBB A, PWM0		;Restamos a A el valor de R7
+	MOV TH0, A		;
+	CLR TF0			;Limpiamos la flag del timer
+	RETI
+
+PWM_STOP:
+	CLR TR0			
+	RET
+
 ;**********************************************FIN
 END
+
+;PWM	https://www.8051projects.net/wiki/Pulse_Width_Modulation
 
