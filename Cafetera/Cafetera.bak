@@ -86,10 +86,13 @@ E0_EVENTO_0:
 	RET
 
 E0_EVENTO_1:
+	RET
 
 E0_EVENTO_2:
+	RET
 
 E0_EVENTO_3:
+	RET
 ;**********************************************	ESTADO 1: PONER_VASO
 PONER_VASO:
 	ACALL E1_GENERADOR_EVENTOS

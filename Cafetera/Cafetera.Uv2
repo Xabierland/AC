@@ -6,6 +6,7 @@ Target (Target 1), 0x0000 // Tools: 'MCS-51'
 Group (Source Group 1)
 
 File 1,2,<.\Cafetera.a><Cafetera.a>
+File 1,5,<.\To_Do.txt><To_Do.txt>
 
 
 Options 1,0,0  // Target 'Target 1'

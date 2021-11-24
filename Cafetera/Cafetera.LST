@@ -1,4 +1,4 @@
-A51 MACRO ASSEMBLER  CAFETERA                                                             11/24/2021 21:38:58 PAGE     1
+A51 MACRO ASSEMBLER  CAFETERA                                                             11/24/2021 21:50:20 PAGE     1
 
 
 MACRO ASSEMBLER A51 V6.14
@@ -64,12 +64,12 @@ LOC  OBJ            LINE     SOURCE
 0093 73               55             JMP @A+DPTR
 0094                  56     TABLAESTADO:
 0094 019A             57             AJMP ESPERA             ;#0X00
-0096 01AE             58             AJMP PONER_VASO         ;#0X01
-A51 MACRO ASSEMBLER  CAFETERA                                                             11/24/2021 21:38:58 PAGE     2
+0096 01B1             58             AJMP PONER_VASO         ;#0X01
+A51 MACRO ASSEMBLER  CAFETERA                                                             11/24/2021 21:50:20 PAGE     2
 
                       59     ;       AJMP ECHAR_CAFE         ;#0X02
                       60     ;       AJMP MOLER_CAFE         ;#0X03
-0098 01D6             61             AJMP ECHAR_AGUA         ;#0X04  
+0098 01D9             61             AJMP ECHAR_AGUA         ;#0X04  
                       62     
                       63     
                       64     
@@ -90,145 +90,148 @@ LOC  OBJ            LINE     SOURCE
 00A5                  79     TABLA_E0_EVENTOS:
 00A5 01AD             80             AJMP E0_EVENTO_0
 00A7 01AE             81             AJMP E0_EVENTO_1
-00A9 01AE             82             AJMP E0_EVENTO_2
-00AB 01AE             83             AJMP E0_EVENTO_3
+00A9 01AF             82             AJMP E0_EVENTO_2
+00AB 01B0             83             AJMP E0_EVENTO_3
                       84     
 00AD                  85     E0_EVENTO_0:
 00AD 22               86             RET
                       87     
 00AE                  88     E0_EVENTO_1:
-                      89     
-00AE                  90     E0_EVENTO_2:
-                      91     
-00AE                  92     E0_EVENTO_3:
-                      93     ;********************************************** ESTADO 1: PONER_VASO
-00AE                  94     PONER_VASO:
-00AE 11B6             95             ACALL E1_GENERADOR_EVENTOS
-00B0 EE               96             MOV A, EVENTO
-00B1 23               97             RL A
-00B2 9000C7           98             MOV DPTR, #TABLA_E1_EVENTOS
-00B5 73               99             JMP @A+DPTR
-                     100     
-00B6                 101     E1_GENERADOR_EVENTOS:
-00B6 20B10B          102             JB P_HAY_VASO, E1_PASAR_SIG_ESTADO
-00B9 200003          103             JB NO_ESTA_VASO, E1_PONER_VASO
-00BC 7E00            104             MOV EVENTO, #0X00
-00BE 22              105             RET
-                     106     
-00BF                 107     E1_PONER_VASO:
-00BF 7E02            108             MOV EVENTO, #0X02
-00C1 C200            109             CLR NO_ESTA_VASO
-00C3 22              110             RET
-                     111     
-00C4                 112     E1_PASAR_SIG_ESTADO:
-00C4 7E01            113             MOV EVENTO, #0X01
-00C6 22              114             RET
-                     115     
-00C7                 116     TABLA_E1_EVENTOS:
-00C7 01CD            117             AJMP E1_EVENTO_0
-00C9 01CE            118             AJMP E1_EVENTO_1
-00CB 01D3            119             AJMP E1_EVENTO_2
-                     120     
-00CD                 121     E1_EVENTO_0:
-00CD 22              122             RET
+00AE 22               89             RET
+                      90     
+00AF                  91     E0_EVENTO_2:
+00AF 22               92             RET
+                      93     
+00B0                  94     E0_EVENTO_3:
+00B0 22               95             RET
+                      96     ;********************************************** ESTADO 1: PONER_VASO
+00B1                  97     PONER_VASO:
+00B1 11B9             98             ACALL E1_GENERADOR_EVENTOS
+00B3 EE               99             MOV A, EVENTO
+00B4 23              100             RL A
+00B5 9000CA          101             MOV DPTR, #TABLA_E1_EVENTOS
+00B8 73              102             JMP @A+DPTR
+                     103     
+00B9                 104     E1_GENERADOR_EVENTOS:
+00B9 20B10B          105             JB P_HAY_VASO, E1_PASAR_SIG_ESTADO
+00BC 200003          106             JB NO_ESTA_VASO, E1_PONER_VASO
+00BF 7E00            107             MOV EVENTO, #0X00
+00C1 22              108             RET
+                     109     
+00C2                 110     E1_PONER_VASO:
+00C2 7E02            111             MOV EVENTO, #0X02
+00C4 C200            112             CLR NO_ESTA_VASO
+00C6 22              113             RET
+                     114     
+00C7                 115     E1_PASAR_SIG_ESTADO:
+00C7 7E01            116             MOV EVENTO, #0X01
+00C9 22              117             RET
+                     118     
+00CA                 119     TABLA_E1_EVENTOS:
+00CA 01D0            120             AJMP E1_EVENTO_0
+00CC 01D1            121             AJMP E1_EVENTO_1
+00CE 01D6            122             AJMP E1_EVENTO_2
                      123     
-00CE                 124     E1_EVENTO_1:
-A51 MACRO ASSEMBLER  CAFETERA                                                             11/24/2021 21:38:58 PAGE     3
+00D0                 124     E1_EVENTO_0:
+A51 MACRO ASSEMBLER  CAFETERA                                                             11/24/2021 21:50:20 PAGE     3
 
-00CE 7F02            125             MOV ESTADO, #0X02
-00D0 C293            126             CLR SN_PONER_VASO
-                     127             ;ENCENDER MOLINILLO
-                     128             ;PROGRAMAR TIMER
-00D2 22              129             RET
-                     130     
-00D3                 131     E1_EVENTO_2:
-00D3 D293            132             SETB SN_PONER_VASO
-00D5 22              133             RET
-                     134     
-                     135     
-                     136     ;********************************************** ESTADO 4: ECHAR AGUA
-00D6                 137     ECHAR_AGUA:
-00D6 11E4            138             ACALL E2_GENERADOR_EVENTOS
-00D8 EE              139             MOV A, EVENTO
-00D9 23              140             RL A
-00DA 9000DE          141             MOV DPTR, #TABLA_E2_EVENTOS
-00DD 73              142             JMP @A+DPTR
-                     143     
-00DE                 144     TABLA_E2_EVENTOS:
-00DE 01F5            145             AJMP E2_EVENTO_0
-00E0 01F6            146             AJMP E2_EVENTO_1
-00E2 01FB            147             AJMP E2_EVENTO_2
-                     148     
-00E4                 149     E2_GENERADOR_EVENTOS:
-00E4 20B00B          150             JB P_LLENO_AGUA, E2_PASAR_SIG_ESTADO
-00E7 200803          151             JB ESTA_VACIO, E2_ECHAR_AGUA
-00EA 7E00            152             MOV EVENTO, #0X00
-00EC 22              153             RET
-                     154     
-00ED                 155     E2_ECHAR_AGUA:
-00ED 7E02            156             MOV EVENTO, #0X02
-00EF C208            157             CLR ESTA_VACIO
-00F1 22              158             RET
-                     159     
-00F2                 160     E2_PASAR_SIG_ESTADO:
-00F2 7E01            161             MOV EVENTO, #0X01
-00F4 22              162             RET
-                     163     
-00F5                 164     E2_EVENTO_0:
-00F5 22              165             RET
+00D0 22              125             RET
+                     126     
+00D1                 127     E1_EVENTO_1:
+00D1 7F02            128             MOV ESTADO, #0X02
+00D3 C293            129             CLR SN_PONER_VASO
+                     130             ;ENCENDER MOLINILLO
+                     131             ;PROGRAMAR TIMER
+00D5 22              132             RET
+                     133     
+00D6                 134     E1_EVENTO_2:
+00D6 D293            135             SETB SN_PONER_VASO
+00D8 22              136             RET
+                     137     
+                     138     
+                     139     ;********************************************** ESTADO 4: ECHAR AGUA
+00D9                 140     ECHAR_AGUA:
+00D9 11E7            141             ACALL E2_GENERADOR_EVENTOS
+00DB EE              142             MOV A, EVENTO
+00DC 23              143             RL A
+00DD 9000E1          144             MOV DPTR, #TABLA_E2_EVENTOS
+00E0 73              145             JMP @A+DPTR
+                     146     
+00E1                 147     TABLA_E2_EVENTOS:
+00E1 01F8            148             AJMP E2_EVENTO_0
+00E3 01F9            149             AJMP E2_EVENTO_1
+00E5 01FE            150             AJMP E2_EVENTO_2
+                     151     
+00E7                 152     E2_GENERADOR_EVENTOS:
+00E7 20B00B          153             JB P_LLENO_AGUA, E2_PASAR_SIG_ESTADO
+00EA 200803          154             JB ESTA_VACIO, E2_ECHAR_AGUA
+00ED 7E00            155             MOV EVENTO, #0X00
+00EF 22              156             RET
+                     157     
+00F0                 158     E2_ECHAR_AGUA:
+00F0 7E02            159             MOV EVENTO, #0X02
+00F2 C208            160             CLR ESTA_VACIO
+00F4 22              161             RET
+                     162     
+00F5                 163     E2_PASAR_SIG_ESTADO:
+00F5 7E01            164             MOV EVENTO, #0X01
+00F7 22              165             RET
                      166     
-00F6                 167     E2_EVENTO_1:
-00F6 7F05            168             MOV ESTADO, #0X05
-00F8 C287            169             CLR P_LLENAR_AGUA
-                     170             ;PRECONDICIONES PROXIMO ESTADO
-00FA 22              171             RET
-                     172     
-00FB                 173     E2_EVENTO_2:
-00FB D287            174             SETB P_LLENAR_AGUA
-00FD 22              175             RET
-                     176     
-                     177     
-                     178     ;********************************************** PWM
-00FE                 179     PWM_SETUP:
-00FE 758900          180             MOV TMOD,#00H           ;Timer 0 en modo 0
-0101 7580A0          181             MOV PWM0, #160
-0104 D2AF            182             SETB EA;                ;Activar Interrupciones
-0106 D2A9            183             SETB ET0                ;Activar las interrupciones del timer 0
-0108 D28C            184             SETB TR0                ;Empezar el timer
-                     185     
-010A                 186     TIMER_0_INTERRUPT:
-010A 200008          187             JB PWM_FLAG, HIGH_DONE  ;Si la flag esta en 1 saltamos a High_Done. Si no seguimos 
-                             con Low_Done
+00F8                 167     E2_EVENTO_0:
+00F8 22              168             RET
+                     169     
+00F9                 170     E2_EVENTO_1:
+00F9 7F05            171             MOV ESTADO, #0X05
+00FB C287            172             CLR P_LLENAR_AGUA
+                     173             ;PRECONDICIONES PROXIMO ESTADO
+00FD 22              174             RET
+                     175     
+00FE                 176     E2_EVENTO_2:
+00FE D287            177             SETB P_LLENAR_AGUA
+0100 22              178             RET
+                     179     
+                     180     
+                     181     ;********************************************** PWM
+0101                 182     PWM_SETUP:
+0101 758900          183             MOV TMOD,#00H           ;Timer 0 en modo 0
+0104 7580A0          184             MOV PWM0, #160
+0107 D2AF            185             SETB EA;                ;Activar Interrupciones
+0109 D2A9            186             SETB ET0                ;Activar las interrupciones del timer 0
+010B D28C            187             SETB TR0                ;Empezar el timer
                      188     
-010D                 189     LOW_DONE:
-A51 MACRO ASSEMBLER  CAFETERA                                                             11/24/2021 21:38:58 PAGE     4
+010D                 189     TIMER_0_INTERRUPT:
+010D 200008          190             JB PWM_FLAG, HIGH_DONE  ;Si la flag esta en 1 saltamos a High_Done. Si no seguimos 
+A51 MACRO ASSEMBLER  CAFETERA                                                             11/24/2021 21:50:20 PAGE     4
 
-010D D200            190             SETB PWM_FLAG           ;Pones la flag en 1             
-010F 85808C          191             MOV TH0,PWM0            ;Cargamos el valor mas alto del timer con el valor guardado
+                             con Low_Done
+                     191     
+0110                 192     LOW_DONE:
+0110 D200            193             SETB PWM_FLAG           ;Pones la flag en 1             
+0112 85808C          194             MOV TH0,PWM0            ;Cargamos el valor mas alto del timer con el valor guardado
                               en R7
-0112 C28D            192             CLR TF0                 ;Limpiamos la flag del timer
-0114 32              193             RETI    
-                     194     
-0115                 195     HIGH_DONE:
-0115 C200            196             CLR PWM_FLAG            ;Ponew la flag en 0     
-0117 74FF            197             MOV A, #0FFH            ;Movemos el valor 255 a A
-0119 C3              198             CLR C                   ;Limpiamos C que es el bit de llevada para que no afecte a 
+0115 C28D            195             CLR TF0                 ;Limpiamos la flag del timer
+0117 32              196             RETI    
+                     197     
+0118                 198     HIGH_DONE:
+0118 C200            199             CLR PWM_FLAG            ;Ponew la flag en 0     
+011A 74FF            200             MOV A, #0FFH            ;Movemos el valor 255 a A
+011C C3              201             CLR C                   ;Limpiamos C que es el bit de llevada para que no afecte a 
                              la resta
-011A 9580            199             SUBB A, PWM0            ;Restamos a A el valor de R7
-011C F58C            200             MOV TH0, A              ;
-011E C28D            201             CLR TF0                 ;Limpiamos la flag del timer
-0120 32              202             RETI
-                     203     
-0121                 204     PWM_STOP:
-0121 C28C            205             CLR TR0                 
-0123 22              206             RET
-                     207     
-                     208     ;**********************************************FIN
-                     209     END
+011D 9580            202             SUBB A, PWM0            ;Restamos a A el valor de R7
+011F F58C            203             MOV TH0, A              ;
+0121 C28D            204             CLR TF0                 ;Limpiamos la flag del timer
+0123 32              205             RETI
+                     206     
+0124                 207     PWM_STOP:
+0124 C28C            208             CLR TR0                 
+0126 22              209             RET
+                     210     
+                     211     ;**********************************************FIN
+                     212     END
                              
                              ;PWM    https://www.8051projects.net/wiki/Pulse_Width_Modulation
                              
-A51 MACRO ASSEMBLER  CAFETERA                                                             11/24/2021 21:38:58 PAGE     5
+A51 MACRO ASSEMBLER  CAFETERA                                                             11/24/2021 21:50:20 PAGE     5
 
 SYMBOL TABLE LISTING
 ------ ----- -------
@@ -241,32 +244,32 @@ DISPLAY2 . . . . . .  N NUMB   0031H   A
 E0_ENTRA_MONEDA. . .  C ADDR   00A5H   A   
 E0_EVENTO_0. . . . .  C ADDR   00ADH   A   
 E0_EVENTO_1. . . . .  C ADDR   00AEH   A   
-E0_EVENTO_2. . . . .  C ADDR   00AEH   A   
-E0_EVENTO_3. . . . .  C ADDR   00AEH   A   
+E0_EVENTO_2. . . . .  C ADDR   00AFH   A   
+E0_EVENTO_3. . . . .  C ADDR   00B0H   A   
 E0_GENERADOR_EVENTOS  C ADDR   00A2H   A   
-E1_EVENTO_0. . . . .  C ADDR   00CDH   A   
-E1_EVENTO_1. . . . .  C ADDR   00CEH   A   
-E1_EVENTO_2. . . . .  C ADDR   00D3H   A   
-E1_GENERADOR_EVENTOS  C ADDR   00B6H   A   
-E1_PASAR_SIG_ESTADO.  C ADDR   00C4H   A   
-E1_PONER_VASO. . . .  C ADDR   00BFH   A   
-E2_ECHAR_AGUA. . . .  C ADDR   00EDH   A   
-E2_EVENTO_0. . . . .  C ADDR   00F5H   A   
-E2_EVENTO_1. . . . .  C ADDR   00F6H   A   
-E2_EVENTO_2. . . . .  C ADDR   00FBH   A   
-E2_GENERADOR_EVENTOS  C ADDR   00E4H   A   
-E2_PASAR_SIG_ESTADO.  C ADDR   00F2H   A   
+E1_EVENTO_0. . . . .  C ADDR   00D0H   A   
+E1_EVENTO_1. . . . .  C ADDR   00D1H   A   
+E1_EVENTO_2. . . . .  C ADDR   00D6H   A   
+E1_GENERADOR_EVENTOS  C ADDR   00B9H   A   
+E1_PASAR_SIG_ESTADO.  C ADDR   00C7H   A   
+E1_PONER_VASO. . . .  C ADDR   00C2H   A   
+E2_ECHAR_AGUA. . . .  C ADDR   00F0H   A   
+E2_EVENTO_0. . . . .  C ADDR   00F8H   A   
+E2_EVENTO_1. . . . .  C ADDR   00F9H   A   
+E2_EVENTO_2. . . . .  C ADDR   00FEH   A   
+E2_GENERADOR_EVENTOS  C ADDR   00E7H   A   
+E2_PASAR_SIG_ESTADO.  C ADDR   00F5H   A   
 EA . . . . . . . . .  B ADDR   00A8H.7 A   
-ECHAR_AGUA . . . . .  C ADDR   00D6H   A   
+ECHAR_AGUA . . . . .  C ADDR   00D9H   A   
 ESPERA . . . . . . .  C ADDR   009AH   A   
 ESTADO . . . . . . .    REG    R7          
 ESTA_VACIO . . . . .  B ADDR   0021H.0 A   
 ET0. . . . . . . . .  B ADDR   00A8H.1 A   
 EVENTO . . . . . . .    REG    R6          
-HIGH_DONE. . . . . .  C ADDR   0115H   A   
+HIGH_DONE. . . . . .  C ADDR   0118H   A   
 INIT . . . . . . . .  C ADDR   0081H   A   
 LOOP . . . . . . . .  C ADDR   007DH   A   
-LOW_DONE . . . . . .  C ADDR   010DH   A   
+LOW_DONE . . . . . .  C ADDR   0110H   A   
 MAIN . . . . . . . .  C ADDR   007BH   A   
 MAQ_EST. . . . . . .  C ADDR   008EH   A   
 M_05 . . . . . . . .  B ADDR   0090H.0 A   
@@ -276,22 +279,22 @@ NO_ESTA_VASO . . . .  B ADDR   0020H.0 A
 P0 . . . . . . . . .  D ADDR   0080H   A   
 P1 . . . . . . . . .  D ADDR   0090H   A   
 P3 . . . . . . . . .  D ADDR   00B0H   A   
-PONER_VASO . . . . .  C ADDR   00AEH   A   
+PONER_VASO . . . . .  C ADDR   00B1H   A   
 PWM0 . . . . . . . .  N NUMB   0080H   A   
 PWM_FLAG . . . . . .  N NUMB   0000H   A   
-PWM_SETUP. . . . . .  C ADDR   00FEH   A   
-PWM_STOP . . . . . .  C ADDR   0121H   A   
+PWM_SETUP. . . . . .  C ADDR   0101H   A   
+PWM_STOP . . . . . .  C ADDR   0124H   A   
 P_HAY_VASO . . . . .  B ADDR   00B0H.1 A   
 P_LLENAR_AGUA. . . .  B ADDR   0080H.7 A   
 P_LLENO_AGUA . . . .  B ADDR   00B0H.0 A   
 SN_PONER_VASO. . . .  B ADDR   0090H.3 A   
 TABLAESTADO. . . . .  C ADDR   0094H   A   
 TABLA_E0_EVENTOS . .  C ADDR   00A5H   A   
-TABLA_E1_EVENTOS . .  C ADDR   00C7H   A   
-TABLA_E2_EVENTOS . .  C ADDR   00DEH   A   
+TABLA_E1_EVENTOS . .  C ADDR   00CAH   A   
+TABLA_E2_EVENTOS . .  C ADDR   00E1H   A   
 TF0. . . . . . . . .  B ADDR   0088H.5 A   
 TH0. . . . . . . . .  D ADDR   008CH   A   
-TIMER_0_INTERRUPT. .  C ADDR   010AH   A   
+TIMER_0_INTERRUPT. .  C ADDR   010DH   A   
 TMOD . . . . . . . .  D ADDR   0089H   A   
 TR0. . . . . . . . .  B ADDR   0088H.4 A   
 
