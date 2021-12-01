@@ -13,6 +13,7 @@ POR HACER:
 	ESTADO 6 - Servir Cafe
 	ESTADO 7 - Echar Leche
 	ESTADO 8 - FIN
-	ADC
+	ADC 1
+	ADC 2
 	Timer
 
