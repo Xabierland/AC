@@ -3,11 +3,19 @@ ESTADO		EQU 	R7
 EVENTO		EQU	R6
 DISPLAY1	EQU 	0x30
 DISPLAY2	EQU 	0x31
+;**********************************************	VARIABLES CAFE
+BEBIDA_SELEC	EQU	0X23
 ;**********************************************	VARIABLES ESPERA
 M_05		EQU	P1.0
 M_10		EQU	P1.1
 M_20		EQU	P1.2
-
+MONEDERO	EQU	0X22
+SEL_0		EQU	P1.5
+SEL_1		EQU	P1.6
+SEL_2		EQU	P1.7
+PREC_LECHE	EQU	0x24
+PREC_CORTADO	EQU	0x25
+PREC_SOLO	EQU	0x26
 ;**********************************************	VARIABLES VASO
 P_HAY_VASO	EQU	P3.1
 SN_PONER_VASO	EQU	P1.3
@@ -38,22 +46,34 @@ LOOP:
 	AJMP LOOP
 
 INIT:
-	MOV ESTADO,#0X01
+	MOV ESTADO,#0X00
 	MOV EVENTO,#0X00
+	;INIT ESTADO 0
+	CLR M_05
+	CLR M_10
+	CLR M_20
+	CLR MONEDERO
+	CLR SEL_0
+	CLR SEL_1
+	CLR SEL_2
+	;INIT ESTADO 1
+	CLR P_HAY_VASO		;SOLO PARA PROBAR
 	CLR SN_PONER_VASO
 	SETB NO_ESTA_VASO
+	;INIT ESTADO 4
+	CLR P_LLENO_AGUA	;SOLO PARA PROBAR
 	CLR P_LLENAR_AGUA
 	SETB ESTA_VACIO
-
+	
 	RET
 
 ;**********************************************	MAQUINA DE ESTADOS
 MAQ_EST:
 	MOV A, ESTADO
 	RL A
-	MOV DPTR, #TABLAESTADO
+	MOV DPTR, #TABLA_ESTADOS
 	JMP @A+DPTR
-TABLAESTADO:
+TABLA_ESTADOS:
 	AJMP ESPERA		;#0X00
 	AJMP PONER_VASO		;#0X01
 ;	AJMP ECHAR_CAFE		;#0X02
@@ -71,27 +91,116 @@ ESPERA:
 	JMP @A+DPTR
 
 E0_GENERADOR_EVENTOS:
-	JB M_05, E0_ENTRA_MONEDA
+	;Se introducen monedas?
+	JB M_05, E0_SUMA_05	;Genera evento 1
+	JB M_10, E0_SUMA_10	;Genera evento 1
+	JB M_20, E0_SUMA_20	;Genera evento 1
 
-E0_ENTRA_MONEDA:
+	;Se ha seleccionado bebida?
+	MOV A,P1
+	RR A
+	RR A
+	RR A
+	RR A
+	RR A
+	ANL A,#00000111b
+	MOV B, A
+	JZ NO_SELEC	;Genera Evento 0
+	
+	;Hay suficiente dinero?
+	ACALL SEL_PREC_BEBIDA
+	CLR C
+	CJNE A, MONEDERO,COMPARACION	;Genera evento 2 o 3
+	JNC DINERO_SUFIC		;Genera evento 3
+	RET
 
+E0_SUMA_05:
+	CLR M_05
+	CLR A
+	MOV A,MONEDERO
+	ADD A,#5
+	MOV MONEDERO, A
+	MOV EVENTO, #0X01
+	RET
+
+E0_SUMA_10:
+	CLR M_10
+	CLR A
+	MOV A, MONEDERO
+	ADD A,#10
+	MOV MONEDERO, A
+	MOV EVENTO, #0X01
+	RET
+
+E0_SUMA_20:
+	CLR M_20
+	CLR A
+	MOV A,MONEDERO
+	ADD A,#20
+	MOV MONEDERO, A
+	MOV EVENTO, #0X01
+	RET
+
+NO_SELEC:
+	MOV EVENTO, #0X00
+	RET
+
+SEL_PREC_BEBIDA:	;Guarda en el acumulador el precio de la bebida
+	INC A
+	MOVC A, @A+PC
+	RET
+	DB 0H
+	DB 28H
+	DB 23H
+	DB 1EH
+	DB 0H
+	DB 28H
+	DB 23H
+	DB 1EH
+
+COMPARACION:
+	JNC DINERO_NO_SUFIC	;Genera evento 2
+	AJMP DINERO_SUFIC	;Genera evento 3
+	RET
+
+DINERO_NO_SUFIC:
+	MOV EVENTO, #0X02
+	RET
+
+DINERO_SUFIC:
+	MOV EVENTO, #0X03
+	;GUARDAR DATOS BEBIDA
+	RET
 
 TABLA_E0_EVENTOS:
-	AJMP E0_EVENTO_0
-	AJMP E0_EVENTO_1
-	AJMP E0_EVENTO_2
-	AJMP E0_EVENTO_3
+	AJMP E0_EVENTO_0	; Evento vacio
+	AJMP E0_EVENTO_1	; Evento moneda introducida, actualizar display
+	AJMP E0_EVENTO_2	; Bebida seleccionada pero dinero insuficiente
+	AJMP E0_EVENTO_3	; Bebida seleccionada dinero suficiente
 
 E0_EVENTO_0:
 	RET
 
 E0_EVENTO_1:
+	;ACTUALIZAR EL DISPLAY CON VALOR DE MONEDERO
+	MOV EVENTO,#0x00
 	RET
 
 E0_EVENTO_2:
+	;VALOR NO SUFICIENTE
+	;DISPLAY
+	CLR SEL_0
+	CLR SEL_1
+	CLR SEL_2
+	MOV EVENTO, #0x00
 	RET
 
 E0_EVENTO_3:
+	MOV ESTADO, #0x01
+	MOV EVENTO, #0X00
+	MOV BEBIDA_SELEC,B
+	CLR SN_PONER_VASO
+	SETB NO_ESTA_VASO
 	RET
 ;**********************************************	ESTADO 1: PONER_VASO
 PONER_VASO:
@@ -127,7 +236,7 @@ E1_EVENTO_0:
 E1_EVENTO_1:
 	MOV ESTADO, #0X02
 	CLR SN_PONER_VASO
-	;ENCENDER MOLINILLO
+	;ENCENDER PESADO
 	;PROGRAMAR TIMER
 	RET
 
@@ -135,7 +244,8 @@ E1_EVENTO_2:
 	SETB SN_PONER_VASO
 	RET
 
-
+;**********************************************	ESTADO 2: PESAR CAFE
+;**********************************************	ESTADO 3: MOLER CAFE
 ;**********************************************	ESTADO 4: ECHAR AGUA
 ECHAR_AGUA:
 	ACALL E2_GENERADOR_EVENTOS
@@ -161,7 +271,7 @@ E2_ECHAR_AGUA:
 	RET
 
 E2_PASAR_SIG_ESTADO:
-	MOV EVENTO, #0X01
+	MOV EVENTO, #0X05
 	RET
 
 E2_EVENTO_0:
@@ -176,9 +286,15 @@ E2_EVENTO_1:
 E2_EVENTO_2:
 	SETB P_LLENAR_AGUA
 	RET
+;**********************************************	ESTADO 5: CALENTAR AGUA
+;**********************************************	ESTADO 6: SERVIR CAFE
+;**********************************************	ESTADO 7: ECHAR LECHE
+;**********************************************	ESTADO 8: FIN
+
 
 
 ;**********************************************	PWM
+;PWM	https://www.8051projects.net/wiki/Pulse_Width_Modulation
 PWM_SETUP:
 	MOV TMOD,#00H		;Timer 0 en modo 0
 	MOV PWM0, #160
@@ -211,5 +327,5 @@ PWM_STOP:
 ;**********************************************FIN
 END
 
-;PWM	https://www.8051projects.net/wiki/Pulse_Width_Modulation
+
 

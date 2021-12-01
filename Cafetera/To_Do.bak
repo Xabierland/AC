@@ -1,0 +1,19 @@
+HECHO:
+	ESTADO 1 - Poner Vaso
+	ESTADO 4 - Echar Agua
+
+REVISAR:
+	PWM
+	ESTADO 0
+
+POR HACER:
+	ESTADO 2 - Echar cafe
+	ESTADO 3 - Moler cafe
+	ESTADO 5 - Calentar Agua
+	ESTADO 6 - Servir Cafe
+	ESTADO 7 - Echar Leche
+	ESTADO 8 - FIN
+	ADC 1
+	ADC 2
+	Timer
+

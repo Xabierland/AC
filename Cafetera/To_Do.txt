@@ -1,10 +1,11 @@
 HECHO:
+	ESTADO 0 - Espera
 	ESTADO 1 - Poner Vaso
 	ESTADO 4 - Echar Agua
 
 REVISAR:
 	PWM
-	ESTADO 0
+	
 
 POR HACER:
 	ESTADO 2 - Echar cafe

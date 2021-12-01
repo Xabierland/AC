@@ -1,104 +1,54 @@
 Build target 'Target 1'
 assembling Cafetera.a...
-.\Cafetera.a(79): error A45: UNDEFINED SYMBOL (PASS-2)
-.\Cafetera.a(80): error A45: UNDEFINED SYMBOL (PASS-2)
-.\Cafetera.a(87): error A38: NUMBER OF OPERANDS DOES NOT MATCH INSTRUCTION
-.\Cafetera.a(87): error A45: UNDEFINED SYMBOL (PASS-2)
-.\Cafetera.a(92): error A48: DATA-ADDRESS EXPECTED
-.\Cafetera.a(94): error A48: DATA-ADDRESS EXPECTED
-.\Cafetera.a(97): error A9: SYNTAX ERROR
-.\Cafetera.a(100): error A48: DATA-ADDRESS EXPECTED
-.\Cafetera.a(102): error A48: DATA-ADDRESS EXPECTED
-.\Cafetera.a(104): error A9: SYNTAX ERROR
-.\Cafetera.a(107): error A48: DATA-ADDRESS EXPECTED
-.\Cafetera.a(109): error A48: DATA-ADDRESS EXPECTED
+linking...
+"Cafetera" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+assembling Cafetera.a...
+.\Cafetera.a(105): error A38: NUMBER OF OPERANDS DOES NOT MATCH INSTRUCTION
+.\Cafetera.a(105): error A9: SYNTAX ERROR
 Target not created
 Build target 'Target 1'
 assembling Cafetera.a...
-.\Cafetera.a(79): error A45: UNDEFINED SYMBOL (PASS-2)
-.\Cafetera.a(80): error A45: UNDEFINED SYMBOL (PASS-2)
-.\Cafetera.a(87): error A38: NUMBER OF OPERANDS DOES NOT MATCH INSTRUCTION
-.\Cafetera.a(87): error A45: UNDEFINED SYMBOL (PASS-2)
-.\Cafetera.a(92): error A48: DATA-ADDRESS EXPECTED
-.\Cafetera.a(94): error A48: DATA-ADDRESS EXPECTED
-.\Cafetera.a(97): error A9: SYNTAX ERROR
-.\Cafetera.a(100): error A48: DATA-ADDRESS EXPECTED
-.\Cafetera.a(102): error A48: DATA-ADDRESS EXPECTED
-.\Cafetera.a(104): error A9: SYNTAX ERROR
-.\Cafetera.a(107): error A48: DATA-ADDRESS EXPECTED
-.\Cafetera.a(109): error A48: DATA-ADDRESS EXPECTED
+linking...
+"Cafetera" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+assembling Cafetera.a...
+.\Cafetera.a(162): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a(162): error A45: UNDEFINED SYMBOL (PASS-2)
 Target not created
 Build target 'Target 1'
 assembling Cafetera.a...
-.\Cafetera.a(87): error A38: NUMBER OF OPERANDS DOES NOT MATCH INSTRUCTION
-.\Cafetera.a(87): error A45: UNDEFINED SYMBOL (PASS-2)
-.\Cafetera.a(92): error A48: DATA-ADDRESS EXPECTED
-.\Cafetera.a(94): error A48: DATA-ADDRESS EXPECTED
-.\Cafetera.a(100): error A48: DATA-ADDRESS EXPECTED
-.\Cafetera.a(102): error A48: DATA-ADDRESS EXPECTED
-.\Cafetera.a(107): error A48: DATA-ADDRESS EXPECTED
-.\Cafetera.a(109): error A48: DATA-ADDRESS EXPECTED
+.\Cafetera.a(162): error A45: UNDEFINED SYMBOL (PASS-2)
 Target not created
 Build target 'Target 1'
 assembling Cafetera.a...
-.\Cafetera.a(10): error A9: SYNTAX ERROR
-.\Cafetera.a(87): error A38: NUMBER OF OPERANDS DOES NOT MATCH INSTRUCTION
-.\Cafetera.a(87): error A45: UNDEFINED SYMBOL (PASS-2)
-.\Cafetera.a(92): error A45: UNDEFINED SYMBOL (PASS-2)
-.\Cafetera.a(94): error A45: UNDEFINED SYMBOL (PASS-2)
-.\Cafetera.a(100): error A45: UNDEFINED SYMBOL (PASS-2)
-.\Cafetera.a(102): error A45: UNDEFINED SYMBOL (PASS-2)
-.\Cafetera.a(107): error A45: UNDEFINED SYMBOL (PASS-2)
-.\Cafetera.a(109): error A45: UNDEFINED SYMBOL (PASS-2)
+linking...
+"Cafetera" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+assembling Cafetera.a...
+.\Cafetera.a(110): error A9: SYNTAX ERROR
 Target not created
 Build target 'Target 1'
 assembling Cafetera.a...
-.\Cafetera.a(10): error A9: SYNTAX ERROR
-.\Cafetera.a(87): error A38: NUMBER OF OPERANDS DOES NOT MATCH INSTRUCTION
-.\Cafetera.a(87): error A45: UNDEFINED SYMBOL (PASS-2)
-.\Cafetera.a(92): error A45: UNDEFINED SYMBOL (PASS-2)
-.\Cafetera.a(94): error A45: UNDEFINED SYMBOL (PASS-2)
-.\Cafetera.a(100): error A45: UNDEFINED SYMBOL (PASS-2)
-.\Cafetera.a(102): error A45: UNDEFINED SYMBOL (PASS-2)
-.\Cafetera.a(107): error A45: UNDEFINED SYMBOL (PASS-2)
-.\Cafetera.a(109): error A45: UNDEFINED SYMBOL (PASS-2)
+linking...
+"Cafetera" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+assembling Cafetera.a...
+.\Cafetera.a(110): error A45: UNDEFINED SYMBOL (PASS-2)
 Target not created
 Build target 'Target 1'
 assembling Cafetera.a...
-.\Cafetera.a(10): error A9: SYNTAX ERROR
-.\Cafetera.a(87): error A38: NUMBER OF OPERANDS DOES NOT MATCH INSTRUCTION
-.\Cafetera.a(87): error A45: UNDEFINED SYMBOL (PASS-2)
-.\Cafetera.a(92): error A45: UNDEFINED SYMBOL (PASS-2)
-.\Cafetera.a(94): error A45: UNDEFINED SYMBOL (PASS-2)
-.\Cafetera.a(100): error A45: UNDEFINED SYMBOL (PASS-2)
-.\Cafetera.a(102): error A45: UNDEFINED SYMBOL (PASS-2)
-.\Cafetera.a(107): error A45: UNDEFINED SYMBOL (PASS-2)
-.\Cafetera.a(109): error A45: UNDEFINED SYMBOL (PASS-2)
+linking...
+"Cafetera" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+"Cafetera" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+assembling Cafetera.a...
+.\Cafetera.a(58): error A17: INVALID BYTE BASE IN BIT ADDRESS EXPRESSION
 Target not created
 Build target 'Target 1'
 assembling Cafetera.a...
-.\Cafetera.a(87): error A38: NUMBER OF OPERANDS DOES NOT MATCH INSTRUCTION
-.\Cafetera.a(87): error A45: UNDEFINED SYMBOL (PASS-2)
-.\Cafetera.a(92): error A48: DATA-ADDRESS EXPECTED
-.\Cafetera.a(94): error A48: DATA-ADDRESS EXPECTED
-.\Cafetera.a(100): error A48: DATA-ADDRESS EXPECTED
-.\Cafetera.a(102): error A48: DATA-ADDRESS EXPECTED
-.\Cafetera.a(107): error A48: DATA-ADDRESS EXPECTED
-.\Cafetera.a(109): error A48: DATA-ADDRESS EXPECTED
-Target not created
-Build target 'Target 1'
-assembling Cafetera.a...
-.\Cafetera.a(87): error A45: UNDEFINED SYMBOL (PASS-2)
-.\Cafetera.a(92): error A48: DATA-ADDRESS EXPECTED
-.\Cafetera.a(94): error A48: DATA-ADDRESS EXPECTED
-.\Cafetera.a(100): error A48: DATA-ADDRESS EXPECTED
-.\Cafetera.a(102): error A48: DATA-ADDRESS EXPECTED
-.\Cafetera.a(107): error A48: DATA-ADDRESS EXPECTED
-.\Cafetera.a(109): error A48: DATA-ADDRESS EXPECTED
-Target not created
-Build target 'Target 1'
-assembling Cafetera.a...
-.\Cafetera.a(87): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a(58): error A48: DATA-ADDRESS EXPECTED
 Target not created
 Build target 'Target 1'
 assembling Cafetera.a...
@@ -117,35 +67,6 @@ assembling Cafetera.a...
 linking...
 "Cafetera" - 0 Error(s), 0 Warning(s).
 Build target 'Target 1'
-"Cafetera" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-"Cafetera" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-assembling Cafetera.a...
-linking...
-"Cafetera" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-assembling Cafetera.a...
-.\Cafetera.a(94): error A9: SYNTAX ERROR
-.\Cafetera.a(94): error A9: SYNTAX ERROR
-.\Cafetera.a(95): error A9: SYNTAX ERROR
-.\Cafetera.a(95): error A9: SYNTAX ERROR
-.\Cafetera.a(96): error A9: SYNTAX ERROR
-.\Cafetera.a(96): error A9: SYNTAX ERROR
-.\Cafetera.a(97): error A9: SYNTAX ERROR
-.\Cafetera.a(97): error A9: SYNTAX ERROR
-.\Cafetera.a(98): error A9: SYNTAX ERROR
-.\Cafetera.a(98): error A9: SYNTAX ERROR
-Target not created
-Build target 'Target 1'
-assembling Cafetera.a...
-linking...
-"Cafetera" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-assembling Cafetera.a...
-linking...
-"Cafetera" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
 assembling Cafetera.a...
 linking...
 "Cafetera" - 0 Error(s), 0 Warning(s).
@@ -153,101 +74,8 @@ Build target 'Target 1'
 "Cafetera" - 0 Error(s), 0 Warning(s).
 Build target 'Target 1'
 assembling Cafetera.a...
-linking...
-"Cafetera" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-"Cafetera" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-assembling Cafetera.a...
-linking...
-"Cafetera" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-assembling Cafetera.a...
-linking...
-"Cafetera" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-assembling Cafetera.a...
-.\Cafetera.a(19): error A9: SYNTAX ERROR
-.\Cafetera.a(20): error A9: SYNTAX ERROR
-.\Cafetera.a(21): error A9: SYNTAX ERROR
-Target not created
-Build target 'Target 1'
-assembling Cafetera.a...
-linking...
-"Cafetera" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-assembling Cafetera.a...
-.\Cafetera.a(134): error A48: DATA-ADDRESS EXPECTED
-.\Cafetera.a(136): error A48: DATA-ADDRESS EXPECTED
-.\Cafetera.a(137): error A46: CODE-ADDRESS EXPECTED
-.\Cafetera.a(138): error A48: DATA-ADDRESS EXPECTED
-.\Cafetera.a(139): error A46: CODE-ADDRESS EXPECTED
-.\Cafetera.a(145): error A8: ATTEMPT TO DEFINE AN ALREADY DEFINED LABEL
-.\Cafetera.a(149): error A8: ATTEMPT TO DEFINE AN ALREADY DEFINED LABEL
-Target not created
-Build target 'Target 1'
-assembling Cafetera.a...
-.\Cafetera.a(134): error A48: DATA-ADDRESS EXPECTED
-.\Cafetera.a(136): error A48: DATA-ADDRESS EXPECTED
-.\Cafetera.a(138): error A48: DATA-ADDRESS EXPECTED
-Target not created
-Build target 'Target 1'
-assembling Cafetera.a...
-linking...
-"Cafetera" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-assembling Cafetera.a...
-linking...
-"Cafetera" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-"Cafetera" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-assembling Cafetera.a...
-linking...
-"Cafetera" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-assembling Cafetera.a...
-linking...
-"Cafetera" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-assembling Cafetera.a...
-.\Cafetera.a(103): error A45: UNDEFINED SYMBOL (PASS-2)
-.\Cafetera.a(138): error A9: SYNTAX ERROR
-.\Cafetera.a(138): error A34: ',' EXPECTED
-.\Cafetera.a(139): error A9: SYNTAX ERROR
-.\Cafetera.a(139): error A34: ',' EXPECTED
-.\Cafetera.a(140): error A9: SYNTAX ERROR
-.\Cafetera.a(140): error A34: ',' EXPECTED
-.\Cafetera.a(141): error A9: SYNTAX ERROR
-.\Cafetera.a(141): error A34: ',' EXPECTED
-.\Cafetera.a(142): error A9: SYNTAX ERROR
-.\Cafetera.a(142): error A34: ',' EXPECTED
-.\Cafetera.a(143): error A9: SYNTAX ERROR
-.\Cafetera.a(143): error A34: ',' EXPECTED
-.\Cafetera.a(144): error A9: SYNTAX ERROR
-.\Cafetera.a(144): error A34: ',' EXPECTED
-.\Cafetera.a(145): error A9: SYNTAX ERROR
-.\Cafetera.a(145): error A34: ',' EXPECTED
-Target not created
-Build target 'Target 1'
-assembling Cafetera.a...
-.\Cafetera.a(103): error A45: UNDEFINED SYMBOL (PASS-2)
-Target not created
-Build target 'Target 1'
-assembling Cafetera.a...
-.\Cafetera.a(103): error A7: LABEL NOT PERMITTED
-Target not created
-Build target 'Target 1'
-assembling Cafetera.a...
-linking...
-"Cafetera" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-assembling Cafetera.a...
-linking...
-"Cafetera" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-assembling Cafetera.a...
-.\Cafetera.a(102): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a(60): error A38: NUMBER OF OPERANDS DOES NOT MATCH INSTRUCTION
+.\Cafetera.a(60): error A9: SYNTAX ERROR
 Target not created
 Build target 'Target 1'
 assembling Cafetera.a...
