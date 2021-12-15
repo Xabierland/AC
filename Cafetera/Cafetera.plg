@@ -31,3 +31,74 @@ assembling Cafetera.a...
 .\Cafetera.a(358): error A45: UNDEFINED SYMBOL (PASS-2)
 .\Cafetera.a(361): error A45: UNDEFINED SYMBOL (PASS-2)
 Target not created
+assembling Cafetera.a...
+.\Cafetera.a(28): error A15: MISSING FACTOR
+.\Cafetera.a(29): error A15: MISSING FACTOR
+.\Cafetera.a(30): error A15: MISSING FACTOR
+.\Cafetera.a(32): error A17: INVALID BYTE BASE IN BIT ADDRESS EXPRESSION
+.\Cafetera.a(33): error A17: INVALID BYTE BASE IN BIT ADDRESS EXPRESSION
+.\Cafetera.a(43): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a(47): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a(254): error A17: INVALID BYTE BASE IN BIT ADDRESS EXPRESSION
+.\Cafetera.a(284): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a(290): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a(291): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a(291): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a(341): error A9: SYNTAX ERROR
+.\Cafetera.a(346): error A17: INVALID BYTE BASE IN BIT ADDRESS EXPRESSION
+.\Cafetera.a(347): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a(348): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a(349): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a - 17 Error(s), 0 Warning(s).
+assembling Cafetera.a...
+.\Cafetera.a(32): error A17: INVALID BYTE BASE IN BIT ADDRESS EXPRESSION
+.\Cafetera.a(33): error A17: INVALID BYTE BASE IN BIT ADDRESS EXPRESSION
+.\Cafetera.a(43): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a(47): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a(254): error A17: INVALID BYTE BASE IN BIT ADDRESS EXPRESSION
+.\Cafetera.a(284): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a(290): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a(291): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a(291): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a(341): error A9: SYNTAX ERROR
+.\Cafetera.a(346): error A17: INVALID BYTE BASE IN BIT ADDRESS EXPRESSION
+.\Cafetera.a - 11 Error(s), 0 Warning(s).
+assembling Cafetera.a...
+.\Cafetera.a(32): error A17: INVALID BYTE BASE IN BIT ADDRESS EXPRESSION
+.\Cafetera.a(33): error A17: INVALID BYTE BASE IN BIT ADDRESS EXPRESSION
+.\Cafetera.a(43): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a(47): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a(89): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a(254): error A17: INVALID BYTE BASE IN BIT ADDRESS EXPRESSION
+.\Cafetera.a(284): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a(290): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a(291): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a(291): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a(341): error A9: SYNTAX ERROR
+.\Cafetera.a(346): error A17: INVALID BYTE BASE IN BIT ADDRESS EXPRESSION
+.\Cafetera.a - 12 Error(s), 0 Warning(s).
+assembling Cafetera.a...
+.\Cafetera.a(32): error A17: INVALID BYTE BASE IN BIT ADDRESS EXPRESSION
+.\Cafetera.a(33): error A17: INVALID BYTE BASE IN BIT ADDRESS EXPRESSION
+.\Cafetera.a(43): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a(47): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a(89): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a(284): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a(290): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a(291): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a(291): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a(341): error A9: SYNTAX ERROR
+.\Cafetera.a(346): error A17: INVALID BYTE BASE IN BIT ADDRESS EXPRESSION
+.\Cafetera.a - 11 Error(s), 0 Warning(s).
+assembling Cafetera.a...
+.\Cafetera.a(32): error A17: INVALID BYTE BASE IN BIT ADDRESS EXPRESSION
+.\Cafetera.a(33): error A17: INVALID BYTE BASE IN BIT ADDRESS EXPRESSION
+.\Cafetera.a(43): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a(47): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a(284): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a(290): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a(291): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a(291): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a(341): error A9: SYNTAX ERROR
+.\Cafetera.a(346): error A17: INVALID BYTE BASE IN BIT ADDRESS EXPRESSION
+.\Cafetera.a - 10 Error(s), 0 Warning(s).

@@ -25,7 +25,7 @@ Options 1,0,0  // Target 'Target 1'
  EnvLib ()
  EnvReg (ÿPhilips\)
  OrgReg (ÿPhilips\)
- TgStat=0
+ TgStat=9
  OutDir (.\)
  OutName (Cafetera)
  GenApp=1

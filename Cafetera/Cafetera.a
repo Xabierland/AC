@@ -1,8 +1,8 @@
 ;**********************************************	VARIABLES GLOBALES
 ESTADO		EQU 	R7
 EVENTO		EQU	R6
-DISPLAY1	EQU 	0x30
-DISPLAY2	EQU 	0x31
+DISPLAY1	EQU 	P0
+DISPLAY2	EQU 	P2
 ;**********************************************	VARIABLES CAFE
 BEBIDA_SELEC	EQU	0X23
 ;**********************************************	VARIABLES ESPERA
@@ -25,12 +25,14 @@ P_LLENO_AGUA	EQU	P3.0
 P_LLENAR_AGUA	EQU 	P0.7
 ESTA_VACIO	EQU	0X21.0
 ;**********************************************	VARIABLES TIMER
-
+CONT0		EQU	0X30
+CONT1		EQU	0X31
+CONT2		EQU	0X32
 ;**********************************************	VARIABLES ADC
-PESO		EQU	P5.0
-TEMPERATURA	EQU	P5.1	
+ADC0		EQU	P5.0
+ADC		EQU	P5.1	
 ;**********************************************	VARIABLES PWM
-VELOCIDAD	EQU	197		;Si 0 son 0V y 255 son 5V -> 197 son 3.86V
+
 
 ;**********************************************	MAIN, LOOP & INIT
 ORG 0x00
@@ -84,8 +86,8 @@ MAQ_EST:
 TABLA_ESTADOS:
 	AJMP ESPERA		;#0X00
 	AJMP PONER_VASO		;#0X01
-;	AJMP ECHAR_CAFE		;#0X02
-;	AJMP MOLER_CAFE		;#0X03
+	AJMP PESAR_CAFE		;#0X02
+	AJMP MOLER_CAFE		;#0X03
 	AJMP ECHAR_AGUA		;#0X04	
 
 
@@ -249,8 +251,9 @@ E1_EVENTO_1:
 	RET
 
 ADC_SETUP:
-	SETB A8.6 ;Activa la interrupcion del ADC
-	ANL C5, 11111000b
+	SETB 0xA8.6 ;Activa la interrupcion del ADC
+	ANL 0xC5, #11111000b
+	ORL 0xC5, #00001000b
 	
 	
 E1_EVENTO_2:
@@ -334,39 +337,17 @@ E4_EVENTO_2:
 ;**********************************************	ESTADO 7: ECHAR LECHE
 ;**********************************************	ESTADO 8: FIN
 
-
-
-;**********************************************	PWM
-;PWM	https://www.8051projects.net/wiki/Pulse_Width_Modulation
-PWM_SETUP:
-	MOV TMOD,#00H		;Timer 0 en modo 0
-	MOV PWM0, VELOCIDAD
-	SETB EA			;Activar Interrupciones
-	SETB ET0		;Activar las interrupciones del timer 0
-	SETB TR0		;Empezar el timer
-
-TIMER_0_INTERRUPT:
-	JB PWM_FLAG, HIGH_DONE	;Si la flag esta en 1 saltamos a High_Done. Si no seguimos con Low_Done
-
-LOW_DONE:
-	SETB PWM_FLAG		;Pones la flag en 1		
-	MOV TH0,PWM0		;Cargamos el valor mas alto del timer con el valor guardado en R7
-	CLR TF0			;Limpiamos la flag del timer
-	RETI	
-
-HIGH_DONE:
-	CLR PWM_FLAG		;Ponew la flag en 0	
-	MOV A, #0FFH		;Movemos el valor 255 a A
-	CLR C			;Limpiamos C que es el bit de llevada para que no afecte a la resta
-	SUBB A, PWM0		;Restamos a A el valor de R7
-	MOV TH0, A		;
-	CLR TF0			;Limpiamos la flag del timer
-	RETI
-
-PWM_STOP:
-	CLR TR0			
-	RET
-
+ACTIVAR_TIMER:
+	ORL TMOD #00000001b
+	;?
+	MOV TH0, #0XF8
+	MOV TL0, #0X30
+	SETB 0Xa8.1
+	SETB TCOM.4
+	MOV CONT0, #0
+	MOV CONT1, #0
+	MOV CONT2, #0
+	
 ;**********************************************FIN
 END
 
