@@ -1,0 +1,33 @@
+assembling Cafetera.a...
+.\Cafetera.a(40): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a(44): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a(254): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a(255): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a(283): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a(343): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a(349): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a(352): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a(353): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a(358): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a(361): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a - 11 Error(s), 0 Warning(s).
+Build target 'Target 1'
+assembling Cafetera.a...
+.\Cafetera.a(30): error A17: INVALID BYTE BASE IN BIT ADDRESS EXPRESSION
+.\Cafetera.a(31): error A17: INVALID BYTE BASE IN BIT ADDRESS EXPRESSION
+.\Cafetera.a(41): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a(45): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a(252): error A17: INVALID BYTE BASE IN BIT ADDRESS EXPRESSION
+.\Cafetera.a(253): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a(253): error A39: REGISTER OPERAND EXPECTED
+.\Cafetera.a(281): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a(287): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a(288): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a(288): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a(343): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a(349): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a(352): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a(353): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a(358): error A45: UNDEFINED SYMBOL (PASS-2)
+.\Cafetera.a(361): error A45: UNDEFINED SYMBOL (PASS-2)
+Target not created

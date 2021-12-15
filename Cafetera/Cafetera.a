@@ -24,18 +24,26 @@ NO_ESTA_VASO	EQU	0X20.0
 P_LLENO_AGUA	EQU	P3.0
 P_LLENAR_AGUA	EQU 	P0.7
 ESTA_VACIO	EQU	0X21.0
+;**********************************************	VARIABLES TIMER
 
-
+;**********************************************	VARIABLES ADC
+PESO		EQU	P5.0
+TEMPERATURA	EQU	P5.1	
 ;**********************************************	VARIABLES PWM
-PWM_FLAG	EQU	0
-PWM0		EQU	197		;Si 0 son 0V y 255 son 5V -> 197 son 3.86V
+VELOCIDAD	EQU	197		;Si 0 son 0V y 255 son 5V -> 197 son 3.86V
 
 ;**********************************************	MAIN, LOOP & INIT
 ORG 0x00
 	AJMP MAIN
 
 ;INTERRUPCIONES
+ORG 0x0B
+	ACALL SUB_TMR
+	RETI
 
+ORG 0x53 
+	ACALL SUB_ADC
+	RETI
 ;PROGRAMA PRINCIPAL
 ORG 0x7B
 MAIN:
@@ -237,9 +245,14 @@ E1_EVENTO_1:
 	MOV ESTADO, #0X02
 	CLR SN_PONER_VASO
 	;ENCENDER PESADO
-	;PROGRAMAR TIMER
+	AJMP ADC_SETUP
 	RET
 
+ADC_SETUP:
+	SETB A8.6 ;Activa la interrupcion del ADC
+	ANL C5, 11111000b
+	
+	
 E1_EVENTO_2:
 	SETB SN_PONER_VASO
 	RET
@@ -270,9 +283,12 @@ E2_GENERADOR_EVENTOS:
 
 CAFE:
 	
-
+ACTIVAR_PWM:
+	MOV PWMP, #0X01
+	MOV PWM0, B3H
 
 ;**********************************************	ESTADO 3: MOLER CAFE
+MOLER_CAFE:
 ;**********************************************	ESTADO 4: ECHAR AGUA
 ECHAR_AGUA:
 	ACALL E4_GENERADOR_EVENTOS
@@ -324,8 +340,8 @@ E4_EVENTO_2:
 ;PWM	https://www.8051projects.net/wiki/Pulse_Width_Modulation
 PWM_SETUP:
 	MOV TMOD,#00H		;Timer 0 en modo 0
-	MOV PWM0, #160
-	SETB EA;		;Activar Interrupciones
+	MOV PWM0, VELOCIDAD
+	SETB EA			;Activar Interrupciones
 	SETB ET0		;Activar las interrupciones del timer 0
 	SETB TR0		;Empezar el timer
 
