@@ -5,6 +5,8 @@ DISPLAY1	EQU 	P0
 DISPLAY2	EQU 	P2
 ;**********************************************	VARIABLES CAFE
 BEBIDA_SELEC	EQU	0X23
+SERVIR_CAFE	EQU	P3.2
+SERVIR_DESCAFE	EQU	P3,7
 ;**********************************************	VARIABLES ESPERA
 M_05		EQU	P1.0
 M_10		EQU	P1.1
@@ -20,17 +22,27 @@ PREC_SOLO	EQU	0x26
 P_HAY_VASO	EQU	P3.1
 SN_PONER_VASO	EQU	P1.3
 NO_ESTA_VASO	EQU	0X20.0
+;**********************************************	VARIABLES PESO
+NO_SELEC_GRANO	EQU	0X27.0
+;**********************************************	VARIABLES MOLER
+
 ;**********************************************	VARIABLES AGUA
 P_LLENO_AGUA	EQU	P3.0
 P_LLENAR_AGUA	EQU 	P0.7
 ESTA_VACIO	EQU	0X21.0
+;**********************************************	VARIABLES CALENTAR
+;**********************************************	VARIABLES SERVIR
+;**********************************************	VARIABLES LECHE
+;**********************************************	VARIABLES FIN
 ;**********************************************	VARIABLES TIMER
 CONT0		EQU	0X30
 CONT1		EQU	0X31
 CONT2		EQU	0X32
+TIMER_FLAG	EQU	0X33.0
 ;**********************************************	VARIABLES ADC
 ADC0		EQU	P5.0
-ADC		EQU	P5.1	
+ADC		EQU	P5.1
+ADCH		EQU	0xC6	
 ;**********************************************	VARIABLES PWM
 
 
@@ -69,11 +81,13 @@ INIT:
 	;INIT ESTADO 1
 	CLR P_HAY_VASO		;SOLO PARA PROBAR
 	CLR SN_PONER_VASO
-	SETB NO_ESTA_VASO
+	SETB NO_ESTA_VASO	;SOLO PARA LA PRIMERA VUELTA
+	;INIT ESTADO 2
+	SETB NO_SELEC_GRANO		;SOLO PARA LA PRIMERA VUELTA
 	;INIT ESTADO 4
 	CLR P_LLENO_AGUA	;SOLO PARA PROBAR
 	CLR P_LLENAR_AGUA
-	SETB ESTA_VACIO
+	SETB ESTA_VACIO		;SOLO PARA LA PRIMERA VUELTA
 	
 	RET
 
@@ -88,8 +102,11 @@ TABLA_ESTADOS:
 	AJMP PONER_VASO		;#0X01
 	AJMP PESAR_CAFE		;#0X02
 	AJMP MOLER_CAFE		;#0X03
-	AJMP ECHAR_AGUA		;#0X04	
-
+	AJMP ECHAR_AGUA		;#0X04
+	AJMP CALENTAR_AGUA	;#0X05
+	AJMP SERVIR_CAFE	;#0X06
+	AJMP ECHAR_LECHE	;#0X07
+	AJMP FIN		;#0X08	
 
 
 ;**********************************************	ESTADO 0: ESPERA
@@ -250,11 +267,6 @@ E1_EVENTO_1:
 	AJMP ADC_SETUP
 	RET
 
-ADC_SETUP:
-	SETB 0xA8.6 ;Activa la interrupcion del ADC
-	ANL 0xC5, #11111000b
-	ORL 0xC5, #00001000b
-	
 	
 E1_EVENTO_2:
 	SETB SN_PONER_VASO
@@ -268,30 +280,55 @@ PESAR_CAFE:
 	MOV DPTR, #TABLA_E2_EVENTOS
 	JMP @A+DPTR
 
-TABLA_E2_EVENTOS:
-	AJMP E2_EVENTO_0
-
-E2_EVENTO_0:
-	RET
-
-E2_EVENTO_1:
-	RET
-
 E2_GENERADOR_EVENTOS:
+	JNB NO_SELEC_GRANO, SELEC_GRANO
+
+SELEC_GRANO:
+	CLR NO_SELEC_GRANO
 	MOV A, BEBIDA_SELEC
 	ANL A, #00000100b
 	JZ CAFE
 	AJMP DESCAFE
 	RET
 
-CAFE:
-	
-ACTIVAR_PWM:
-	MOV PWMP, #0X01
-	MOV PWM0, B3H
+CAFE:		;ACTIVA EL ADC PARA ECHAR CAFE
+	RET
+DESCAFE:	;ACTIVA EL ADC PARA ECHAR DESCAFE
+	RET
 
+TABLA_E2_EVENTOS:
+	AJMP E2_EVENTO_0
+
+E2_EVENTO_0:	;Estado vacio
+	RET
+
+E2_EVENTO_1:	;SE ECHA CAFE O DESCAFE?
+	
+
+E2_EVENTO_2:	;Se ha echado el cafe o descafe necesario
+
+	
 ;**********************************************	ESTADO 3: MOLER CAFE
 MOLER_CAFE:
+	ACALL E3_GENERADOR_EVENTOS
+	MOV A, EVENTO
+	RL A
+	MOV DPTR, #TABLA_E3_EVENTOS
+	JMP @A+DPTR
+
+E3_GENERADOR_EVENTOS:
+	
+
+TABLA_E3_EVENTOS:
+	AJMP E3_EVENTO_0
+	AJMP E3_EVENTO_1
+
+E3_EVENTO_0:	;EVENTO VACIO
+	RET
+
+E3_EVENTO_1:
+	RET
+
 ;**********************************************	ESTADO 4: ECHAR AGUA
 ECHAR_AGUA:
 	ACALL E4_GENERADOR_EVENTOS
@@ -306,7 +343,7 @@ TABLA_E4_EVENTOS:
 	AJMP E4_EVENTO_2
 
 E4_GENERADOR_EVENTOS:
-	JB P_LLENO_AGUA, E4_PASAR_SIG_ESTADO
+	JB P_LLENO_AGUA, E4_PASAR_SIG_ESTADO	;P_LLENO_AGUA SE PONDRA A 1 MEDIANTE INTERRUPCION DEL TIMER
 	JB ESTA_VACIO, E4_ECHAR_AGUA
 	MOV EVENTO, #0X00
 	RET
@@ -333,11 +370,27 @@ E4_EVENTO_2:
 	SETB P_LLENAR_AGUA
 	RET
 ;**********************************************	ESTADO 5: CALENTAR AGUA
+CALENTAR_AGUA:
 ;**********************************************	ESTADO 6: SERVIR CAFE
+SERVIR_CAFE:
 ;**********************************************	ESTADO 7: ECHAR LECHE
+ECHAR_LECHE:
 ;**********************************************	ESTADO 8: FIN
+FIN:
+;**********************************************	INTERRUPCIONES
+SUB_TMR:
+	RET
 
-ACTIVAR_TIMER:
+SUB_ADC:
+	ACALL PESAR_CAFE
+	RET
+
+ADC_SETUP:
+	SETB 0xA8.6 ;Activa la interrupcion del ADC
+	ANL 0xC5, #11111000b
+	ORL 0xC5, #00001000b
+
+TIMER_SETUP:
 	ORL TMOD #00000001b
 	;?
 	MOV TH0, #0XF8
@@ -348,6 +401,9 @@ ACTIVAR_TIMER:
 	MOV CONT1, #0
 	MOV CONT2, #0
 	
+PWM_SETUP:
+	MOV PWMP, #0X01
+	MOV PWM0, #0XB3
 ;**********************************************FIN
 END
 
