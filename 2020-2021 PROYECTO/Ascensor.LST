@@ -1,0 +1,390 @@
+A51 MACRO ASSEMBLER  ASCENSOR                                                             12/19/2019 11:49:09 PAGE     1
+
+
+MACRO ASSEMBLER A51 V6.14
+OBJECT MODULE PLACED IN .\Ascensor.OBJ
+ASSEMBLER INVOKED BY: C:\Keil\C51\BIN\A51.EXE .\Ascensor.asm SET(SMALL) DEBUG EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1             ORG 0                           ;Dirección de inicio del programa
+0000 8019              2             SJMP RUTINA_INICIALIZACION      ;Salto a la subrutina de inicialización
+                       3     
+                       4     
+000B                   5             ORG 000BH                       ;Establece la subrutina de atención a la interrupci
+                             ón de la interrupción provocada por el exceso del timer 0
+000B                   6     ACELERAR:                               ;Subrutina que acelera un 10% de la capacidad del P
+                             WM
+000B 9415              7             SUBB A,#15H                     ;Resta este valor al acumulador para asegurar que l
+                             legue a la máxima capacidad del PWM
+000D 6008              8             JZ MAXIMO                       ;Si el valor del acumulador es 0, salta a la subrut
+                             ina final
+000F 2415              9             ADD A,#15H                      ;Si no se le vuelve a añadir el valor
+0011 941A             10             SUBB A,#1AH                     ;Se le añade un 10% de la capacidad del PWM al acum
+                             ulador
+0013 F5FC             11             MOV 0FCH,A                      ;Se mueve al registro del PWM0 el valor del acumula
+                             dor
+0015 8061             12             SJMP ACELERANDO                 ;Acaba la subrutina de atención a la interrupción y
+                              vuelve al estado acelerando
+0017                  13     MAXIMO:                                 ;Subrutina que establece la máxima capacidad al PWM
+                             0
+0017 F5FC             14             MOV 0FCH,A                      ;Mueve al registro del PWM0 el valor del acumulador
+0019 805D             15             SJMP ACELERANDO                 ;Acaba la subrutina de atención a la interrupción y
+                              vuelve al estado acelerando
+                      16     
+                      17     
+001B                  18     RUTINA_INICIALIZACION:                  ;Subrutina de inicialización
+001B                  19     INIT_FLAGS:                             ;Subrutina que pone a cero los flags utilizados par
+                             a indicar la activación de un evento
+001B C220             20             CLR 20H                         ;Ponemos a cero el flag que indica si ha habido alg
+                             ún error en la apertura o el cierre de la puerta
+001D C221             21             CLR 21H                         ;Ponemos a cero el flag que indica si hay sobrepeso
+001F                  22     INIT_DISPLAYS:                          ;Subrutina que inicializa los displays
+001F 11A1             23             ACALL ACTUALIZAR_DISPLAYS       ;Llama a la subrutina que actualiza los displays
+0021                  24     INIT_ASCENSOR:                          ;Subrutina que inicializa las características del a
+                             scensor
+0021 75FCFF           25             MOV 0FCH,#0FFH                  ;Pone a nivel bajo el PWM0 (ascensor parado)
+0024                  26     INIT_EST:                               ;Subrutina que establece en que planta nos encontra
+                             mos
+0024 30A002           27             JNB P2.0,PLANTA_0               ;Si el sensor de la planta 0 está activo, pasamos a
+                             l estado 0
+0027 80FB             28             SJMP INIT_EST                   ;Si el sensor de la planta 0 no está activo, volvem
+                             os a ejecutar la subrutina           
+                      29     
+                      30     
+0029                  31     PLANTA_0:                               ;Máquina de eventos de la planta 0
+0029 1167             32             ACALL ADC                       ;Llama a la subrutina que hace la conversión analóg
+                             ica digital del puerto 5 y canal 0 (P5.0)
+002B                  33     PLANTA_0_SS:                            ;;Máquina de eventos de la planta 0, una vez compro
+                             bado el sobrepeso
+002B 30930B           34             JNB P1.3,BOTON_1_O_2            ;Si llaman desde el piso 1, pasamos a la subrutina 
+                             que llama a las subrutinas necesarias para empezar a subir
+002E 309408           35             JNB P1.4,BOTON_1_O_2            ;Si llaman desde el piso 2, pasamos a la subrutina 
+                             que llama a las subrutinas necesarias para empezar a subir
+0031 30920F           36             JNB P1.2,BOTON_0                ;Si llaman desde el piso 0 o la cabina 0, pasamos a
+                              la subrutina que llama a las subrutinas que abren la puerta y temporizan 5 segundos
+0034 208714           37             JB P0.7,PUERTA_ABIERTA          ;Si la puerta está abierta, pasamos a la subrutina 
+                             que llama a la subrutina que cierra la puerta
+A51 MACRO ASSEMBLER  ASCENSOR                                                             12/19/2019 11:49:09 PAGE     2
+
+0037 80F0             38             SJMP PLANTA_0                   ;Si no ocurre ninguno de los eventos anteriores, vo
+                             lvemos a ejecutar la máquina de eventos de la planta 0
+0039                  39     BOTON_1_O_2:                            ;Subrutina que llama a las subrutinas necesarias pa
+                             ra empezar a subir
+0039 310B             40             ACALL CERRAR_PUERTA             ;Llama a la subrutina que cierra la puerta
+003B D2A5             41             SETB P2.5                       ;Pone a 1 el puerto que indica si estamos subiendo 
+                             o bajando, es decir, estamos subiendo
+003D E5FC             42             MOV A,0FCH                      ;Mueve el valor del registro del PWM0 al acumulador
+003F 11A1             43             ACALL ACTUALIZAR_DISPLAYS       ;Llama a la subrutina que actualiza los displays
+0041 8035             44             SJMP ACELERANDO                 ;Salto a la subrutina del estado acelerando
+0043                  45     BOTON_0:                                ;Subrutina que llama a las subrutinas que abren la 
+                             puerta y temporizan 5 segundos
+0043 3115             46             ACALL ABRIR_PUERTA              ;Llama a la subrutina que abre la puerta
+0045 311F             47             ACALL TEMPORIZAR_5S             ;Llama a la subrutina que temporiza 5 segundos
+0047 D292             48             SETB P1.2                       ;Se desactiva el puerto que avisa de las llamadas d
+                             e la cabina o el piso 0, dando a entender que ya ha sido atendida
+0049 80DE             49             SJMP PLANTA_0                   ;Después de abrir la puerta y temporizar 5 segundos
+                             , volvemos a ejecutar la máquina de eventos de la planta 0
+004B                  50     PUERTA_ABIERTA:                         ;Subrutina que llama a la subrutina que cierra la p
+                             uerta
+004B 310B             51             ACALL CERRAR_PUERTA             ;Llama a la subrutina que cierra la puerta
+004D 80DA             52             SJMP PLANTA_0                   ;Después de cerrar la puerta, volvemos a ejecutar l
+                             a máquina de eventos de la planta 0
+                      53     
+                      54     
+0053                  55             ORG 0053H                       ;Establece la subrutina de atención a la interrupci
+                             ón de la interrupción provocada por finalizar la conversión del ADC
+0053                  56     COMPROBAR_SOBREPESO:                    ;Subrutina que comprueba si hay sobrepeso
+0053 E5C6             57             MOV A,0C6H                      ;Mueve los 8 bits más significativos al acumulador
+0055 54CD             58             ANL A,#0CDH                     ;Enmascara todo menos los bits 0,2,3,6 y 7
+0057 94DC             59             SUBB A,#0DCH                    ;Le resta al acumulador el valor anterior
+0059 7006             60             JNZ NO_SOBREPESO                ;Si el acumulador tras la resta no está a cero, no 
+                             hay sobrepeso
+005B D221             61             SETB 21H                        ;Ponemos a uno el flag que indica si hay sobrepeso
+005D 11A1             62             ACALL ACTUALIZAR_DISPLAYS       ;Llama a la subrutina que actualiza los displays
+005F 8015             63             SJMP SOBREPESO                  ;Salto a la subrutina del estado de sobrepeso
+0061                  64     NO_SOBREPESO:                           ;Si no hay sobrepeso
+0061 C221             65             CLR 21H                         ;Ponemos a cero el flag que indica si hay sobrepeso
+0063 11A1             66             ACALL ACTUALIZAR_DISPLAYS       ;Llama a la subrutina que actualiza los displays
+0065 80C4             67             SJMP PLANTA_0_SS                ;Salto a la máquina de eventos de la planta 0
+                      68     
+                      69     
+0067                  70     ADC:                                    ;Rutina que hace la conversión analógica digital
+0067 D2AF             71             SETB EA                         ;Se habilitan todas las interrupciones
+0069 53C500           72             ANL 0C5H,#00H                   ;Limpia el bit ADCI y escoge el canal 5
+006C 43C508           73             ORL 0C5H,#08H                   ;Pone a 1 el bit ADCS para comenzar la conversión
+006F D2AE             74             SETB 0A8H.6                     ;Se habilita la interrupción de la conversión del A
+                             DC
+0071                  75     EOC:                                    ;Rutina que ejecuta la conversión
+0071 E5C5             76             MOV A,0C5H                      ;Mueve el valor del registro ADCON al acumulador
+0073 30E4FB           77             JNB ACC.4,EOC                   ;Mira si el valor del bit ADCI es 1 para acabar la 
+                             conversión
+                      78     
+                      79     
+0076                  80     SOBREPESO:                              ;Máquina de eventos del estado de sobrepeso
+0076 1167             81             ACALL ADC                       ;Llama a la subrutina que hace la conversión analóg
+                             ica digital del puerto 5 y canal 0 (P5.0)
+                      82     
+                      83     
+0078                  84     ACELERANDO:                             ;Máquina de eventos del estado acelerando
+0078 60FE             85             JZ ACELERANDO                   ;Si se ha acabado de acelerar, no se hace nada más
+007A 117C             86             ACALL TEMPORIZAR_500MS          ;Llama a la subrutina que temporiza 500 milisegundo
+                             s
+                      87     
+                      88     
+007C                  89     TEMPORIZAR_500MS:                       ;Subrutina que temporiza 500 milisegundos
+A51 MACRO ASSEMBLER  ASCENSOR                                                             12/19/2019 11:49:09 PAGE     3
+
+007C 758901           90             MOV TMOD,#01H                   ;Establece el timer 0 en el modo 1, 16 bit
+007F 7F63             91             MOV R7,#99                      ;99 veces 5 ms = retardo de 495 ms
+0081                  92     DELAY_5MS4:                             ;Subrutina que temporiza 5 milisegundos
+0081 758CD8           93             MOV TH0,#HIGH (-10000)          ;Necesario para generar el retardo de 5 ms
+0084 758AF0           94             MOV TL0,#LOW (-10000)           ;Necesario para generar el retardo de 5 ms
+0087 D28C             95             SETB TR0                        ;Enciende el timer 0
+0089 308DFD           96             JNB TF0,$                       ;Esperar a que el flag del timer 0 se active, indic
+                             a desbordamiento
+008C C28D             97             CLR TF0                         ;Pone a cero el flag de exceso del timer 0
+008E C28C             98             CLR TR0                         ;Apaga el timer 0
+0090 DFEF             99             DJNZ R7,DELAY_5MS4              ;Decrementa R7, repite el retardo de 5 ms si R7 no 
+                             es cero
+0092 758CD8          100             MOV TH0,#HIGH (-10000)          ;Necesario para generar el retardo de 5 ms
+0095 758AF0          101             MOV TL0,#LOW (-10000)           ;Necesario para generar el retardo de 5 ms
+0098 D2AF            102             SETB IE.7                       ;Se habilitan todas las interrupciones
+009A D2A9            103             SETB IE.1                       ;Se habilita la interrupción del exceso del timer 0
+009C D28C            104             SETB TR0                        ;Enciende el timer 0
+009E 308DFD          105             JNB TF0,$                       ;Esperar a que el flag del timer 0 se active, indic
+                             a desbordamiento             
+                     106     
+                     107     
+00A1                 108     ACTUALIZAR_DISPLAYS:                    ;Subrutina que actualiza los displays
+00A1 202024          109             JB 20H,HAY_ERROR                ;Si hay un error en la apertura o cierre de la puer
+                             ta, se indica en los displays
+00A4 20213C          110             JB 21H,DP_SOBREPESO             ;Si hay sobrepeso cuando el ascensor está parado, s
+                             e indica en los displays
+00A7 D280            111             SETB P0.0                       ;Se pone el segmento a del display 7 segmentos a 1
+00A9 D281            112             SETB P0.1                       ;Se pone el segmento b del display 7 segmentos a 1
+00AB D282            113             SETB P0.2                       ;Se pone el segmento c del display 7 segmentos a 1
+00AD D283            114             SETB P0.3                       ;Se pone el segmento d del display 7 segmentos a 1
+00AF D284            115             SETB P0.4                       ;Se pone el segmento e del display 7 segmentos a 1
+00B1 D285            116             SETB P0.5                       ;Se pone el segmento f del display 7 segmentos a 1
+00B3 C286            117             CLR P0.6                        ;Se pone el segmento g del display 7 segmentos a 0
+00B5 309346          118             JNB P1.3,FLECHA_ARRIBA          ;Si llaman desde el piso 1, se indica con una flech
+                             a hacia arriba
+00B8 309443          119             JNB P1.4,FLECHA_ARRIBA          ;Si llaman desde el piso 2, se indica con una flech
+                             a hacia arriba
+00BB C2B0            120             CLR P3.0                        ;Se pone el segmento a del display 6 segmentos a 0
+00BD C2B1            121             CLR P3.1                        ;Se pone el segmento b del display 6 segmentos a 0
+00BF D2B2            122             SETB P3.2                       ;Se pone el segmento c del display 6 segmentos a 1
+00C1 D2B3            123             SETB P3.3                       ;Se pone el segmento d del display 6 segmentos a 1
+00C3 C2B4            124             CLR P3.4                        ;Se pone el segmento e del display 6 segmentos a 0
+00C5 C2B5            125             CLR P3.5                        ;Se pone el segmento f del display 6 segmentos a 0
+00C7 22              126             RET                             ;Se termina la subrutina
+00C8                 127     HAY_ERROR:                              ;Subrutina que indica en los displays que ha habido
+                              un error en la apertura o cierre de la puerta
+00C8 D280            128             SETB P0.0                       ;Se pone el segmento a del display 7 segmentos a 1
+00CA C281            129             CLR P0.1                        ;Se pone el segmento b del display 7 segmentos a 0
+00CC C282            130             CLR P0.2                        ;Se pone el segmento c del display 7 segmentos a 0
+00CE C283            131             CLR P0.3                        ;Se pone el segmento d del display 7 segmentos a 0
+00D0 D284            132             SETB P0.4                       ;Se pone el segmento e del display 7 segmentos a 1
+00D2 D285            133             SETB P0.5                       ;Se pone el segmento f del display 7 segmentos a 1
+00D4 D286            134             SETB P0.6                       ;Se pone el segmento g del display 7 segmentos a 1
+00D6 C2B0            135             CLR P3.0                        ;Se pone el segmento a del display 6 segmentos a 0
+00D8 C2B1            136             CLR P3.1                        ;Se pone el segmento b del display 6 segmentos a 0
+00DA D2B2            137             SETB P3.2                       ;Se pone el segmento c del display 6 segmentos a 1
+00DC D2B3            138             SETB P3.3                       ;Se pone el segmento d del display 6 segmentos a 1
+00DE C2B4            139             CLR P3.4                        ;Se pone el segmento e del display 6 segmentos a 0
+00E0 C2B5            140             CLR P3.5                        ;Se pone el segmento f del display 6 segmentos a 0
+00E2 22              141             RET                             ;Se termina la subrutina
+00E3                 142     DP_SOBREPESO:                           ;Subrutina que indica en los displays que hay sobre
+                             peso
+00E3 D280            143             SETB P0.0                       ;Se pone el segmento a del display 7 segmentos a 1
+00E5 C281            144             CLR P0.1                        ;Se pone el segmento b del display 7 segmentos a 0
+00E7 D282            145             SETB P0.2                       ;Se pone el segmento c del display 7 segmentos a 1
+00E9 D283            146             SETB P0.3                       ;Se pone el segmento d del display 7 segmentos a 1
+A51 MACRO ASSEMBLER  ASCENSOR                                                             12/19/2019 11:49:09 PAGE     4
+
+00EB C284            147             CLR P0.4                        ;Se pone el segmento e del display 7 segmentos a 0
+00ED D285            148             SETB P0.5                       ;Se pone el segmento f del display 7 segmentos a 1
+00EF D286            149             SETB P0.6                       ;Se pone el segmento g del display 7 segmentos a 1
+00F1 C2B0            150             CLR P3.0                        ;Se pone el segmento a del display 6 segmentos a 0
+00F3 C2B1            151             CLR P3.1                        ;Se pone el segmento b del display 6 segmentos a 0
+00F5 C2B2            152             CLR P3.2                        ;Se pone el segmento c del display 6 segmentos a 0
+00F7 C2B3            153             CLR P3.3                        ;Se pone el segmento d del display 6 segmentos a 0
+00F9 C2B4            154             CLR P3.4                        ;Se pone el segmento e del display 6 segmentos a 0
+00FB C2B5            155             CLR P3.5                        ;Se pone el segmento f del display 6 segmentos a 0
+00FD 22              156             RET                             ;Se termina la subrutina
+00FE                 157     FLECHA_ARRIBA:                          ;Subrutina que muestra una flecha hacia arriba en e
+                             l display 6 segmentos
+00FE D2B0            158             SETB P3.0                       ;Se pone el segmento a del display 6 segmentos a 1
+0100 D2B1            159             SETB P3.1                       ;Se pone el segmento b del display 6 segmentos a 1
+0102 D2B2            160             SETB P3.2                       ;Se pone el segmento c del display 6 segmentos a 1
+0104 D2B3            161             SETB P3.3                       ;Se pone el segmento d del display 6 segmentos a 1
+0106 C2B4            162             CLR P3.4                        ;Se pone el segmento e del display 6 segmentos a 0
+0108 C2B5            163             CLR P3.5                        ;Se pone el segmento f del display 6 segmentos a 0
+010A 22              164             RET                             ;Se termina la subrutina
+                     165     
+                     166     
+010B                 167     CERRAR_PUERTA:                          ;Subrutina que cierra la puerta y comprueba si tras
+                              5 segundos, la puerta está cerrada
+010B C290            168             CLR P1.0                        ;Pone a 0 el primer puerto necesario para el contro
+                             l de la puerta
+010D D291            169             SETB P1.1                       ;Pone a 1 el segundo puerto necesario para el contr
+                             ol de la puerta
+010F 313A            170             ACALL COMPROBAR_PC              ;Llama a la subrutina que comprueba durante 5 segun
+                             dos si la puerta se ha cerrado
+0111 208762          171             JB P0.7,ERROR                   ;Si la puerta sigue abierta tras los 5 segundos, se
+                              pasa a la subrutina de error
+0114 22              172             RET                             ;Se termina la subrutina
+                     173     
+                     174     
+0115                 175     ABRIR_PUERTA:                           ;Subrutina que abre la puerta y comprueba si tras 5
+                              segundos, la puerta está abierta
+0115 D290            176             SETB P1.0                       ;Pone a 1 el primer puerto necesario para el contro
+                             l de la puerta
+0117 C291            177             CLR P1.1                        ;Pone a 0 el segundo puerto necesario para el contr
+                             ol de la puerta
+0119 3158            178             ACALL COMPROBAR_PA              ;Llama a la subrutina que comprueba durante 5 segun
+                             dos si la puerta se ha abierto
+011B 308758          179             JNB P0.7,ERROR                  ;Si la puerta sigue cerrada tras los 5 segundos, se
+                              pasa a la subrutina de error
+011E 22              180             RET                             ;Se termina la subrutina
+                     181     
+                     182     
+011F                 183     TEMPORIZAR_5S:                          ;Subrutina que temporiza 5 segundos
+011F 758901          184             MOV TMOD,#01H                   ;Establece el timer 0 en el modo 1, 16 bit
+0122 7E0A            185             MOV R6,#10                      ;10 veces 500 ms = retardo de 5 s
+0124                 186     DELAY_500MS:                            ;Subrutina que temporiza 500 milisegundos
+0124 7F64            187             MOV R7,#100                     ;100 veces 5 ms = retardo de 500 ms
+0126                 188     DELAY_5MS:                              ;Subrutina que temporiza 5 milisegundos
+0126 758CD8          189             MOV TH0,#HIGH (-10000)          ;Necesario para generar el retardo de 5 ms
+0129 758AF0          190             MOV TL0,#LOW (-10000)           ;Necesario para generar el retardo de 5 ms
+012C D28C            191             SETB TR0                        ;Enciende el timer 0
+012E 308DFD          192             JNB TF0,$                       ;Esperar a que el flag del timer 0 se active, indic
+                             a desbordamiento
+0131 C28D            193             CLR TF0                         ;Pone a cero el flag de exceso del timer 0
+0133 C28C            194             CLR TR0                         ;Apaga el timer 0
+0135 DFEF            195             DJNZ R7,DELAY_5MS               ;Decrementa R7, repite el retardo de 5 ms si R7 no 
+                             es cero
+0137 DEEB            196             DJNZ R6,DELAY_500MS             ;Decrementa R6, recarga R7 si R6 no es cero
+0139 22              197             RET                             ;Se termina la subrutina
+                     198     
+                     199     
+A51 MACRO ASSEMBLER  ASCENSOR                                                             12/19/2019 11:49:09 PAGE     5
+
+013A                 200     COMPROBAR_PC:                           ;Subrutina que comprueba durante 5 segundos si la p
+                             uerta se ha cerrado
+013A 758901          201             MOV TMOD,#01H                   ;Establece el timer 0 en el modo 1, 16 bit
+013D 7E0A            202             MOV R6,#10                      ;10 veces 500 ms = retardo de 5 s
+013F                 203     DELAY_500MS2:                           ;Subrutina que temporiza 500 milisegundos
+013F 7F64            204             MOV R7,#100                     ;100 veces 5 ms = retardo de 500 ms
+0141                 205     DELAY_5MS2:                             ;Subrutina que temporiza 5 milisegundos
+0141 758CD8          206             MOV TH0,#HIGH (-10000)          ;Necesario para generar el retardo de 5 ms
+0144 758AF0          207             MOV TL0,#LOW (-10000)           ;Necesario para generar el retardo de 5 ms
+0147 D28C            208             SETB TR0                        ;Enciende el timer 0
+0149 308DFD          209             JNB TF0,$                       ;Esperar a que el flag del timer 0 se active, indic
+                             a desbordamiento
+014C C28D            210             CLR TF0                         ;Pone a cero el flag de exceso del timer 0
+014E C28C            211             CLR TR0                         ;Apaga el timer 0
+0150 308704          212             JNB P0.7,PUERTA_CERRADA         ;Si la puerta está cerrada, termina la subrutina
+0153 DFEC            213             DJNZ R7,DELAY_5MS2              ;Decrementa R7, repite el retardo de 5 ms si R7 no 
+                             es cero
+0155 DEE8            214             DJNZ R6,DELAY_500MS2            ;Decrementa R6, recarga R7 si R6 no es cero
+0157                 215     PUERTA_CERRADA:                         ;Salto al final de la subrutina
+0157 22              216             RET                             ;Se termina la subrutina
+                     217     
+                     218     
+0158                 219     COMPROBAR_PA:                           ;Subrutina que comprueba durante 5 segundos si la p
+                             uerta se ha abierto
+0158 758901          220             MOV TMOD,#01H                   ;Establece el timer 0 en el modo 1, 16 bit
+015B 7E0A            221             MOV R6,#10                      ;10 veces 500 ms = retardo de 5 s
+015D                 222     DELAY_500MS3:                           ;Subrutina que temporiza 500 milisegundos
+015D 7F64            223             MOV R7,#100                     ;100 veces 5 ms = retardo de 500 ms
+015F                 224     DELAY_5MS3:                             ;Subrutina que temporiza 5 milisegundos
+015F 758CD8          225             MOV TH0,#HIGH (-10000)          ;Necesario para generar el retardo de 5 ms
+0162 758AF0          226             MOV TL0,#LOW (-10000)           ;Necesario para generar el retardo de 5 ms
+0165 D28C            227             SETB TR0                        ;Enciende el timer 0
+0167 308DFD          228             JNB TF0,$                       ;Esperar a que el flag del timer 0 se active, indic
+                             a desbordamiento
+016A C28D            229             CLR TF0                         ;Pone a cero el flag de exceso del timer 0
+016C C28C            230             CLR TR0                         ;Apaga el timer 0
+016E 208704          231             JB P0.7,PUERTA_ABIERTA2         ;Si la puerta está abierta, termina la subrutina
+0171 DFEC            232             DJNZ R7,DELAY_5MS3              ;Decrementa R7, repite el retardo de 5 ms si R7 no 
+                             es cero
+0173 DEE8            233             DJNZ R6,DELAY_500MS3            ;Decrementa R6, recarga R7 si R6 no es cero
+0175                 234     PUERTA_ABIERTA2:                        ;Salto al final de la subrutina
+0175 22              235             RET                             ;Se termina la subrutina
+                     236     
+                     237     
+0176                 238     ERROR:                                  ;Subrutina de error
+0176 D220            239             SETB 20H                        ;Se pone el flag de error a 1
+0178 11A1            240             ACALL ACTUALIZAR_DISPLAYS       ;Llama a la subrutina que actualiza los displays
+017A 8000            241             SJMP FINAL                      ;Salto al final del programa
+                     242     
+                     243     
+017C                 244     FINAL:                                  ;Etiqueta que te lleva al final del programa
+                     245             END                             ;Final del programa
+A51 MACRO ASSEMBLER  ASCENSOR                                                             12/19/2019 11:49:09 PAGE     6
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E                T Y P E  V A L U E   ATTRIBUTES
+
+ABRIR_PUERTA. . . . .  C ADDR   0115H   A   
+ACC . . . . . . . . .  D ADDR   00E0H   A   
+ACELERANDO. . . . . .  C ADDR   0078H   A   
+ACELERAR. . . . . . .  C ADDR   000BH   A   
+ACTUALIZAR_DISPLAYS .  C ADDR   00A1H   A   
+ADC . . . . . . . . .  C ADDR   0067H   A   
+BOTON_0 . . . . . . .  C ADDR   0043H   A   
+BOTON_1_O_2 . . . . .  C ADDR   0039H   A   
+CERRAR_PUERTA . . . .  C ADDR   010BH   A   
+COMPROBAR_PA. . . . .  C ADDR   0158H   A   
+COMPROBAR_PC. . . . .  C ADDR   013AH   A   
+COMPROBAR_SOBREPESO .  C ADDR   0053H   A   
+DELAY_500MS . . . . .  C ADDR   0124H   A   
+DELAY_500MS2. . . . .  C ADDR   013FH   A   
+DELAY_500MS3. . . . .  C ADDR   015DH   A   
+DELAY_5MS . . . . . .  C ADDR   0126H   A   
+DELAY_5MS2. . . . . .  C ADDR   0141H   A   
+DELAY_5MS3. . . . . .  C ADDR   015FH   A   
+DELAY_5MS4. . . . . .  C ADDR   0081H   A   
+DP_SOBREPESO. . . . .  C ADDR   00E3H   A   
+EA. . . . . . . . . .  B ADDR   00A8H.7 A   
+EOC . . . . . . . . .  C ADDR   0071H   A   
+ERROR . . . . . . . .  C ADDR   0176H   A   
+FINAL . . . . . . . .  C ADDR   017CH   A   
+FLECHA_ARRIBA . . . .  C ADDR   00FEH   A   
+HAY_ERROR . . . . . .  C ADDR   00C8H   A   
+IE. . . . . . . . . .  D ADDR   00A8H   A   
+INIT_ASCENSOR . . . .  C ADDR   0021H   A   
+INIT_DISPLAYS . . . .  C ADDR   001FH   A   
+INIT_EST. . . . . . .  C ADDR   0024H   A   
+INIT_FLAGS. . . . . .  C ADDR   001BH   A   
+MAXIMO. . . . . . . .  C ADDR   0017H   A   
+NO_SOBREPESO. . . . .  C ADDR   0061H   A   
+P0. . . . . . . . . .  D ADDR   0080H   A   
+P1. . . . . . . . . .  D ADDR   0090H   A   
+P2. . . . . . . . . .  D ADDR   00A0H   A   
+P3. . . . . . . . . .  D ADDR   00B0H   A   
+PLANTA_0. . . . . . .  C ADDR   0029H   A   
+PLANTA_0_SS . . . . .  C ADDR   002BH   A   
+PUERTA_ABIERTA. . . .  C ADDR   004BH   A   
+PUERTA_ABIERTA2 . . .  C ADDR   0175H   A   
+PUERTA_CERRADA. . . .  C ADDR   0157H   A   
+RUTINA_INICIALIZACION  C ADDR   001BH   A   
+SOBREPESO . . . . . .  C ADDR   0076H   A   
+TEMPORIZAR_500MS. . .  C ADDR   007CH   A   
+TEMPORIZAR_5S . . . .  C ADDR   011FH   A   
+TF0 . . . . . . . . .  B ADDR   0088H.5 A   
+TH0 . . . . . . . . .  D ADDR   008CH   A   
+TL0 . . . . . . . . .  D ADDR   008AH   A   
+TMOD. . . . . . . . .  D ADDR   0089H   A   
+TR0 . . . . . . . . .  B ADDR   0088H.4 A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)
