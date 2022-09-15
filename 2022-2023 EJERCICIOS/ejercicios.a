@@ -1,0 +1,57 @@
+ORG 0X0000
+	AJMP INICIO
+
+ORG 0x007B
+SUBRUTINA:
+	MOV A, 0X30
+	RET
+INICIO:
+;Ejercicio 1
+	;a)
+	MOV A, #0x10
+	;b)
+	MOV 0x60, A
+	;c)
+	MOV B, 0x60
+;Ejercicio 2
+	;a)
+	MOV R0, #0x80
+	MOV R1, #0x81
+
+	MOV @R0, #0x0f
+	MOV @R1, #0x11
+	;b)
+	MOV A, @R0
+	ADD A, @R1
+	MOV 0X7F, A
+	;c)
+	MOV R0, #0xFF
+	MOV @R0, #0x7F
+;Ejercicio 3
+	;a)
+	ORL 0x20, #01000001b
+	;b)
+	ANL 0x20, #10111110b
+	;c)
+	MOV P1, 0x00
+	MOV A, P1
+	MOV P1, 0XFF
+	ANL P1, #00000000b
+	ORL P1, #01000000b
+	;d)
+	SETB RS0
+	MOV R0, #0Bh
+
+	SETB RS1
+	CLR RS0
+	MOV R2, #04h
+	
+	MOV A, R2
+	SETB RS0
+	CLR RS1
+	ADD A, R0
+;Ejercicio 4
+	ACALL SUBRUTINA
+	MOV 0X31, A	
+END
+

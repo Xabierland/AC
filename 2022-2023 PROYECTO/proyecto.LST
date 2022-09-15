@@ -1,0 +1,31 @@
+A51 MACRO ASSEMBLER  PROYECTO                                                             09/15/2022 15:34:40 PAGE     1
+
+
+MACRO ASSEMBLER A51 V6.14
+OBJECT MODULE PLACED IN .\proyecto.OBJ
+ASSEMBLER INVOKED BY: C:\Keil\C51\BIN\A51.EXE .\proyecto.a SET(SMALL) DEBUG EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     ORG 0X0000
+0000 0180              2             AJMP INICIO
+                       3     
+0080                   4     ORG 0x0080
+0080                   5     INICIO:
+                       6     
+                       7     END
+A51 MACRO ASSEMBLER  PROYECTO                                                             09/15/2022 15:34:40 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+INICIO . . . . . .  C ADDR   0080H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

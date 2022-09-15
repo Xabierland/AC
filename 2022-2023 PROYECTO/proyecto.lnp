@@ -1,0 +1,4 @@
+"proyecto.obj",
+"ejercicios.obj" 
+TO "proyecto" 
+RAMSIZE(256) 

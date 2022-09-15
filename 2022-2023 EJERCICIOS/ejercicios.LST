@@ -1,0 +1,86 @@
+A51 MACRO ASSEMBLER  EJERCICIOS                                                           09/15/2022 15:34:40 PAGE     1
+
+
+MACRO ASSEMBLER A51 V6.14
+OBJECT MODULE PLACED IN .\ejercicios.OBJ
+ASSEMBLER INVOKED BY: C:\Keil\C51\BIN\A51.EXE .\ejercicios.a SET(SMALL) DEBUG EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     ORG 0X0000
+0000 017E              2             AJMP INICIO
+                       3     
+007B                   4     ORG 0x007B
+007B                   5     SUBRUTINA:
+007B E530              6             MOV A, 0X30
+007D 22                7             RET
+007E                   8     INICIO:
+                       9     ;Ejercicio 1
+                      10             ;a)
+007E 7410             11             MOV A, #0x10
+                      12             ;b)
+0080 F560             13             MOV 0x60, A
+                      14             ;c)
+0082 8560F0           15             MOV B, 0x60
+                      16     ;Ejercicio 2
+                      17             ;a)
+0085 7880             18             MOV R0, #0x80
+0087 7981             19             MOV R1, #0x81
+                      20     
+0089 760F             21             MOV @R0, #0x0f
+008B 7711             22             MOV @R1, #0x11
+                      23             ;b)
+008D E6               24             MOV A, @R0
+008E 27               25             ADD A, @R1
+008F F57F             26             MOV 0X7F, A
+                      27             ;c)
+0091 78FF             28             MOV R0, #0xFF
+0093 767F             29             MOV @R0, #0x7F
+                      30     ;Ejercicio 3
+                      31             ;a)
+0095 432041           32             ORL 0x20, #01000001b
+                      33             ;b)
+0098 5320BE           34             ANL 0x20, #10111110b
+                      35             ;c)
+009B 850090           36             MOV P1, 0x00
+009E E590             37             MOV A, P1
+00A0 85FF90           38             MOV P1, 0XFF
+00A3 539000           39             ANL P1, #00000000b
+00A6 439040           40             ORL P1, #01000000b
+                      41             ;d)
+00A9 D2D3             42             SETB RS0
+00AB 780B             43             MOV R0, #0Bh
+                      44     
+00AD D2D4             45             SETB RS1
+00AF C2D3             46             CLR RS0
+00B1 7A04             47             MOV R2, #04h
+                      48             
+00B3 EA               49             MOV A, R2
+00B4 D2D3             50             SETB RS0
+00B6 C2D4             51             CLR RS1
+00B8 28               52             ADD A, R0
+                      53     ;Ejercicio 4
+00B9 117B             54             ACALL SUBRUTINA
+00BB F531             55             MOV 0X31, A     
+                      56     END
+                             
+A51 MACRO ASSEMBLER  EJERCICIOS                                                           09/15/2022 15:34:40 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+B. . . . . . . . .  D ADDR   00F0H   A   
+INICIO . . . . . .  C ADDR   007EH   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+RS0. . . . . . . .  B ADDR   00D0H.3 A   
+RS1. . . . . . . .  B ADDR   00D0H.4 A   
+SUBRUTINA. . . . .  C ADDR   007BH   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)
