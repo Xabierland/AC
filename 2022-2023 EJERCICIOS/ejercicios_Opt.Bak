@@ -10,8 +10,9 @@
  DaveTm { 0,0,0,0,0,0,0,0 }
 
 Target (Target 1), 0x0000 // Tools: 'MCS-51'
-GRPOPT 1,(Source Group 1),0,0,0
+GRPOPT 1,(Source Group 1),1,0,0
 
+OPTFFF 1,1,2,0,0,48,55,0,<.\ejercicios.a><ejercicios.a> { 44,0,0,0,0,0,0,0,1,0,0,0,255,255,255,255,255,255,255,255,248,255,255,255,225,255,255,255,11,0,0,0,38,0,0,0,109,2,0,0,160,1,0,0 }
 
 
 TARGOPT 1, (Target 1)
@@ -27,7 +28,7 @@ TARGOPT 1, (Target 1)
   OPTBL 2,(Programmer's Guide & Instruction Set Manual)<DATASHTS\PHILIPS\UPROGGUI.PDF>
   OPTDL (S8051.DLL)()(DP51.DLL)(-p552)(S8051.DLL)()(TP51.DLL)(-p552)
   OPTDBG 509,0,()()()()()()()()()() ()()()()
-  OPTDF 0x0
+  OPTDF 0x80
   OPTLE <>
   OPTLC <>
 EndOpt

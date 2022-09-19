@@ -1,4 +1,4 @@
-A51 MACRO ASSEMBLER  EJERCICIOS                                                           09/15/2022 15:34:40 PAGE     1
+A51 MACRO ASSEMBLER  EJERCICIOS                                                           09/19/2022 17:07:47 PAGE     1
 
 
 MACRO ASSEMBLER A51 V6.14
@@ -64,7 +64,7 @@ LOC  OBJ            LINE     SOURCE
 00BB F531             55             MOV 0X31, A     
                       56     END
                              
-A51 MACRO ASSEMBLER  EJERCICIOS                                                           09/15/2022 15:34:40 PAGE     2
+A51 MACRO ASSEMBLER  EJERCICIOS                                                           09/19/2022 17:07:47 PAGE     2
 
 SYMBOL TABLE LISTING
 ------ ----- -------
