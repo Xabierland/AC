@@ -1,0 +1,187 @@
+A51 MACRO ASSEMBLER  EJERCICIO                                                            09/27/2022 15:20:14 PAGE     1
+
+
+MACRO ASSEMBLER A51 V6.14
+OBJECT MODULE PLACED IN .\ejercicio.OBJ
+ASSEMBLER INVOKED BY: C:\Keil\C51\BIN\A51.EXE .\ejercicio.a SET(SMALL) DEBUG EP
+
+LOC  OBJ            LINE     SOURCE
+
+  0090                 1     NB EQU P1.0
+  0091                 2     NA EQU P1.1
+  0094                 3     EV1 EQU P1.4
+  0095                 4     EV2 EQU P1.5
+  0020                 5     ESTADO EQU 0x20
+  0021                 6     EVENTO EQU 0x21
+                       7     
+0000                   8     ORG 0x00
+0000 0180              9             AJMP INIT
+                      10     
+0080                  11     ORG 0x80
+0080                  12     INIT:
+0080 752000           13             MOV ESTADO, #0
+0083 752100           14             MOV EVENTO, #0
+0086 539000           15             ANL P1, #00000000b
+0089 D294             16             SETB EV1
+008B                  17     MAIN:
+008B 118F             18             ACALL FSM
+008D 018B             19             AJMP MAIN
+008F                  20     FSM:
+008F E520             21             MOV A, ESTADO
+0091 23               22             RL A
+0092 900096           23             MOV DPTR, #EST_TAB
+0095 73               24             JMP @A+DPTR
+0096                  25     EST_TAB:
+0096 019C             26             AJMP ESTADO0
+0098 01BE             27             AJMP ESTADO1
+009A 01FB             28             AJMP ESTADO2
+                      29     ;===================ESTADO0=======================;
+009C                  30     ESTADO0:
+009C 11B3             31             ACALL ES0_GEN_EV
+009E E521             32             MOV A, EVENTO
+00A0 23               33             RL A
+00A1 9000A5           34             MOV DPTR, #ES0_EV_TAB
+00A4 73               35             JMP @A+DPTR
+00A5                  36     ES0_EV_TAB:
+00A5 01A9             37             AJMP ES0_EV0
+00A7 01AA             38             AJMP ES0_EV1
+00A9                  39     ES0_EV0:                        ;EVENTO VACIO
+00A9 22               40             RET
+00AA                  41     ES0_EV1:                        ;EVENTO IR A NIVEL MEDIO
+00AA 752001           42             MOV ESTADO, #1
+00AD D295             43             SETB EV2                        ;ABRIMOS LA VALVULA DE ABAJO
+00AF 752100           44             MOV EVENTO, #0
+00B2 22               45             RET
+00B3                  46     ES0_GEN_EV:                     ;GENERADOR DE EVENTOS
+00B3 E590             47             MOV A, P1
+00B5 5401             48             ANL A, #00000001b
+00B7 7001             49             JNZ ES0_NB_ACTIVADO             ; SI NB se activa nos vamos a nivel medio
+00B9 22               50             RET
+00BA                  51     ES0_NB_ACTIVADO:                ;CONDICION
+00BA 752101           52             MOV EVENTO, #1
+00BD 22               53             RET
+                      54     ;===================ESTADO1=======================;
+00BE                  55     ESTADO1:
+00BE 11E0             56             ACALL ES1_GEN_EV
+00C0 E521             57             MOV A, EVENTO
+00C2 23               58             RL A
+A51 MACRO ASSEMBLER  EJERCICIO                                                            09/27/2022 15:20:14 PAGE     2
+
+00C3 9000C7           59             MOV DPTR, #ES1_EV_TAB
+00C6 73               60             JMP @A+DPTR
+00C7                  61     ES1_EV_TAB:
+00C7 01CD             62             AJMP ES1_EV0
+00C9 01CE             63             AJMP ES1_EV1
+00CB 01D7             64             AJMP ES1_EV2
+00CD                  65     ES1_EV0:                        ;EVENTO VACIO
+00CD 22               66             RET
+00CE                  67     ES1_EV1:                        ;EVENTO IR A NIVEL BAJO
+00CE 752000           68             MOV ESTADO, #0
+00D1 C295             69             CLR EV2                         ;CERRAMOS LA VALVULA DE ABAJO
+00D3 752100           70             MOV EVENTO, #0
+00D6 22               71             RET
+00D7                  72     ES1_EV2:                        ;EVENTO IR A NIVEL ALTO
+00D7 752002           73             MOV ESTADO, #2
+00DA C294             74             CLR EV1                         ;CERRAMOS LA VALVULA DE ARRIBA
+00DC 752100           75             MOV EVENTO, #0
+00DF 22               76             RET
+00E0                  77     ES1_GEN_EV:                     ;GENERADOR DE EVENTOS
+00E0 E590             78             MOV A, P1
+00E2 5401             79             ANL A, #00000001b
+00E4 6007             80             JZ ES1_NB_DESACTIVADO           ;NIVEL BAJO DESACTIVADO
+00E6 E590             81             MOV A, P1
+00E8 5402             82             ANL A, #00000010b
+00EA 700B             83             JNZ ES1_NA_ACTIVADO             ;NIVEL ALTO ACTIVADO
+00EC 22               84             RET
+00ED                  85     ES1_NB_DESACTIVADO:             ;CONDICION
+00ED 752101           86             MOV EVENTO, #1
+00F0 E590             87             MOV A, P1
+00F2 5402             88             ANL A, #00000010b       
+00F4 7027             89             JNZ ERROR                       ;NIVEL BAJO DESACTIVADO Y BAJO ACTIVADO?!?! ERROR!!
+                             !
+00F6 22               90             RET
+00F7                  91     ES1_NA_ACTIVADO:
+00F7 752102           92             MOV EVENTO, #2
+00FA 22               93             RET
+                      94     ;===================ESTADO2=======================;
+00FB                  95     ESTADO2:
+00FB 3112             96             ACALL ES2_GEN_EV
+00FD E521             97             MOV A, EVENTO
+00FF 23               98             RL A
+0100 900104           99             MOV DPTR, #ES2_EV_TAB
+0103 73              100             JMP @A+DPTR
+0104                 101     ES2_EV_TAB:
+0104 2108            102             AJMP ES2_EV0
+0106 2109            103             AJMP ES2_EV1
+0108                 104     ES2_EV0:                        ;EVENTO VACIO
+0108 22              105             RET
+0109                 106     ES2_EV1:                        ;EVENTO IR A NIVEL MEDIO
+0109 752001          107             MOV ESTADO, #1
+010C D294            108             SETB EV1
+010E 752100          109             MOV EVENTO, #0
+0111 22              110             RET
+0112                 111     ES2_GEN_EV:
+0112 E590            112             MOV A, P1
+0114 5402            113             ANL A, #00000010b
+0116 6001            114             JZ ES2_NA_DESACTIVADO
+0118 22              115             RET
+0119                 116     ES2_NA_DESACTIVADO:
+0119 752101          117             MOV EVENTO, #1
+011C 22              118             RET
+                     119     ;=====================END=========================;
+011D                 120     ERROR:
+                     121             ;ESCRIBIR 1 EN 7Fh
+011D 7601            122             MOV @R0, #1
+011F E6              123             MOV A, @R0
+A51 MACRO ASSEMBLER  EJERCICIO                                                            09/27/2022 15:20:14 PAGE     3
+
+0120 F57F            124             MOV 0x7F, A
+                     125     END
+                             
+                             
+A51 MACRO ASSEMBLER  EJERCICIO                                                            09/27/2022 15:20:14 PAGE     4
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+ERROR. . . . . . .  C ADDR   011DH   A   
+ES0_EV0. . . . . .  C ADDR   00A9H   A   
+ES0_EV1. . . . . .  C ADDR   00AAH   A   
+ES0_EV_TAB . . . .  C ADDR   00A5H   A   
+ES0_GEN_EV . . . .  C ADDR   00B3H   A   
+ES0_NB_ACTIVADO. .  C ADDR   00BAH   A   
+ES1_EV0. . . . . .  C ADDR   00CDH   A   
+ES1_EV1. . . . . .  C ADDR   00CEH   A   
+ES1_EV2. . . . . .  C ADDR   00D7H   A   
+ES1_EV_TAB . . . .  C ADDR   00C7H   A   
+ES1_GEN_EV . . . .  C ADDR   00E0H   A   
+ES1_NA_ACTIVADO. .  C ADDR   00F7H   A   
+ES1_NB_DESACTIVADO  C ADDR   00EDH   A   
+ES2_EV0. . . . . .  C ADDR   0108H   A   
+ES2_EV1. . . . . .  C ADDR   0109H   A   
+ES2_EV_TAB . . . .  C ADDR   0104H   A   
+ES2_GEN_EV . . . .  C ADDR   0112H   A   
+ES2_NA_DESACTIVADO  C ADDR   0119H   A   
+ESTADO . . . . . .  N NUMB   0020H   A   
+ESTADO0. . . . . .  C ADDR   009CH   A   
+ESTADO1. . . . . .  C ADDR   00BEH   A   
+ESTADO2. . . . . .  C ADDR   00FBH   A   
+EST_TAB. . . . . .  C ADDR   0096H   A   
+EV1. . . . . . . .  B ADDR   0090H.4 A   
+EV2. . . . . . . .  B ADDR   0090H.5 A   
+EVENTO . . . . . .  N NUMB   0021H   A   
+FSM. . . . . . . .  C ADDR   008FH   A   
+INIT . . . . . . .  C ADDR   0080H   A   
+MAIN . . . . . . .  C ADDR   008BH   A   
+NA . . . . . . . .  B ADDR   0090H.1 A   
+NB . . . . . . . .  B ADDR   0090H.0 A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)
