@@ -6,14 +6,11 @@ ESTADO EQU 0x20
 EVENTO EQU 0x21
 
 ORG 0x00
-	AJMP INIT
+	AJMP INICIO
 
-ORG 0x80
-INIT:
-	MOV ESTADO, #0
-	MOV EVENTO, #0
-	ANL P1, #00000000b
-	SETB EV1
+ORG 0x7B
+INICIO:
+	ACALL INIT
 MAIN:
 	ACALL FSM
 	AJMP MAIN
@@ -26,6 +23,15 @@ EST_TAB:
 	AJMP ESTADO0
 	AJMP ESTADO1
 	AJMP ESTADO2
+;====================INIT=========================;
+INIT:
+	MOV ESTADO, #0
+	MOV EVENTO, #0
+	ANL P1, #00000011b	;Para simulacion!!!
+	SETB NA			;Configurar el puerto como entrada
+	SETB NB
+	SETB EV1		;Configuracion de la electrovalvula
+	RET
 ;===================ESTADO0=======================;
 ESTADO0:
 	ACALL ES0_GEN_EV
