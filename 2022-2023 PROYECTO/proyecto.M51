@@ -1,13 +1,12 @@
-BL51 BANKED LINKER/LOCATER V4.14                                                        09/15/2022  15:34:40  PAGE 1
+BL51 BANKED LINKER/LOCATER V4.14                                                        10/11/2022  16:08:36  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V4.14, INVOKED BY:
-C:\KEIL\C51\BIN\BL51.EXE proyecto.obj, ejercicios.obj TO proyecto RAMSIZE (256)
+C:\KEIL\C51\BIN\BL51.EXE proyecto.obj TO proyecto RAMSIZE (256)
 
 
 INPUT MODULES INCLUDED:
   proyecto.obj (PROYECTO)
-  ejercicios.obj (EJERCICIOS)
 
 
 LINK MAP OF MODULE:  proyecto (PROYECTO)
@@ -20,8 +19,7 @@ LINK MAP OF MODULE:  proyecto (PROYECTO)
             REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
 
             * * * * * * *   C O D E   M E M O R Y   * * * * * * *
-            CODE    0000H     0080H     ABSOLUTE     
-* OVERLAP * CODE    0000H     00BDH     ABSOLUTE     
+            CODE    0000H     0138H     ABSOLUTE     
 
 
 
@@ -31,57 +29,157 @@ SYMBOL TABLE OF MODULE:  proyecto (PROYECTO)
   ----------------------------------
 
   -------         MODULE        PROYECTO
-  C:0080H         SYMBOL        INICIO
-  C:0000H         LINE#         2
+  C:0108H         SYMBOL        DISPLAY_0
+  C:010CH         SYMBOL        DISPLAY_1
+  C:0110H         SYMBOL        DISPLAY_2
+  C:0114H         SYMBOL        DISPLAY_3
+  C:0118H         SYMBOL        DISPLAY_4
+  C:011CH         SYMBOL        DISPLAY_5
+  C:0120H         SYMBOL        DISPLAY_6
+  C:0124H         SYMBOL        DISPLAY_7
+  C:0128H         SYMBOL        DISPLAY_8
+  C:012CH         SYMBOL        DISPLAY_9
+  C:00F0H         SYMBOL        DISPLAY_FUNC
+  C:0130H         SYMBOL        DISPLAY_H
+  C:0134H         SYMBOL        DISPLAY_HH
+  C:00C3H         SYMBOL        ES0_EV0
+  C:00C4H         SYMBOL        ES0_EV1
+  C:00BFH         SYMBOL        ES0_EV_TAB
+  C:00D0H         SYMBOL        ES0_GEN_EV
+  C:00D5H         SYMBOL        ES0_PULSADOR
+  C:00E6H         SYMBOL        ES1_EV0
+  C:00E7H         SYMBOL        ES1_EV1
+  C:00E2H         SYMBOL        ES1_EV_TAB
+  C:00E8H         SYMBOL        ES1_GEN_EV
+  N:0020H         SYMBOL        ESTADO
+  C:00B6H         SYMBOL        ESTADO0
+  C:00D9H         SYMBOL        ESTADO1
+  C:00E9H         SYMBOL        ESTADO2
+  C:00E9H         SYMBOL        ESTADO3
+  C:0088H         SYMBOL        EST_TAB
+  N:0021H         SYMBOL        EVENTO
+  C:0081H         SYMBOL        FSM
+BL51 BANKED LINKER/LOCATER V4.14                                                      10/11/2022  16:08:36  PAGE 2
+
+
+  C:007BH         SYMBOL        INICIO
+  C:0090H         SYMBOL        INIT
+  B:00A0H.0       SYMBOL        LED
+  C:007DH         SYMBOL        MAIN
+  B:00B0H.1       SYMBOL        MINUS
+  D:0080H         SYMBOL        P0
+  D:00A0H         SYMBOL        P2
+  D:00B0H         SYMBOL        P3
+  B:00B0H.0       SYMBOL        PLUS
+  B:00B0H.3       SYMBOL        SENSOR
+  B:00B0H.2       SYMBOL        SWITCH
+  C:00E9H         SYMBOL        UPDATE_DISPLAY
+  N:0022H         SYMBOL        VALOR_DISPLAY
+  B:00A0H.1       SYMBOL        ZUMBADOR
+  C:0000H         LINE#         17
+  C:007BH         LINE#         21
+  C:007DH         LINE#         23
+  C:007FH         LINE#         24
+  C:0081H         LINE#         26
+  C:0083H         LINE#         27
+  C:0084H         LINE#         28
+  C:0087H         LINE#         29
+  C:0088H         LINE#         31
+  C:008AH         LINE#         32
+  C:008CH         LINE#         33
+  C:008EH         LINE#         34
+  C:0090H         LINE#         38
+  C:0093H         LINE#         39
+  C:0096H         LINE#         40
+  C:0099H         LINE#         42
+  C:009BH         LINE#         43
+  C:009DH         LINE#         44
+  C:009FH         LINE#         45
+  C:00A1H         LINE#         48
+  C:00A3H         LINE#         49
+  C:00A5H         LINE#         50
+  C:00A7H         LINE#         51
+  C:00A9H         LINE#         52
+  C:00ABH         LINE#         53
+  C:00ADH         LINE#         54
+  C:00AFH         LINE#         55
+  C:00B1H         LINE#         56
+  C:00B3H         LINE#         57
+  C:00B5H         LINE#         58
+  C:00B6H         LINE#         61
+  C:00B8H         LINE#         62
+  C:00BAH         LINE#         63
+  C:00BBH         LINE#         64
+  C:00BEH         LINE#         65
+  C:00BFH         LINE#         67
+  C:00C1H         LINE#         68
+  C:00C3H         LINE#         70
+  C:00C4H         LINE#         73
+  C:00C7H         LINE#         74
+  C:00C9H         LINE#         80
+  C:00CCH         LINE#         82
+  C:00CFH         LINE#         83
+BL51 BANKED LINKER/LOCATER V4.14                                                      10/11/2022  16:08:36  PAGE 3
+
+
+  C:00D0H         LINE#         85
+  C:00D2H         LINE#         86
+  C:00D4H         LINE#         87
+  C:00D5H         LINE#         89
+  C:00D8H         LINE#         90
+  C:00D9H         LINE#         93
+  C:00DBH         LINE#         94
+  C:00DDH         LINE#         95
+  C:00DEH         LINE#         96
+  C:00E1H         LINE#         97
+  C:00E2H         LINE#         99
+  C:00E4H         LINE#         100
+  C:00E6H         LINE#         102
+  C:00E7H         LINE#         104
+  C:00E8H         LINE#         106
+  C:00E9H         LINE#         113
+  C:00EBH         LINE#         114
+  C:00ECH         LINE#         115
+  C:00EFH         LINE#         116
+  C:00F0H         LINE#         118
+  C:00F2H         LINE#         119
+  C:00F4H         LINE#         120
+  C:00F6H         LINE#         121
+  C:00F8H         LINE#         122
+  C:00FAH         LINE#         123
+  C:00FCH         LINE#         124
+  C:00FEH         LINE#         125
+  C:0100H         LINE#         126
+  C:0102H         LINE#         127
+  C:0104H         LINE#         128
+  C:0106H         LINE#         129
+  C:0108H         LINE#         131
+  C:010BH         LINE#         132
+  C:010CH         LINE#         134
+  C:010FH         LINE#         135
+  C:0110H         LINE#         137
+  C:0113H         LINE#         138
+  C:0114H         LINE#         140
+  C:0117H         LINE#         141
+  C:0118H         LINE#         143
+  C:011BH         LINE#         144
+  C:011CH         LINE#         146
+  C:011FH         LINE#         147
+  C:0120H         LINE#         149
+  C:0123H         LINE#         150
+  C:0124H         LINE#         152
+  C:0127H         LINE#         153
+  C:0128H         LINE#         155
+  C:012BH         LINE#         156
+  C:012CH         LINE#         158
+  C:012FH         LINE#         159
+  C:0130H         LINE#         161
+  C:0133H         LINE#         162
+  C:0134H         LINE#         164
+  C:0137H         LINE#         165
   -------         ENDMOD        PROYECTO
 
-  -------         MODULE        EJERCICIOS
-  D:00F0H         SYMBOL        B
-  C:007EH         SYMBOL        INICIO
-  D:0090H         SYMBOL        P1
-  B:00D0H.3       SYMBOL        RS0
-  B:00D0H.4       SYMBOL        RS1
-  C:007BH         SYMBOL        SUBRUTINA
-  C:0000H         LINE#         2
-  C:007BH         LINE#         6
-  C:007DH         LINE#         7
-  C:007EH         LINE#         11
-  C:0080H         LINE#         13
-  C:0082H         LINE#         15
-  C:0085H         LINE#         18
-  C:0087H         LINE#         19
-  C:0089H         LINE#         21
-  C:008BH         LINE#         22
-  C:008DH         LINE#         24
-  C:008EH         LINE#         25
-  C:008FH         LINE#         26
-  C:0091H         LINE#         28
-  C:0093H         LINE#         29
-  C:0095H         LINE#         32
-  C:0098H         LINE#         34
-BL51 BANKED LINKER/LOCATER V4.14                                                      09/15/2022  15:34:40  PAGE 2
+BL51 BANKED LINKER/LOCATER V4.14                                                      10/11/2022  16:08:36  PAGE 4
 
 
-  C:009BH         LINE#         36
-  C:009EH         LINE#         37
-  C:00A0H         LINE#         38
-  C:00A3H         LINE#         39
-  C:00A6H         LINE#         40
-  C:00A9H         LINE#         42
-  C:00ABH         LINE#         43
-  C:00ADH         LINE#         45
-  C:00AFH         LINE#         46
-  C:00B1H         LINE#         47
-  C:00B3H         LINE#         49
-  C:00B4H         LINE#         50
-  C:00B6H         LINE#         51
-  C:00B8H         LINE#         52
-  C:00B9H         LINE#         54
-  C:00BBH         LINE#         55
-  -------         ENDMOD        EJERCICIOS
-
-*** WARNING L5: CODE SPACE MEMORY OVERLAP
-    FROM:    0000H
-    TO:      007FH
-
-LINK/LOCATE RUN COMPLETE.  1 WARNING(S),  0 ERROR(S)
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

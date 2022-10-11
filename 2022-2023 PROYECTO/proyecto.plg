@@ -1,0 +1,174 @@
+Build target 'Target 1'
+assembling proyecto.a...
+.\proyecto.a(18): error A7: LABEL NOT PERMITTED
+.\proyecto.a(20): error A45: UNDEFINED SYMBOL (PASS-2)
+.\proyecto.a(62): error A48: DATA-ADDRESS EXPECTED
+.\proyecto.a(79): error A45: UNDEFINED SYMBOL (PASS-2)
+Target not created
+Build target 'Target 1'
+assembling proyecto.a...
+.\proyecto.a(20): error A45: UNDEFINED SYMBOL (PASS-2)
+.\proyecto.a(62): error A48: DATA-ADDRESS EXPECTED
+.\proyecto.a(79): error A45: UNDEFINED SYMBOL (PASS-2)
+Target not created
+Build target 'Target 1'
+assembling proyecto.a...
+.\proyecto.a(62): error A48: DATA-ADDRESS EXPECTED
+.\proyecto.a(79): error A45: UNDEFINED SYMBOL (PASS-2)
+Target not created
+Build target 'Target 1'
+assembling proyecto.a...
+.\proyecto.a(79): error A45: UNDEFINED SYMBOL (PASS-2)
+Target not created
+Build target 'Target 1'
+assembling proyecto.a...
+linking...
+"proyecto" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+assembling proyecto.a...
+.\proyecto.a(78): error A40: INVALID REGISTER
+Target not created
+Build target 'Target 1'
+assembling proyecto.a...
+.\proyecto.a(78): error A48: DATA-ADDRESS EXPECTED
+Target not created
+Build target 'Target 1'
+assembling proyecto.a...
+.\proyecto.a(79): error A40: INVALID REGISTER
+.\proyecto.a(81): error A4: BAD INDIRECT REGISTER
+.\proyecto.a(81): error A9: SYNTAX ERROR
+.\proyecto.a(81): error A9: SYNTAX ERROR
+.\proyecto.a(81): error A12: ILLEGAL FACTOR
+Target not created
+Build target 'Target 1'
+assembling proyecto.a...
+.\proyecto.a(80): error A40: INVALID REGISTER
+.\proyecto.a(82): error A4: BAD INDIRECT REGISTER
+.\proyecto.a(82): error A9: SYNTAX ERROR
+.\proyecto.a(82): error A9: SYNTAX ERROR
+.\proyecto.a(82): error A12: ILLEGAL FACTOR
+Target not created
+Build target 'Target 1'
+assembling proyecto.a...
+linking...
+"proyecto" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+assembling proyecto.a...
+.\proyecto.a(82): error A45: UNDEFINED SYMBOL (PASS-2)
+.\proyecto.a(88): error A45: UNDEFINED SYMBOL (PASS-2)
+.\proyecto.a(89): error A45: UNDEFINED SYMBOL (PASS-2)
+.\proyecto.a(90): error A45: UNDEFINED SYMBOL (PASS-2)
+.\proyecto.a(91): error A45: UNDEFINED SYMBOL (PASS-2)
+.\proyecto.a(92): error A45: UNDEFINED SYMBOL (PASS-2)
+.\proyecto.a(93): error A45: UNDEFINED SYMBOL (PASS-2)
+.\proyecto.a(94): error A45: UNDEFINED SYMBOL (PASS-2)
+.\proyecto.a(95): error A45: UNDEFINED SYMBOL (PASS-2)
+.\proyecto.a(96): error A45: UNDEFINED SYMBOL (PASS-2)
+.\proyecto.a(97): error A45: UNDEFINED SYMBOL (PASS-2)
+.\proyecto.a(98): error A45: UNDEFINED SYMBOL (PASS-2)
+.\proyecto.a(100): error A48: DATA-ADDRESS EXPECTED
+Target not created
+Build target 'Target 1'
+assembling proyecto.a...
+.\proyecto.a(82): error A45: UNDEFINED SYMBOL (PASS-2)
+.\proyecto.a(100): error A48: DATA-ADDRESS EXPECTED
+Target not created
+Build target 'Target 1'
+assembling proyecto.a...
+.\proyecto.a(82): error A45: UNDEFINED SYMBOL (PASS-2)
+Target not created
+Build target 'Target 1'
+assembling proyecto.a...
+.\proyecto.a(56): error A46: CODE-ADDRESS EXPECTED
+.\proyecto.a(81): error A8: ATTEMPT TO DEFINE AN ALREADY DEFINED LABEL
+Target not created
+Build target 'Target 1'
+assembling proyecto.a...
+.\proyecto.a(56): error A46: CODE-ADDRESS EXPECTED
+.\proyecto.a(81): error A8: ATTEMPT TO DEFINE AN ALREADY DEFINED LABEL
+Target not created
+Build target 'Target 1'
+assembling proyecto.a...
+.\proyecto.a(56): error A46: CODE-ADDRESS EXPECTED
+.\proyecto.a(81): error A8: ATTEMPT TO DEFINE AN ALREADY DEFINED LABEL
+Target not created
+Build target 'Target 1'
+assembling proyecto.a...
+.\proyecto.a(56): error A46: CODE-ADDRESS EXPECTED
+.\proyecto.a(81): error A8: ATTEMPT TO DEFINE AN ALREADY DEFINED LABEL
+Target not created
+Build target 'Target 1'
+assembling proyecto.a...
+linking...
+"proyecto" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+assembling proyecto.a...
+linking...
+"proyecto" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+assembling proyecto.a...
+linking...
+"proyecto" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+assembling proyecto.a...
+.\proyecto.a(42): error A48: DATA-ADDRESS EXPECTED
+Target not created
+Build target 'Target 1'
+assembling proyecto.a...
+.\proyecto.a(13): error A17: INVALID BYTE BASE IN BIT ADDRESS EXPRESSION
+.\proyecto.a(55): error A18: OUT OF RANGE OR NON-TYPELESS BIT-OFFSET
+.\proyecto.a(116): error A45: UNDEFINED SYMBOL (PASS-2)
+Target not created
+Build target 'Target 1'
+assembling proyecto.a...
+.\proyecto.a(13): error A17: INVALID BYTE BASE IN BIT ADDRESS EXPRESSION
+.\proyecto.a(115): error A45: UNDEFINED SYMBOL (PASS-2)
+Target not created
+Build target 'Target 1'
+assembling proyecto.a...
+.\proyecto.a(13): error A17: INVALID BYTE BASE IN BIT ADDRESS EXPRESSION
+Target not created
+Build target 'Target 1'
+assembling proyecto.a...
+linking...
+"proyecto" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+assembling proyecto.a...
+linking...
+"proyecto" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+assembling proyecto.a...
+.\proyecto.a(90): error A48: DATA-ADDRESS EXPECTED
+Target not created
+Build target 'Target 1'
+assembling proyecto.a...
+linking...
+"proyecto" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+assembling proyecto.a...
+linking...
+"proyecto" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+assembling proyecto.a...
+linking...
+"proyecto" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+assembling proyecto.a...
+linking...
+"proyecto" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+assembling proyecto.a...
+linking...
+"proyecto" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+assembling proyecto.a...
+linking...
+"proyecto" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+assembling proyecto.a...
+linking...
+"proyecto" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+assembling proyecto.a...
+linking...
+"proyecto" - 0 Error(s), 0 Warning(s).

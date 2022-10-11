@@ -1,4 +1,3 @@
-"proyecto.obj",
-"ejercicios.obj" 
+"proyecto.obj" 
 TO "proyecto" 
 RAMSIZE(256) 
