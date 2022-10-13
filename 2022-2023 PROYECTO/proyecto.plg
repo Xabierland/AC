@@ -1,108 +1,6 @@
 Build target 'Target 1'
 assembling proyecto.a...
-linking...
-"proyecto" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-assembling proyecto.a...
-.\proyecto.a(121): error A45: UNDEFINED SYMBOL (PASS-2)
-.\proyecto.a(127): error A45: UNDEFINED SYMBOL (PASS-2)
-Target not created
-Build target 'Target 1'
-assembling proyecto.a...
-.\proyecto.a(122): error A45: UNDEFINED SYMBOL (PASS-2)
-.\proyecto.a(128): error A45: UNDEFINED SYMBOL (PASS-2)
-.\proyecto.a(131): error A9: SYNTAX ERROR
-.\proyecto.a(131): error A7: LABEL NOT PERMITTED
-Target not created
-Build target 'Target 1'
-assembling proyecto.a...
-.\proyecto.a(128): error A45: UNDEFINED SYMBOL (PASS-2)
-.\proyecto.a(134): error A45: UNDEFINED SYMBOL (PASS-2)
-.\proyecto.a(137): error A9: SYNTAX ERROR
-.\proyecto.a(137): error A7: LABEL NOT PERMITTED
-Target not created
-Build target 'Target 1'
-assembling proyecto.a...
-.\proyecto.a(128): error A45: UNDEFINED SYMBOL (PASS-2)
-.\proyecto.a(134): error A45: UNDEFINED SYMBOL (PASS-2)
-.\proyecto.a(137): error A9: SYNTAX ERROR
-.\proyecto.a(137): error A7: LABEL NOT PERMITTED
-Target not created
-Build target 'Target 1'
-assembling proyecto.a...
-.\proyecto.a(133): error A45: UNDEFINED SYMBOL (PASS-2)
-.\proyecto.a(136): error A9: SYNTAX ERROR
-.\proyecto.a(136): error A7: LABEL NOT PERMITTED
-Target not created
-Build target 'Target 1'
-assembling proyecto.a...
-linking...
-"proyecto" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-assembling proyecto.a...
-linking...
-"proyecto" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-assembling proyecto.a...
-linking...
-"proyecto" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-assembling proyecto.a...
-linking...
-"proyecto" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-assembling proyecto.a...
-.\proyecto.a(209): error A45: UNDEFINED SYMBOL (PASS-2)
-Target not created
-Build target 'Target 1'
-assembling proyecto.a...
-linking...
-"proyecto" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-assembling proyecto.a...
-linking...
-"proyecto" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-assembling proyecto.a...
-linking...
-"proyecto" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-assembling proyecto.a...
-linking...
-"proyecto" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-assembling proyecto.a...
-linking...
-"proyecto" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-assembling proyecto.a...
-linking...
-"proyecto" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-assembling proyecto.a...
-linking...
-"proyecto" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-"proyecto" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-"proyecto" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-assembling proyecto.a...
-.\proyecto.a(174): warning A52: VALUE HAS BEEN TRUNCATED TO 8 BITS
-linking...
-"proyecto" - 0 Error(s), 1 Warning(s).
-Build target 'Target 1'
-"proyecto" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-assembling proyecto.a...
-.\proyecto.a(174): warning A52: VALUE HAS BEEN TRUNCATED TO 8 BITS
-linking...
-"proyecto" - 0 Error(s), 1 Warning(s).
-Build target 'Target 1'
-assembling proyecto.a...
-.\proyecto.a(141): error A45: UNDEFINED SYMBOL (PASS-2)
-.\proyecto.a(143): error A9: SYNTAX ERROR
-.\proyecto.a(202): warning A52: VALUE HAS BEEN TRUNCATED TO 8 BITS
+.\proyecto.a(201): error A45: UNDEFINED SYMBOL (PASS-2)
 Target not created
 Build target 'Target 1'
 assembling proyecto.a...
@@ -134,110 +32,84 @@ linking...
 "proyecto" - 0 Error(s), 0 Warning(s).
 Build target 'Target 1'
 assembling proyecto.a...
-.\proyecto.a(89): error A48: DATA-ADDRESS EXPECTED
-Target not created
-Build target 'Target 1'
-assembling proyecto.a...
 linking...
 "proyecto" - 0 Error(s), 0 Warning(s).
 Build target 'Target 1'
 assembling proyecto.a...
-.\proyecto.a(89): error A39: REGISTER OPERAND EXPECTED
+.\proyecto.a(187): error A45: UNDEFINED SYMBOL (PASS-2)
+.\proyecto.a(379): error A8: ATTEMPT TO DEFINE AN ALREADY DEFINED LABEL
+.\proyecto.a(382): error A45: UNDEFINED SYMBOL (PASS-2)
+.\proyecto.a(389): error A45: UNDEFINED SYMBOL (PASS-2)
 Target not created
 Build target 'Target 1'
 assembling proyecto.a...
-.\proyecto.a(89): error A48: DATA-ADDRESS EXPECTED
+.\proyecto.a(187): error A46: CODE-ADDRESS EXPECTED
 Target not created
 Build target 'Target 1'
 assembling proyecto.a...
-linking...
-"proyecto" - 0 Error(s), 0 Warning(s).
+.\proyecto.a(188): error A45: UNDEFINED SYMBOL (PASS-2)
+.\proyecto.a(300): error A45: UNDEFINED SYMBOL (PASS-2)
+.\proyecto.a(303): error A45: UNDEFINED SYMBOL (PASS-2)
+.\proyecto.a(312): error A45: UNDEFINED SYMBOL (PASS-2)
+.\proyecto.a(316): error A45: UNDEFINED SYMBOL (PASS-2)
+Target not created
 Build target 'Target 1'
 assembling proyecto.a...
-linking...
-"proyecto" - 0 Error(s), 0 Warning(s).
+.\proyecto.a(300): error A45: UNDEFINED SYMBOL (PASS-2)
+.\proyecto.a(303): error A45: UNDEFINED SYMBOL (PASS-2)
+.\proyecto.a(312): error A45: UNDEFINED SYMBOL (PASS-2)
+.\proyecto.a(316): error A45: UNDEFINED SYMBOL (PASS-2)
+Target not created
 Build target 'Target 1'
 assembling proyecto.a...
-.\proyecto.a(17): error A17: INVALID BYTE BASE IN BIT ADDRESS EXPRESSION
-.\proyecto.a(136): error A46: CODE-ADDRESS EXPECTED
-.\proyecto.a(159): error A45: UNDEFINED SYMBOL (PASS-2)
+.\proyecto.a(91): error A45: UNDEFINED SYMBOL (PASS-2)
+.\proyecto.a(92): error A45: UNDEFINED SYMBOL (PASS-2)
+.\proyecto.a(114): error A45: UNDEFINED SYMBOL (PASS-2)
+.\proyecto.a(117): error A45: UNDEFINED SYMBOL (PASS-2)
+.\proyecto.a(151): error A45: UNDEFINED SYMBOL (PASS-2)
+.\proyecto.a(152): error A45: UNDEFINED SYMBOL (PASS-2)
+.\proyecto.a(161): error A45: UNDEFINED SYMBOL (PASS-2)
 .\proyecto.a(162): error A45: UNDEFINED SYMBOL (PASS-2)
-.\proyecto.a(165): error A45: UNDEFINED SYMBOL (PASS-2)
+.\proyecto.a(385): error A45: UNDEFINED SYMBOL (PASS-2)
+.\proyecto.a(388): error A45: UNDEFINED SYMBOL (PASS-2)
+.\proyecto.a(392): error A45: UNDEFINED SYMBOL (PASS-2)
 Target not created
 Build target 'Target 1'
 assembling proyecto.a...
-.\proyecto.a(17): error A17: INVALID BYTE BASE IN BIT ADDRESS EXPRESSION
+.\proyecto.a(91): error A45: UNDEFINED SYMBOL (PASS-2)
+.\proyecto.a(92): error A45: UNDEFINED SYMBOL (PASS-2)
+.\proyecto.a(114): error A45: UNDEFINED SYMBOL (PASS-2)
+.\proyecto.a(117): error A45: UNDEFINED SYMBOL (PASS-2)
+.\proyecto.a(151): error A45: UNDEFINED SYMBOL (PASS-2)
+.\proyecto.a(152): error A45: UNDEFINED SYMBOL (PASS-2)
+.\proyecto.a(385): error A45: UNDEFINED SYMBOL (PASS-2)
+.\proyecto.a(388): error A45: UNDEFINED SYMBOL (PASS-2)
+.\proyecto.a(392): error A45: UNDEFINED SYMBOL (PASS-2)
 Target not created
 Build target 'Target 1'
 assembling proyecto.a...
-linking...
-"proyecto" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-"proyecto" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-assembling proyecto.a...
-linking...
-"proyecto" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-"proyecto" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-assembling proyecto.a...
-linking...
-"proyecto" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-assembling proyecto.a...
-linking...
-"proyecto" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-assembling proyecto.a...
-linking...
-"proyecto" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-assembling proyecto.a...
-linking...
-"proyecto" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-"proyecto" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-assembling proyecto.a...
-linking...
-"proyecto" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-assembling proyecto.a...
-.\proyecto.a(163): error A45: UNDEFINED SYMBOL (PASS-2)
-.\proyecto.a(166): error A45: UNDEFINED SYMBOL (PASS-2)
-.\proyecto.a(171): error A45: UNDEFINED SYMBOL (PASS-2)
+.\proyecto.a(91): error A45: UNDEFINED SYMBOL (PASS-2)
+.\proyecto.a(92): error A45: UNDEFINED SYMBOL (PASS-2)
+.\proyecto.a(114): error A45: UNDEFINED SYMBOL (PASS-2)
+.\proyecto.a(117): error A45: UNDEFINED SYMBOL (PASS-2)
+.\proyecto.a(385): error A45: UNDEFINED SYMBOL (PASS-2)
+.\proyecto.a(388): error A45: UNDEFINED SYMBOL (PASS-2)
+.\proyecto.a(392): error A45: UNDEFINED SYMBOL (PASS-2)
 Target not created
 Build target 'Target 1'
 assembling proyecto.a...
-linking...
-"proyecto" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-assembling proyecto.a...
-.\proyecto.a(206): error A48: DATA-ADDRESS EXPECTED
-.\proyecto.a(212): error A48: DATA-ADDRESS EXPECTED
-.\proyecto.a(214): error A48: DATA-ADDRESS EXPECTED
+.\proyecto.a(91): error A45: UNDEFINED SYMBOL (PASS-2)
+.\proyecto.a(92): error A45: UNDEFINED SYMBOL (PASS-2)
+.\proyecto.a(385): error A45: UNDEFINED SYMBOL (PASS-2)
+.\proyecto.a(388): error A45: UNDEFINED SYMBOL (PASS-2)
+.\proyecto.a(392): error A45: UNDEFINED SYMBOL (PASS-2)
 Target not created
 Build target 'Target 1'
 assembling proyecto.a...
-linking...
-"proyecto" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-assembling proyecto.a...
-linking...
-"proyecto" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-assembling proyecto.a...
-linking...
-"proyecto" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-assembling proyecto.a...
-.\proyecto.a(244): error A45: UNDEFINED SYMBOL (PASS-2)
+.\proyecto.a(385): error A45: UNDEFINED SYMBOL (PASS-2)
+.\proyecto.a(388): error A45: UNDEFINED SYMBOL (PASS-2)
+.\proyecto.a(392): error A45: UNDEFINED SYMBOL (PASS-2)
 Target not created
-Build target 'Target 1'
-assembling proyecto.a...
-linking...
-"proyecto" - 0 Error(s), 0 Warning(s).
 Build target 'Target 1'
 assembling proyecto.a...
 linking...
