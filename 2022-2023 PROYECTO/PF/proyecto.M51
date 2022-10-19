@@ -1,4 +1,4 @@
-BL51 BANKED LINKER/LOCATER V4.14                                                        10/18/2022  14:44:51  PAGE 1
+BL51 BANKED LINKER/LOCATER V4.14                                                        10/19/2022  19:09:21  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V4.14, INVOKED BY:
@@ -19,7 +19,7 @@ LINK MAP OF MODULE:  proyecto (PROYECTO)
             REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
 
             * * * * * * *   C O D E   M E M O R Y   * * * * * * *
-            CODE    0000H     034EH     ABSOLUTE     
+            CODE    0000H     03A6H     ABSOLUTE     
 
 
 
@@ -33,15 +33,15 @@ SYMBOL TABLE OF MODULE:  proyecto (PROYECTO)
   C:0340H         SYMBOL        ACTIVAR_IDL
   N:00FEH         SYMBOL        ADCH
   N:00C5H         SYMBOL        ADCON
-  C:0010H         SYMBOL        APAGAR_ADC
+  C:0358H         SYMBOL        APAGAR_ADC
   C:02A5H         SYMBOL        APAGAR_DISPLAY
   C:0273H         SYMBOL        APAGAR_LED
   C:0284H         SYMBOL        APAGAR_PARPADEO
   C:027AH         SYMBOL        APAGAR_PWM
-  C:0068H         SYMBOL        APAGAR_TIMER
+  C:0374H         SYMBOL        APAGAR_TIMER
   C:032BH         SYMBOL        APAGAR_ZUMBADOR
   D:00F0H         SYMBOL        B
-  C:0035H         SYMBOL        CONDTIMER
+  C:03A1H         SYMBOL        CONDTIMER
   N:0027H         SYMBOL        CONT_PARPADEO
   N:0026H         SYMBOL        CONT_ZUMB
   C:0347H         SYMBOL        DESACTIVAR_IDL
@@ -59,15 +59,15 @@ SYMBOL TABLE OF MODULE:  proyecto (PROYECTO)
   C:031DH         SYMBOL        DISPLAY_H
   C:0321H         SYMBOL        DISPLAY_HH
   C:0316H         SYMBOL        DISPLAY_P
-BL51 BANKED LINKER/LOCATER V4.14                                                      10/18/2022  14:44:51  PAGE 2
+BL51 BANKED LINKER/LOCATER V4.14                                                      10/19/2022  19:09:21  PAGE 2
 
 
-  C:0006H         SYMBOL        ENCENDER_ADC
+  C:034EH         SYMBOL        ENCENDER_ADC
   C:02A9H         SYMBOL        ENCENDER_DISPLAY
   C:0270H         SYMBOL        ENCENDER_LED
   C:027EH         SYMBOL        ENCENDER_PARPADEO
   C:0276H         SYMBOL        ENCENDER_PWM
-  C:0056H         SYMBOL        ENCENDER_TIMER
+  C:0362H         SYMBOL        ENCENDER_TIMER
   C:0325H         SYMBOL        ENCENDER_ZUMBADOR
   C:00EFH         SYMBOL        ES0_EV0
   C:00F2H         SYMBOL        ES0_EV1
@@ -119,7 +119,7 @@ SYMBOL TABLE OF MODULE:  proyecto (PROYECTO)
   C:010FH         SYMBOL        ESTADO1
   C:018CH         SYMBOL        ESTADO2
   C:022EH         SYMBOL        ESTADO3
-BL51 BANKED LINKER/LOCATER V4.14                                                      10/18/2022  14:44:51  PAGE 3
+BL51 BANKED LINKER/LOCATER V4.14                                                      10/19/2022  19:09:21  PAGE 3
 
 
   C:028AH         SYMBOL        ESTADO_PARPADEO
@@ -134,7 +134,7 @@ SYMBOL TABLE OF MODULE:  proyecto (PROYECTO)
   C:0003H         SYMBOL        INTERRUPCION_EXTERNA
   C:000BH         SYMBOL        INTERRUPCION_TIMER
   B:00A0H.0       SYMBOL        LED
-  C:0014H         SYMBOL        LEER_ADC
+  C:035CH         SYMBOL        LEER_ADC
   C:007DH         SYMBOL        MAIN
   B:00B0H.1       SYMBOL        MINUS
   D:0080H         SYMBOL        P0
@@ -151,7 +151,7 @@ SYMBOL TABLE OF MODULE:  proyecto (PROYECTO)
   B:00B0H.2       SYMBOL        SWITCH
   D:008CH         SYMBOL        TH0
   B:0025H.0       SYMBOL        TICK
-  C:000EH         SYMBOL        TIMER_FUNC
+  C:037AH         SYMBOL        TIMER_FUNC
   D:008AH         SYMBOL        TL0
   D:0089H         SYMBOL        TMOD
   B:0088H.4       SYMBOL        TR0
@@ -179,7 +179,7 @@ SYMBOL TABLE OF MODULE:  proyecto (PROYECTO)
   C:0093H         LINE#         64
   C:0095H         LINE#         67
   C:0098H         LINE#         68
-BL51 BANKED LINKER/LOCATER V4.14                                                      10/18/2022  14:44:51  PAGE 4
+BL51 BANKED LINKER/LOCATER V4.14                                                      10/19/2022  19:09:21  PAGE 4
 
 
   C:009BH         LINE#         69
@@ -239,7 +239,7 @@ SYMBOL TABLE OF MODULE:  proyecto (PROYECTO)
   C:0111H         LINE#         150
   C:0113H         LINE#         151
   C:0114H         LINE#         152
-BL51 BANKED LINKER/LOCATER V4.14                                                      10/18/2022  14:44:51  PAGE 5
+BL51 BANKED LINKER/LOCATER V4.14                                                      10/19/2022  19:09:21  PAGE 5
 
 
   C:0117H         LINE#         153
@@ -299,7 +299,7 @@ SYMBOL TABLE OF MODULE:  proyecto (PROYECTO)
   C:0188H         LINE#         227
   C:018BH         LINE#         228
   C:018CH         LINE#         231
-BL51 BANKED LINKER/LOCATER V4.14                                                      10/18/2022  14:44:51  PAGE 6
+BL51 BANKED LINKER/LOCATER V4.14                                                      10/19/2022  19:09:21  PAGE 6
 
 
   C:018EH         LINE#         232
@@ -359,7 +359,7 @@ SYMBOL TABLE OF MODULE:  proyecto (PROYECTO)
   C:01F6H         LINE#         306
   C:01F9H         LINE#         307
   C:01FAH         LINE#         309
-BL51 BANKED LINKER/LOCATER V4.14                                                      10/18/2022  14:44:51  PAGE 7
+BL51 BANKED LINKER/LOCATER V4.14                                                      10/19/2022  19:09:21  PAGE 7
 
 
   C:01FDH         LINE#         310
@@ -419,7 +419,7 @@ SYMBOL TABLE OF MODULE:  proyecto (PROYECTO)
   C:0267H         LINE#         381
   C:0268H         LINE#         383
   C:026BH         LINE#         384
-BL51 BANKED LINKER/LOCATER V4.14                                                      10/18/2022  14:44:51  PAGE 8
+BL51 BANKED LINKER/LOCATER V4.14                                                      10/19/2022  19:09:21  PAGE 8
 
 
   C:026DH         LINE#         385
@@ -479,7 +479,7 @@ SYMBOL TABLE OF MODULE:  proyecto (PROYECTO)
   C:02D3H         LINE#         458
   C:02D6H         LINE#         459
   C:02D7H         LINE#         461
-BL51 BANKED LINKER/LOCATER V4.14                                                      10/18/2022  14:44:51  PAGE 9
+BL51 BANKED LINKER/LOCATER V4.14                                                      10/19/2022  19:09:21  PAGE 9
 
 
   C:02DAH         LINE#         462
@@ -536,57 +536,57 @@ SYMBOL TABLE OF MODULE:  proyecto (PROYECTO)
   C:0347H         LINE#         533
   C:034AH         LINE#         534
   C:034DH         LINE#         535
-  C:0003H         LINE#         538
-  C:0005H         LINE#         539
-  C:0006H         LINE#         542
-BL51 BANKED LINKER/LOCATER V4.14                                                      10/18/2022  14:44:51  PAGE 10
+  C:034EH         LINE#         539
+  C:0351H         LINE#         540
+  C:0354H         LINE#         541
+BL51 BANKED LINKER/LOCATER V4.14                                                      10/19/2022  19:09:21  PAGE 10
 
 
-  C:0009H         LINE#         543
-  C:000CH         LINE#         544
-  C:000FH         LINE#         545
-  C:0010H         LINE#         547
-  C:0013H         LINE#         548
-  C:0014H         LINE#         550
-  C:0016H         LINE#         551
-  C:0019H         LINE#         552
-  C:0053H         LINE#         555
-  C:0055H         LINE#         556
-  C:0056H         LINE#         559
-  C:0059H         LINE#         560
-  C:005CH         LINE#         561
-  C:005FH         LINE#         562
-  C:0062H         LINE#         563
-  C:0065H         LINE#         564
-  C:0067H         LINE#         565
-  C:0068H         LINE#         567
-  C:006BH         LINE#         568
-  C:006DH         LINE#         569
-  C:000BH         LINE#         572
-  C:000DH         LINE#         573
-  C:000EH         LINE#         576
-  C:0010H         LINE#         577
-  C:0012H         LINE#         579
-  C:0014H         LINE#         580
-  C:0016H         LINE#         581
-  C:0017H         LINE#         582
-  C:0019H         LINE#         583
-  C:001BH         LINE#         585
-  C:001EH         LINE#         586
-  C:0020H         LINE#         587
-  C:0022H         LINE#         588
-  C:0023H         LINE#         589
-  C:0025H         LINE#         590
-  C:0027H         LINE#         592
-  C:002AH         LINE#         593
-  C:002CH         LINE#         595
-  C:002EH         LINE#         596
-  C:0030H         LINE#         598
-  C:0032H         LINE#         599
-  C:0034H         LINE#         600
-  C:0035H         LINE#         602
-  C:0037H         LINE#         603
-  C:0039H         LINE#         604
+  C:0357H         LINE#         542
+  C:0358H         LINE#         544
+  C:035BH         LINE#         545
+  C:035CH         LINE#         547
+  C:035EH         LINE#         548
+  C:0361H         LINE#         549
+  C:0362H         LINE#         552
+  C:0365H         LINE#         553
+  C:0368H         LINE#         554
+  C:036BH         LINE#         555
+  C:036EH         LINE#         556
+  C:0371H         LINE#         557
+  C:0373H         LINE#         558
+  C:0374H         LINE#         560
+  C:0377H         LINE#         561
+  C:0379H         LINE#         562
+  C:037AH         LINE#         565
+  C:037CH         LINE#         566
+  C:037EH         LINE#         568
+  C:0380H         LINE#         569
+  C:0382H         LINE#         570
+  C:0383H         LINE#         571
+  C:0385H         LINE#         572
+  C:0387H         LINE#         574
+  C:038AH         LINE#         575
+  C:038CH         LINE#         576
+  C:038EH         LINE#         577
+  C:038FH         LINE#         578
+  C:0391H         LINE#         579
+  C:0393H         LINE#         581
+  C:0396H         LINE#         582
+  C:0398H         LINE#         584
+  C:039AH         LINE#         585
+  C:039CH         LINE#         587
+  C:039EH         LINE#         588
+  C:03A0H         LINE#         589
+  C:03A1H         LINE#         591
+  C:03A3H         LINE#         592
+  C:03A5H         LINE#         593
+  C:0003H         LINE#         597
+  C:0005H         LINE#         598
+  C:000BH         LINE#         601
+  C:000DH         LINE#         602
+  C:0053H         LINE#         605
+  C:0055H         LINE#         606
   -------         ENDMOD        PROYECTO
 
 LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

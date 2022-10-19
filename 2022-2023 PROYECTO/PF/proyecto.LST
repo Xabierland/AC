@@ -1,4 +1,4 @@
-A51 MACRO ASSEMBLER  PROYECTO                                                             10/18/2022 14:44:51 PAGE     1
+A51 MACRO ASSEMBLER  PROYECTO                                                             10/19/2022 19:09:21 PAGE     1
 
 
 MACRO ASSEMBLER A51 V6.14
@@ -65,14 +65,14 @@ LOC  OBJ            LINE     SOURCE
 008E 412E             56             AJMP ESTADO3            ;TRANSICION
                       57     ;========================INIT=====================;
 0090                  58     INIT:
-A51 MACRO ASSEMBLER  PROYECTO                                                             10/18/2022 14:44:51 PAGE     2
+A51 MACRO ASSEMBLER  PROYECTO                                                             10/19/2022 19:09:21 PAGE     2
 
                       59             ;JUST DEBUGGING!!!!!!!!
                       60                     ;MOV P0, #0
                       61                     ;MOV P2, #0
 0090 75B000           62                     MOV P3, #0
                       63                     ;ACALL ENCENDER_TIMER
-0093 1106             64                     ACALL ENCENDER_ADC
+0093 714E             64                     ACALL ENCENDER_ADC
                       65     
                       66             ;VALORES INICIALES
 0095 752000           67             MOV ESTADO, #0
@@ -133,7 +133,7 @@ LOC  OBJ            LINE     SOURCE
 00F1 22              122             RET
 00F2                 123     ES0_EV1:                        ;EVENTO ESPERA
                      124             ;PONER UN 0 EN PANTALLA
-A51 MACRO ASSEMBLER  PROYECTO                                                             10/18/2022 14:44:51 PAGE     3
+A51 MACRO ASSEMBLER  PROYECTO                                                             10/19/2022 19:09:21 PAGE     3
 
 00F2 752200          125             MOV VALOR_DISPLAY, #0
 00F5 51AC            126             ACALL UPDATE_DISPLAY
@@ -143,7 +143,7 @@ LOC  OBJ            LINE     SOURCE
                      130             ;ZUMBIDO ON - (SE APAGARA EN 200MS)
 00FB 7125            131             ACALL ENCENDER_ZUMBADOR
                      132             ;ENCENDER TIMER
-00FD 1156            133             ACALL ENCENDER_TIMER
+00FD 7162            133             ACALL ENCENDER_TIMER
                      134             ;CAMBIAR AL ESTADO 1
 00FF 752001          135             MOV ESTADO, #1
                      136             ;CAMBIAR EL EVENTO AL 0
@@ -181,7 +181,7 @@ LOC  OBJ            LINE     SOURCE
 012D 5184            168             ACALL APAGAR_PARPADEO
 012F 712B            169             ACALL APAGAR_ZUMBADOR
 0131 5173            170             ACALL APAGAR_LED
-0133 1168            171             ACALL APAGAR_TIMER
+0133 7174            171             ACALL APAGAR_TIMER
                      172     
 0135 752000          173             MOV ESTADO, #0
 0138 752100          174             MOV EVENTO, #0
@@ -201,7 +201,7 @@ LOC  OBJ            LINE     SOURCE
                      188     
 0150 752002          189             MOV ESTADO, #2
 0153 752100          190             MOV EVENTO, #0
-A51 MACRO ASSEMBLER  PROYECTO                                                             10/18/2022 14:44:51 PAGE     4
+A51 MACRO ASSEMBLER  PROYECTO                                                             10/19/2022 19:09:21 PAGE     4
 
 0156 22              191             RET     
 0157                 192     ES1_GEN_EV:
@@ -261,7 +261,7 @@ LOC  OBJ            LINE     SOURCE
                      246             ;APAGAR LED
 01A0 5173            247             ACALL APAGAR_LED
                      248             ;ENCENDER ADC
-01A2 1106            249             ACALL ENCENDER_ADC
+01A2 714E            249             ACALL ENCENDER_ADC
                      250     
 01A4 752003          251             MOV ESTADO, #3
 01A7 752100          252             MOV EVENTO, #0          
@@ -269,7 +269,7 @@ LOC  OBJ            LINE     SOURCE
 01AB                 254     ES2_EV2:
 01AB 7400            255             MOV A, #0
 01AD C3              256             CLR C
-A51 MACRO ASSEMBLER  PROYECTO                                                             10/18/2022 14:44:51 PAGE     5
+A51 MACRO ASSEMBLER  PROYECTO                                                             10/19/2022 19:09:21 PAGE     5
 
 01AE 9522            257             SUBB A, VALOR_DISPLAY
 01B0 6075            258             JZ ES2_NOTHING
@@ -337,7 +337,7 @@ LOC  OBJ            LINE     SOURCE
 0210 052E            320             INC ES2_CONT2_S
 0212 743C            321             MOV A, #60
 0214 C3              322             CLR C
-A51 MACRO ASSEMBLER  PROYECTO                                                             10/18/2022 14:44:51 PAGE     6
+A51 MACRO ASSEMBLER  PROYECTO                                                             10/19/2022 19:09:21 PAGE     6
 
 0215 952E            323             SUBB A, ES2_CONT2_S
 0217 60E1            324             JZ ES2_60S
@@ -376,7 +376,7 @@ LOC  OBJ            LINE     SOURCE
 0247 4001            357             JC ES3_ADC
 0249 22              358             RET
 024A                 359     ES3_ADC:
-024A 1114            360             ACALL LEER_ADC          ;AHORA TENGO EN B EL VALOR DEL ADC
+024A 715C            360             ACALL LEER_ADC          ;AHORA TENGO EN B EL VALOR DEL ADC
                      361             
                      362             ;MENOS DE 40
 024C E5F0            363             MOV A, B
@@ -396,16 +396,16 @@ LOC  OBJ            LINE     SOURCE
 0260                 377     ES3_60:
 0260 75220B          378             MOV VALOR_DISPLAY, #11
 0263 51AC            379             ACALL UPDATE_DISPLAY
-0265 1106            380             ACALL ENCENDER_ADC
+0265 714E            380             ACALL ENCENDER_ADC
 0267 22              381             RET
 0268                 382     ES3_80:
 0268 75220C          383             MOV VALOR_DISPLAY, #12
 026B 51AC            384             ACALL UPDATE_DISPLAY
-026D 1106            385             ACALL ENCENDER_ADC
+026D 714E            385             ACALL ENCENDER_ADC
 026F 22              386             RET
                      387     
                      388     ;=========================LED======================
-A51 MACRO ASSEMBLER  PROYECTO                                                             10/18/2022 14:44:51 PAGE     7
+A51 MACRO ASSEMBLER  PROYECTO                                                             10/19/2022 19:09:21 PAGE     7
 
 0270                 389     ENCENDER_LED:   
 0270 D2A0            390             SETB LED
@@ -473,7 +473,7 @@ LOC  OBJ            LINE     SOURCE
 02C8 610F            452             AJMP DISPLAY_9  ;9
 02CA 6116            453             AJMP DISPLAY_P  ;10
 02CC 611D            454             AJMP DISPLAY_H  ;11
-A51 MACRO ASSEMBLER  PROYECTO                                                             10/18/2022 14:44:51 PAGE     8
+A51 MACRO ASSEMBLER  PROYECTO                                                             10/19/2022 19:09:21 PAGE     8
 
 02CE 6121            455             AJMP DISPLAY_HH ;12
 02D0                 456     DISPLAY_0:      ;*gfedcba
@@ -541,7 +541,7 @@ LOC  OBJ            LINE     SOURCE
 0333 5001            518             JNC ZUMBADOR_200MS
 0335 22              519             RET
 0336                 520     ZUMBADOR_200MS:
-A51 MACRO ASSEMBLER  PROYECTO                                                             10/18/2022 14:44:51 PAGE     9
+A51 MACRO ASSEMBLER  PROYECTO                                                             10/19/2022 19:09:21 PAGE     9
 
 0336 0526            521             INC CONT_ZUMB
 0338 7402            522             MOV A, #2
@@ -558,83 +558,85 @@ LOC  OBJ            LINE     SOURCE
 0347 53A800          533             ANL IEN0, #00000000b
 034A 538700          534             ANL PCON, #00000000b
 034D 22              535             RET
-0003                 536     ORG 0x03
-0003                 537     INTERRUPCION_EXTERNA:
-0003 7147            538             ACALL DESACTIVAR_IDL
-0005 32              539             RETI
-                     540     ;=========================ADC======================
-0006                 541     ENCENDER_ADC:
-0006 43A8C0          542             ORL IEN0,#11000000b
-0009 53C5F9          543             ANL ADCON, #11111001b
-000C 43C509          544             ORL ADCON, #00001001b
-000F 22              545             RET     
-0010                 546     APAGAR_ADC:
-0010 53A800          547             ANL IEN0, #00000000b
-0013 22              548             RET
-0014                 549     LEER_ADC:
-0014 C22A            550             CLR FADC
-0016 85FEF0          551             MOV B, ADCH
-0019 22              552             RET
-0053                 553     ORG 0x53
-0053                 554     INTERRUPCION_ADC:       
-0053 D22A            555             SETB FADC
-0055 32              556             RETI
-                     557     ;========================TIMER=====================
-0056                 558     ENCENDER_TIMER:
-0056 43A882          559             ORL IEN0, #10000010b
-0059 758C06          560             MOV TH0, #6
-005C 758A06          561             MOV TL0, #6
-005F 752300          562             MOV T_CONT1, #0
-0062 752400          563             MOV T_CONT2, #0
-0065 D28C            564             SETB TR0
-0067 22              565             RET
-0068                 566     APAGAR_TIMER:
-0068 53A800          567             ANL IEN0, #00000000b
-006B C28C            568             CLR TR0
-006D 22              569             RET
-000B                 570     ORG 0x0B
-000B                 571     INTERRUPCION_TIMER:
-000B 110E            572             ACALL TIMER_FUNC
-000D 32              573             RETI
-                     574     
-000E                 575     TIMER_FUNC:
-000E C0D0            576             PUSH PSW
-0010 C0E0            577             PUSH ACC
-                     578     
-0012 0523            579             INC T_CONT1
-0014 747F            580             MOV A, #127
-0016 C3              581             CLR C
-0017 9523            582             SUBB A, T_CONT1
-0019 701A            583             JNZ CONDTIMER
-                     584     
-001B 752300          585             MOV T_CONT1, #0
-001E 0524            586             INC T_CONT2
-A51 MACRO ASSEMBLER  PROYECTO                                                             10/18/2022 14:44:51 PAGE    10
+                     536     
+                     537     ;=========================ADC======================
+034E                 538     ENCENDER_ADC:
+034E 43A8C0          539             ORL IEN0,#11000000b
+0351 53C5F9          540             ANL ADCON, #11111001b
+0354 43C509          541             ORL ADCON, #00001001b
+0357 22              542             RET     
+0358                 543     APAGAR_ADC:
+0358 53A800          544             ANL IEN0, #00000000b
+035B 22              545             RET
+035C                 546     LEER_ADC:
+035C C22A            547             CLR FADC
+035E 85FEF0          548             MOV B, ADCH
+0361 22              549             RET
+                     550     ;========================TIMER=====================
+0362                 551     ENCENDER_TIMER:
+0362 43A882          552             ORL IEN0, #10000010b
+0365 758C37          553             MOV TH0, #55
+0368 758A37          554             MOV TL0, #55
+036B 752300          555             MOV T_CONT1, #0
+036E 752400          556             MOV T_CONT2, #0
+0371 D28C            557             SETB TR0
+0373 22              558             RET
+0374                 559     APAGAR_TIMER:
+0374 53A800          560             ANL IEN0, #00000000b
+0377 C28C            561             CLR TR0
+0379 22              562             RET
+                     563     
+037A                 564     TIMER_FUNC:
+037A C0D0            565             PUSH PSW
+037C C0E0            566             PUSH ACC
+                     567     
+037E 0523            568             INC T_CONT1
+0380 747F            569             MOV A, #127
+0382 C3              570             CLR C
+0383 9523            571             SUBB A, T_CONT1
+0385 701A            572             JNZ CONDTIMER
+                     573     
+0387 752300          574             MOV T_CONT1, #0
+038A 0524            575             INC T_CONT2
+038C 7408            576             MOV A, #8
+038E C3              577             CLR C
+038F 9524            578             SUBB A, T_CONT2
+0391 700E            579             JNZ CONDTIMER
+                     580     
+0393 752400          581             MOV T_CONT2, #0
+0396 D228            582             SETB TICK                       ;HA PASADO 100ms!
+                     583     
+0398 7131            584             ACALL ZUMBADOR_ESTADO
+039A 518A            585             ACALL ESTADO_PARPADEO
+                     586     
+A51 MACRO ASSEMBLER  PROYECTO                                                             10/19/2022 19:09:21 PAGE    10
 
-0020 7464            587             MOV A, #100
-0022 C3              588             CLR C
-0023 9524            589             SUBB A, T_CONT2
-0025 700E            590             JNZ CONDTIMER
-                     591     
-0027 752400          592             MOV T_CONT2, #0
-002A D228            593             SETB TICK                       ;HA PASADO 100ms!
-                     594     
-002C 7131            595             ACALL ZUMBADOR_ESTADO
-002E 518A            596             ACALL ESTADO_PARPADEO
-                     597     
-0030 D0E0            598             POP ACC
-0032 D0D0            599             POP PSW
-0034 22              600             RET
-0035                 601     CONDTIMER:
-0035 D0E0            602             POP ACC
-0037 D0D0            603             POP PSW
-0039 22              604             RET
-                     605     ;========================END======================
-                     606     END
+039C D0E0            587             POP ACC
+039E D0D0            588             POP PSW
+03A0 22              589             RET
+03A1                 590     CONDTIMER:
+03A1 D0E0            591             POP ACC
+03A3 D0D0            592             POP PSW
+03A5 22              593             RET
+                     594     ;==================INTERRUPCIONES=================
+0003                 595     ORG 0x03
+0003                 596     INTERRUPCION_EXTERNA:
+0003 7147            597             ACALL DESACTIVAR_IDL
+0005 32              598             RETI
+000B                 599     ORG 0x0B
+000B                 600     INTERRUPCION_TIMER:
+000B 717A            601             ACALL TIMER_FUNC
+000D 32              602             RETI
+0053                 603     ORG 0x53
+0053                 604     INTERRUPCION_ADC:       
+0053 D22A            605             SETB FADC
+0055 32              606             RETI
+                     607     ;========================END======================
+                     608     END
                              
                              ;HA FECHA 13/10/2022 SOLO YO Y DIOS SABIAMOS LO QUE AQUI HABIA ESCRITO.
                              ;CUENDO ESTES LEYENDO ESTO, SEGURAMENTE, SOLO DIOS LO SEPA.
-A51 MACRO ASSEMBLER  PROYECTO                                                             10/18/2022 14:44:51 PAGE    11
+A51 MACRO ASSEMBLER  PROYECTO                                                             10/19/2022 19:09:21 PAGE    11
 
 SYMBOL TABLE LISTING
 ------ ----- -------
@@ -646,15 +648,15 @@ ACC. . . . . . . . .  D ADDR   00E0H   A
 ACTIVAR_IDL. . . . .  C ADDR   0340H   A   
 ADCH . . . . . . . .  N NUMB   00FEH   A   
 ADCON. . . . . . . .  N NUMB   00C5H   A   
-APAGAR_ADC . . . . .  C ADDR   0010H   A   
+APAGAR_ADC . . . . .  C ADDR   0358H   A   
 APAGAR_DISPLAY . . .  C ADDR   02A5H   A   
 APAGAR_LED . . . . .  C ADDR   0273H   A   
 APAGAR_PARPADEO. . .  C ADDR   0284H   A   
 APAGAR_PWM . . . . .  C ADDR   027AH   A   
-APAGAR_TIMER . . . .  C ADDR   0068H   A   
+APAGAR_TIMER . . . .  C ADDR   0374H   A   
 APAGAR_ZUMBADOR. . .  C ADDR   032BH   A   
 B. . . . . . . . . .  D ADDR   00F0H   A   
-CONDTIMER. . . . . .  C ADDR   0035H   A   
+CONDTIMER. . . . . .  C ADDR   03A1H   A   
 CONT_PARPADEO. . . .  N NUMB   0027H   A   
 CONT_ZUMB. . . . . .  N NUMB   0026H   A   
 DESACTIVAR_IDL . . .  C ADDR   0347H   A   
@@ -672,12 +674,12 @@ DISPLAY_FUNC . . . .  C ADDR   02B6H   A
 DISPLAY_H. . . . . .  C ADDR   031DH   A   
 DISPLAY_HH . . . . .  C ADDR   0321H   A   
 DISPLAY_P. . . . . .  C ADDR   0316H   A   
-ENCENDER_ADC . . . .  C ADDR   0006H   A   
+ENCENDER_ADC . . . .  C ADDR   034EH   A   
 ENCENDER_DISPLAY . .  C ADDR   02A9H   A   
 ENCENDER_LED . . . .  C ADDR   0270H   A   
 ENCENDER_PARPADEO. .  C ADDR   027EH   A   
 ENCENDER_PWM . . . .  C ADDR   0276H   A   
-ENCENDER_TIMER . . .  C ADDR   0056H   A   
+ENCENDER_TIMER . . .  C ADDR   0362H   A   
 ENCENDER_ZUMBADOR. .  C ADDR   0325H   A   
 ES0_EV0. . . . . . .  C ADDR   00EFH   A   
 ES0_EV1. . . . . . .  C ADDR   00F2H   A   
@@ -702,7 +704,7 @@ ES2_60S. . . . . . .  C ADDR   01FAH   A
 ES2_CONT1_S. . . . .  N NUMB   002DH   A   
 ES2_CONT2_S. . . . .  N NUMB   002EH   A   
 ES2_CONT_MS. . . . .  N NUMB   002CH   A   
-A51 MACRO ASSEMBLER  PROYECTO                                                             10/18/2022 14:44:51 PAGE    12
+A51 MACRO ASSEMBLER  PROYECTO                                                             10/19/2022 19:09:21 PAGE    12
 
 ES2_EV0. . . . . . .  C ADDR   019DH   A   
 ES2_EV1. . . . . . .  C ADDR   019EH   A   
@@ -743,7 +745,7 @@ INTERRUPCION_ADC . .  C ADDR   0053H   A
 INTERRUPCION_EXTERNA  C ADDR   0003H   A   
 INTERRUPCION_TIMER .  C ADDR   000BH   A   
 LED. . . . . . . . .  B ADDR   00A0H.0 A   
-LEER_ADC . . . . . .  C ADDR   0014H   A   
+LEER_ADC . . . . . .  C ADDR   035CH   A   
 MAIN . . . . . . . .  C ADDR   007DH   A   
 MINUS. . . . . . . .  B ADDR   00B0H.1 A   
 P0 . . . . . . . . .  D ADDR   0080H   A   
@@ -760,7 +762,7 @@ SENSOR . . . . . . .  B ADDR   00B0H.5 A
 SWITCH . . . . . . .  B ADDR   00B0H.2 A   
 TH0. . . . . . . . .  D ADDR   008CH   A   
 TICK . . . . . . . .  B ADDR   0025H.0 A   
-TIMER_FUNC . . . . .  C ADDR   000EH   A   
+TIMER_FUNC . . . . .  C ADDR   037AH   A   
 TL0. . . . . . . . .  D ADDR   008AH   A   
 TMOD . . . . . . . .  D ADDR   0089H   A   
 TR0. . . . . . . . .  B ADDR   0088H.4 A   
@@ -770,7 +772,7 @@ UPDATE_DISPLAY . . .  C ADDR   02ACH   A
 UPDATE_PARPADEO. . .  C ADDR   0299H   A   
 VALOR_DISPLAY. . . .  N NUMB   0022H   A   
 ZUMBADOR . . . . . .  B ADDR   00A0H.1 A   
-A51 MACRO ASSEMBLER  PROYECTO                                                             10/18/2022 14:44:51 PAGE    13
+A51 MACRO ASSEMBLER  PROYECTO                                                             10/19/2022 19:09:21 PAGE    13
 
 ZUMBADOR_200MS . . .  C ADDR   0336H   A   
 ZUMBADOR_ESTADO. . .  C ADDR   0331H   A   

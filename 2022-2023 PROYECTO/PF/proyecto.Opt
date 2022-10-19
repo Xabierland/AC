@@ -12,13 +12,13 @@
 Target (Target 1), 0x0000 // Tools: 'MCS-51'
 GRPOPT 1,(Source Group 1),1,0,0
 
-OPTFFF 1,1,2,0,0,0,0,0,<.\proyecto.a><proyecto.a> 
+OPTFFF 1,1,2,0,0,455,455,0,<.\proyecto.a><proyecto.a> { 44,0,0,0,2,0,0,0,3,0,0,0,255,255,255,255,255,255,255,255,248,255,255,255,225,255,255,255,26,0,0,0,26,0,0,0,166,4,0,0,180,1,0,0 }
 OPTFFF 1,2,5,0,0,0,0,0,<.\ToDo.txt><ToDo.txt> 
 
 
 TARGOPT 1, (Target 1)
- CLK51=30000000
-  OPTTT 0,1,1,0
+ CLK51=24000000
+  OPTTT 1,1,1,0
   OPTHX 0,65535,0,0,0
   OPTLX 120,65,8,<.\>
   OPTLT 1,1,1,0,1,1,0,1,0,0,0
@@ -30,7 +30,7 @@ TARGOPT 1, (Target 1)
   OPTDL (S8051.DLL)()(DP51.DLL)(-p552)(S8051.DLL)()(TP51.DLL)(-p552)
   OPTDBG 509,0,()()()()()()()()()() ()()()()
   OPTMM 1,0,(0X20)
-  OPTDF 0x80
+  OPTDF 0x84
   OPTLE <>
   OPTLC <>
 EndOpt
