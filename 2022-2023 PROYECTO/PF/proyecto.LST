@@ -1,4 +1,4 @@
-A51 MACRO ASSEMBLER  PROYECTO                                                             10/24/2022 17:35:41 PAGE     1
+A51 MACRO ASSEMBLER  PROYECTO                                                             10/25/2022 14:38:44 PAGE     1
 
 
 MACRO ASSEMBLER A51 V6.14
@@ -65,7 +65,7 @@ LOC  OBJ            LINE     SOURCE
 008E 4140             56             AJMP ESTADO3            ;TRANSICION
                       57     ;========================INIT=====================;
 0090                  58     INIT:
-A51 MACRO ASSEMBLER  PROYECTO                                                             10/24/2022 17:35:41 PAGE     2
+A51 MACRO ASSEMBLER  PROYECTO                                                             10/25/2022 14:38:44 PAGE     2
 
                       59             ;JUST DEBUGGING!!!!!!!!
 0090 758000           60                     MOV P0, #0
@@ -133,7 +133,7 @@ LOC  OBJ            LINE     SOURCE
 00F5 6156            122             AJMP ACTIVAR_IDL
 00F7 22              123             RET
 00F8                 124     ES0_EV1:                        ;EVENTO ESPERA
-A51 MACRO ASSEMBLER  PROYECTO                                                             10/24/2022 17:35:41 PAGE     3
+A51 MACRO ASSEMBLER  PROYECTO                                                             10/25/2022 14:38:44 PAGE     3
 
                      125             ;PONER UN 0 EN PANTALLA
 00F8 752200          126             MOV VALOR_DISPLAY, #0
@@ -201,7 +201,7 @@ LOC  OBJ            LINE     SOURCE
 015C 22              188             RET     
 015D                 189     ES1_GEN_EV:
                      190             ;COMPROBAR SI SE HA PULSADO EL SWITCH
-A51 MACRO ASSEMBLER  PROYECTO                                                             10/24/2022 17:35:41 PAGE     4
+A51 MACRO ASSEMBLER  PROYECTO                                                             10/25/2022 14:38:44 PAGE     4
 
 015D A2B2            191             MOV C, SWITCH
 015F 5009            192             JNC ES1_SWITCH
@@ -269,7 +269,7 @@ LOC  OBJ            LINE     SOURCE
 01BA 607D            254             JZ ES2_NOTHING
                      255     
 01BC 1522            256             DEC VALOR_DISPLAY
-A51 MACRO ASSEMBLER  PROYECTO                                                             10/24/2022 17:35:41 PAGE     5
+A51 MACRO ASSEMBLER  PROYECTO                                                             10/25/2022 14:38:44 PAGE     5
 
 01BE 51C2            257             ACALL UPDATE_DISPLAY
                      258     
@@ -337,7 +337,7 @@ LOC  OBJ            LINE     SOURCE
 021B                 320     ES2_SENSOR_ON:
 021B E522            321             MOV A, VALOR_DISPLAY
 021D 701A            322             JNZ ES2_NOTHING
-A51 MACRO ASSEMBLER  PROYECTO                                                             10/24/2022 17:35:41 PAGE     6
+A51 MACRO ASSEMBLER  PROYECTO                                                             10/25/2022 14:38:44 PAGE     6
 
 021F 752D00          323             MOV ES2_CONT1_S, #0
 0222 052E            324             INC ES2_CONT2_S
@@ -405,7 +405,7 @@ LOC  OBJ            LINE     SOURCE
 0279 51C2            386             ACALL UPDATE_DISPLAY
 027B 7164            387             ACALL ENCENDER_ADC
 027D 22              388             RET
-A51 MACRO ASSEMBLER  PROYECTO                                                             10/24/2022 17:35:41 PAGE     7
+A51 MACRO ASSEMBLER  PROYECTO                                                             10/25/2022 14:38:44 PAGE     7
 
 027E                 389     ES3_80:
 027E 75220C          390             MOV VALOR_DISPLAY, #12
@@ -473,7 +473,7 @@ LOC  OBJ            LINE     SOURCE
 02D0 41F4            452             AJMP DISPLAY_2  ;2
 02D2 41FB            453             AJMP DISPLAY_3  ;3
 02D4 6102            454             AJMP DISPLAY_4  ;4
-A51 MACRO ASSEMBLER  PROYECTO                                                             10/24/2022 17:35:41 PAGE     8
+A51 MACRO ASSEMBLER  PROYECTO                                                             10/25/2022 14:38:44 PAGE     8
 
 02D6 6109            455             AJMP DISPLAY_5  ;5
 02D8 6110            456             AJMP DISPLAY_6  ;6
@@ -541,7 +541,7 @@ LOC  OBJ            LINE     SOURCE
 0341                 518     APAGAR_ZUMBADOR:
 0341 752600          519             MOV CONT_ZUMB, #0
 0344 D2A1            520             SETB ZUMBADOR
-A51 MACRO ASSEMBLER  PROYECTO                                                             10/24/2022 17:35:41 PAGE     9
+A51 MACRO ASSEMBLER  PROYECTO                                                             10/25/2022 14:38:44 PAGE     9
 
 0346 22              521             RET
 0347                 522     ZUMBADOR_ESTADO:
@@ -593,56 +593,68 @@ LOC  OBJ            LINE     SOURCE
 038C 22              568             RET
                      569     
 038D                 570     TIMER_FUNC:
-038D C0D0            571             PUSH PSW
-038F C0E0            572             PUSH ACC
-                     573     
-0391 0523            574             INC T_CONT1
-0393 747D            575             MOV A, #125
-0395 C3              576             CLR C
-0396 9523            577             SUBB A, T_CONT1
-0398 701A            578             JNZ CONDTIMER
-                     579     
-039A 752300          580             MOV T_CONT1, #0
-039D 0524            581             INC T_CONT2
-039F 7408            582             MOV A, #8
-03A1 C3              583             CLR C
-03A2 9524            584             SUBB A, T_CONT2
-03A4 700E            585             JNZ CONDTIMER
-                     586     
-A51 MACRO ASSEMBLER  PROYECTO                                                             10/24/2022 17:35:41 PAGE    10
+038D 71B3            571             ACALL SAVE
+                     572     
+038F 0523            573             INC T_CONT1
+0391 747D            574             MOV A, #125
+0393 C3              575             CLR C
+0394 9523            576             SUBB A, T_CONT1
+0396 7018            577             JNZ CONDTIMER
+                     578     
+0398 752300          579             MOV T_CONT1, #0
+039B 0524            580             INC T_CONT2
+039D 7408            581             MOV A, #8
+039F C3              582             CLR C
+03A0 9524            583             SUBB A, T_CONT2
+03A2 700C            584             JNZ CONDTIMER
+                     585     
+03A4 752400          586             MOV T_CONT2, #0
+A51 MACRO ASSEMBLER  PROYECTO                                                             10/25/2022 14:38:44 PAGE    10
 
-03A6 752400          587             MOV T_CONT2, #0
-03A9 D228            588             SETB TICK                       ;HA PASADO 100ms!
-                     589     
-03AB 7147            590             ACALL ZUMBADOR_ESTADO
-03AD 51A0            591             ACALL ESTADO_PARPADEO
-                     592     
-03AF D0E0            593             POP ACC
-03B1 D0D0            594             POP PSW
-03B3 22              595             RET
-03B4                 596     CONDTIMER:
-03B4 D0E0            597             POP ACC
-03B6 D0D0            598             POP PSW
-03B8 22              599             RET
-                     600     ;==================INTERRUPCIONES=================
-0003                 601     ORG 0x03
-0003                 602     INTERRUPCION_EXTERNA:
-0003 715D            603             ACALL DESACTIVAR_IDL
-0005 32              604             RETI
-000B                 605     ORG 0x0B
-000B                 606     INTERRUPCION_TIMER:
-000B 718D            607             ACALL TIMER_FUNC
-000D 32              608             RETI
-0053                 609     ORG 0x53
-0053                 610     INTERRUPCION_ADC:       
-0053 D22A            611             SETB FADC
-0055 32              612             RETI
-                     613     ;========================END======================
-                     614     END
+03A7 D228            587             SETB TICK                       ;HA PASADO 100ms!
+                     588     
+03A9 7147            589             ACALL ZUMBADOR_ESTADO
+03AB 51A0            590             ACALL ESTADO_PARPADEO
+                     591     
+03AD 71B8            592             ACALL LOAD
+03AF 22              593             RET
+03B0                 594     CONDTIMER:
+03B0 71B8            595             ACALL LOAD
+03B2 22              596             RET
+                     597     ;=======================STACK===================== 
+03B3                 598     SAVE:
+03B3 C0D0            599             PUSH PSW
+03B5 C0E0            600             PUSH ACC
+03B7 22              601             RET
+03B8                 602     LOAD:      
+03B8 D0E0            603             POP ACC
+03BA D0D0            604             POP PSW
+03BC 22              605             RET
+                     606     ;==================INTERRUPCIONES=================
+0003                 607     ORG 0x03
+0003                 608     INTERRUPCION_EXTERNA:
+0003 71B3            609             ACALL SAVE
+0005 715D            610             ACALL DESACTIVAR_IDL
+0007 71B8            611             ACALL LOAD
+0009 32              612             RETI
+000B                 613     ORG 0x0B
+000B                 614     INTERRUPCION_TIMER:
+000B 71B3            615             ACALL SAVE
+000D 718D            616             ACALL TIMER_FUNC
+000F 71B8            617             ACALL LOAD
+0011 32              618             RETI
+0053                 619     ORG 0x53
+0053                 620     INTERRUPCION_ADC:
+0053 71B3            621             ACALL SAVE      
+0055 D22A            622             SETB FADC
+0057 71B8            623             ACALL LOAD
+0059 32              624             RETI
+                     625     ;========================END======================
+                     626     END
                              
                              ;HA FECHA 13/10/2022 SOLO YO Y DIOS SABIAMOS LO QUE AQUI HABIA ESCRITO.
                              ;CUENDO ESTES LEYENDO ESTO, SEGURAMENTE, SOLO DIOS LO SEPA.
-A51 MACRO ASSEMBLER  PROYECTO                                                             10/24/2022 17:35:41 PAGE    11
+A51 MACRO ASSEMBLER  PROYECTO                                                             10/25/2022 14:38:44 PAGE    11
 
 SYMBOL TABLE LISTING
 ------ ----- -------
@@ -662,7 +674,7 @@ APAGAR_PWM . . . . .  C ADDR   0290H   A
 APAGAR_TIMER . . . .  C ADDR   0387H   A   
 APAGAR_ZUMBADOR. . .  C ADDR   0341H   A   
 B. . . . . . . . . .  D ADDR   00F0H   A   
-CONDTIMER. . . . . .  C ADDR   03B4H   A   
+CONDTIMER. . . . . .  C ADDR   03B0H   A   
 CONT_PARPADEO. . . .  N NUMB   0027H   A   
 CONT_ZUMB. . . . . .  N NUMB   0026H   A   
 DESACTIVAR_IDL . . .  C ADDR   035DH   A   
@@ -710,7 +722,7 @@ ES2_60S. . . . . . .  C ADDR   020CH   A
 ES2_CONT1_S. . . . .  N NUMB   002DH   A   
 ES2_CONT2_S. . . . .  N NUMB   002EH   A   
 ES2_CONT_MS. . . . .  N NUMB   002CH   A   
-A51 MACRO ASSEMBLER  PROYECTO                                                             10/24/2022 17:35:41 PAGE    12
+A51 MACRO ASSEMBLER  PROYECTO                                                             10/25/2022 14:38:44 PAGE    12
 
 ES2_EV0. . . . . . .  C ADDR   01A3H   A   
 ES2_EV1. . . . . . .  C ADDR   01A4H   A   
@@ -752,6 +764,7 @@ INTERRUPCION_EXTERNA  C ADDR   0003H   A
 INTERRUPCION_TIMER .  C ADDR   000BH   A   
 LED. . . . . . . . .  B ADDR   00A0H.0 A   
 LEER_ADC . . . . . .  C ADDR   036FH   A   
+LOAD . . . . . . . .  C ADDR   03B8H   A   
 MAIN . . . . . . . .  C ADDR   007DH   A   
 MINUS. . . . . . . .  B ADDR   00B0H.1 A   
 P0 . . . . . . . . .  D ADDR   0080H   A   
@@ -764,6 +777,7 @@ PLUS . . . . . . . .  B ADDR   00B0H.0 A
 PSW. . . . . . . . .  D ADDR   00D0H   A   
 PWM0 . . . . . . . .  N NUMB   00FCH   A   
 PWMP . . . . . . . .  N NUMB   00FEH   A   
+SAVE . . . . . . . .  C ADDR   03B3H   A   
 SENSOR . . . . . . .  B ADDR   00B0H.5 A   
 SWITCH . . . . . . .  B ADDR   00B0H.2 A   
 TH0. . . . . . . . .  D ADDR   008CH   A   
@@ -776,10 +790,10 @@ T_CONT1. . . . . . .  N NUMB   0023H   A
 T_CONT2. . . . . . .  N NUMB   0024H   A   
 UPDATE_DISPLAY . . .  C ADDR   02C2H   A   
 UPDATE_PARPADEO. . .  C ADDR   02AFH   A   
+A51 MACRO ASSEMBLER  PROYECTO                                                             10/25/2022 14:38:44 PAGE    13
+
 VALOR_DISPLAY. . . .  N NUMB   0022H   A   
 ZUMBADOR . . . . . .  B ADDR   00A0H.1 A   
-A51 MACRO ASSEMBLER  PROYECTO                                                             10/24/2022 17:35:41 PAGE    13
-
 ZUMBADOR_200MS . . .  C ADDR   034CH   A   
 ZUMBADOR_ESTADO. . .  C ADDR   0347H   A   
 
