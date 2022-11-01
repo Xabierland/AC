@@ -12,7 +12,7 @@
 Target (Target 1), 0x0000 // Tools: 'MCS-51'
 GRPOPT 1,(Source Group 1),1,0,0
 
-OPTFFF 1,1,2,0,0,437,444,0,<.\proyecto.a><proyecto.a> { 44,0,0,0,0,0,0,0,1,0,0,0,255,255,255,255,255,255,255,255,248,255,255,255,225,255,255,255,22,1,0,0,22,0,0,0,138,4,0,0,228,1,0,0 }
+OPTFFF 1,1,2,0,0,428,428,0,<.\proyecto.a><proyecto.a> { 44,0,0,0,2,0,0,0,3,0,0,0,255,255,255,255,255,255,255,255,248,255,255,255,225,255,255,255,22,1,0,0,22,0,0,0,138,4,0,0,228,1,0,0 }
 OPTFFF 1,2,5,0,0,0,0,0,<.\ToDo.txt><ToDo.txt> 
 
 
@@ -29,8 +29,6 @@ TARGOPT 1, (Target 1)
   OPTBL 2,(Programmer's Guide & Instruction Set Manual)<DATASHTS\PHILIPS\UPROGGUI.PDF>
   OPTDL (S8051.DLL)()(DP51.DLL)(-p552)(S8051.DLL)()(TP51.DLL)(-p552)
   OPTDBG 509,0,()()()()()()()()()() ()()()()
-  OPTBB 0,0,612,1,-16777131,0,0,0,0,1,<proyecto.a>()()
-  OPTBB 1,0,554,1,-16776335,0,0,0,0,1,<proyecto.a>()()
   OPTMM 1,0,(0Xc5)
   OPTDF 0x84
   OPTLE <>
