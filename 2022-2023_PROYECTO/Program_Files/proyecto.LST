@@ -1,4 +1,4 @@
-A51 MACRO ASSEMBLER  PROYECTO                                                             11/02/2022 22:01:13 PAGE     1
+A51 MACRO ASSEMBLER  PROYECTO                                                             11/07/2022 17:05:44 PAGE     1
 
 
 MACRO ASSEMBLER A51 V6.14
@@ -65,7 +65,7 @@ LOC  OBJ            LINE     SOURCE
 007B                  50     ORG 0x007b
 007B                  51     INICIO:
 007B 1190             52             ACALL INIT
-A51 MACRO ASSEMBLER  PROYECTO                                                             11/02/2022 22:01:13 PAGE     2
+A51 MACRO ASSEMBLER  PROYECTO                                                             11/07/2022 17:05:44 PAGE     2
 
 007D                  53     MAIN:
 007D 1181             54             ACALL FSM
@@ -133,7 +133,7 @@ LOC  OBJ            LINE     SOURCE
                      115     ;========================================ESTADO0_REPOSO====================================
                              ====;
 00E6                 116     ESTADO0:
-A51 MACRO ASSEMBLER  PROYECTO                                                             11/02/2022 22:01:13 PAGE     3
+A51 MACRO ASSEMBLER  PROYECTO                                                             11/07/2022 17:05:44 PAGE     3
 
 00E6 3107            117             ACALL ES0_GEN_EV
 00E8 E521            118             MOV A, EVENTO
@@ -149,11 +149,11 @@ LOC  OBJ            LINE     SOURCE
 00F6                 128     ES0_EV1:                        ;EVENTO ESPERA
 00F6 752200          129             MOV VALOR_DISPLAY, #0
                      130     
-00F9 51BA            131             ACALL UPDATE_DISPLAY    ;ENCIENDE Y PONE UN 0 EN PANTALLA
-00FB 518C            132             ACALL ENCENDER_PARPADEO ;ACTIVA EL PARPADEO DE LA PANTALLA
-00FD 517B            133             ACALL ENCENDER_LED      ;ENCIENDE EL LED
-00FF 7133            134             ACALL ENCENDER_ZUMBADOR ;ENCIENDE EL ZUMBADOR
-0101 7175            135             ACALL ENCENDER_TIMER    ;ENCIENDE EL TIMER
+00F9 51BA            131             ACALL UPDATE_DISPLAY
+00FB 518C            132             ACALL ENCENDER_PARPADEO 
+00FD 517B            133             ACALL ENCENDER_LED      
+00FF 7133            134             ACALL ENCENDER_ZUMBADOR 
+0101 7175            135             ACALL ENCENDER_TIMER    
                      136     
 0103 752001          137             MOV ESTADO, #1
 0106 22              138             RET
@@ -201,7 +201,7 @@ LOC  OBJ            LINE     SOURCE
 0143 752600          179             MOV CONT_ZUMB, #0
 0146 752700          180             MOV CONT_PARPADEO, #0
                      181             
-A51 MACRO ASSEMBLER  PROYECTO                                                             11/02/2022 22:01:13 PAGE     4
+A51 MACRO ASSEMBLER  PROYECTO                                                             11/07/2022 17:05:44 PAGE     4
 
 0149 5192            182             ACALL APAGAR_PARPADEO
 014B 51B7            183             ACALL ENCENDER_DISPLAY
@@ -269,7 +269,7 @@ LOC  OBJ            LINE     SOURCE
 01A3 7164            244             ACALL ENCENDER_ADC
 01A5 5185            245             ACALL APAGAR_PWM
                      246     
-A51 MACRO ASSEMBLER  PROYECTO                                                             11/02/2022 22:01:13 PAGE     5
+A51 MACRO ASSEMBLER  PROYECTO                                                             11/07/2022 17:05:44 PAGE     5
 
 01A7 752003          247             MOV ESTADO, #3          
 01AA 22              248             RET
@@ -337,7 +337,7 @@ LOC  OBJ            LINE     SOURCE
 01FE 22              310             RET
 01FF                 311     ES2_60S:                        ;PASAN 60S
 01FF 752D00          312             MOV ES2_CONT1_S, #0
-A51 MACRO ASSEMBLER  PROYECTO                                                             11/02/2022 22:01:13 PAGE     6
+A51 MACRO ASSEMBLER  PROYECTO                                                             11/07/2022 17:05:44 PAGE     6
 
 0202 752E00          313             MOV ES2_CONT2_S, #0
 0205 752101          314             MOV EVENTO, #1
@@ -405,7 +405,7 @@ LOC  OBJ            LINE     SOURCE
 0261 9428            375             SUBB A, #40d
 0263 500E            376             JNC ES3_80
 0265 416B            377             AJMP ES3_60
-A51 MACRO ASSEMBLER  PROYECTO                                                             11/02/2022 22:01:13 PAGE     7
+A51 MACRO ASSEMBLER  PROYECTO                                                             11/07/2022 17:05:44 PAGE     7
 
 0267                 378     ES3_40:                         ;LA TEMPERATURA ES MENOS A 40
 0267 752101          379             MOV EVENTO, #1
@@ -473,7 +473,7 @@ LOC  OBJ            LINE     SOURCE
                      438                                     ;VALOR DISPLAY
 02B7 51BA            439             ACALL UPDATE_DISPLAY
 02B9 22              440             RET
-A51 MACRO ASSEMBLER  PROYECTO                                                             11/02/2022 22:01:13 PAGE     8
+A51 MACRO ASSEMBLER  PROYECTO                                                             11/07/2022 17:05:44 PAGE     8
 
 02BA                 441     UPDATE_DISPLAY:                 ;ACTUALIZA EL VALOR DEL DISPLAY Y DEL PWM!!!
 02BA 538000          442             ANL P0, #00000000b
@@ -541,7 +541,7 @@ LOC  OBJ            LINE     SOURCE
 032A 22              504             RET
 032B                 505     DISPLAY_H:
 032B 438074          506             ORL P0, #01110100b
-A51 MACRO ASSEMBLER  PROYECTO                                                             11/02/2022 22:01:13 PAGE     9
+A51 MACRO ASSEMBLER  PROYECTO                                                             11/07/2022 17:05:44 PAGE     9
 
 032E 22              507             RET
 032F                 508     DISPLAY_HH:
@@ -609,7 +609,7 @@ LOC  OBJ            LINE     SOURCE
 0387 53A800          566             ANL IEN0, #00000000b
 038A C28C            567             CLR TR0
 038C 22              568             RET
-A51 MACRO ASSEMBLER  PROYECTO                                                             11/02/2022 22:01:13 PAGE    10
+A51 MACRO ASSEMBLER  PROYECTO                                                             11/07/2022 17:05:44 PAGE    10
 
 038D                 569     TIMER_FUNC:                     ;FUNCION DEL TIMER
 038D C0D0            570             PUSH PSW
@@ -664,7 +664,7 @@ LOC  OBJ            LINE     SOURCE
                      618     ;==============================================END=========================================
                              ====;
                      619     END
-A51 MACRO ASSEMBLER  PROYECTO                                                             11/02/2022 22:01:13 PAGE    11
+A51 MACRO ASSEMBLER  PROYECTO                                                             11/07/2022 17:05:44 PAGE    11
 
 SYMBOL TABLE LISTING
 ------ ----- -------
@@ -732,7 +732,7 @@ ES2_60S. . . . . . .  C ADDR   01FFH   A
 ES2_CONT1_S. . . . .  N NUMB   002DH   A   
 ES2_CONT2_S. . . . .  N NUMB   002EH   A   
 ES2_CONT_MS. . . . .  N NUMB   002CH   A   
-A51 MACRO ASSEMBLER  PROYECTO                                                             11/02/2022 22:01:13 PAGE    12
+A51 MACRO ASSEMBLER  PROYECTO                                                             11/07/2022 17:05:44 PAGE    12
 
 ES2_EV0. . . . . . .  C ADDR   019EH   A   
 ES2_EV1. . . . . . .  C ADDR   019FH   A   
@@ -800,7 +800,7 @@ T_CONT1. . . . . . .  N NUMB   0023H   A
 T_CONT2. . . . . . .  N NUMB   0024H   A   
 UPDATE_DISPLAY . . .  C ADDR   02BAH   A   
 UPDATE_PARPADEO. . .  C ADDR   02A7H   A   
-A51 MACRO ASSEMBLER  PROYECTO                                                             11/02/2022 22:01:13 PAGE    13
+A51 MACRO ASSEMBLER  PROYECTO                                                             11/07/2022 17:05:44 PAGE    13
 
 VALOR_DISPLAY. . . .  N NUMB   0022H   A   
 ZUMBADOR . . . . . .  B ADDR   00A0H.1 A   
