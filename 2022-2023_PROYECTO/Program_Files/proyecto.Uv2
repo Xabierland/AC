@@ -6,7 +6,6 @@ Target (Target 1), 0x0000 // Tools: 'MCS-51'
 Group (Source Group 1)
 
 File 1,2,<.\proyecto.a><proyecto.a>
-File 1,5,<.\ToDo.txt><ToDo.txt>
 
 
 Options 1,0,0  // Target 'Target 1'
@@ -44,7 +43,7 @@ Options 1,0,0  // Target 'Target 1'
  T51FL=16
  CBANKS5=0
  XBANKS5=0
- RCB51 { 0,0,0,0,0,0,0,1,0 }
+ RCB51 { 0,0,0,0,0,255,255,0,0 }
  RXB51 { 0,0,0,0,0,0,0,0,0 }
  OCM51 { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
  OCR51 { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
