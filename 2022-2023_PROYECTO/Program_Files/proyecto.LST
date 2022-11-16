@@ -1,4 +1,4 @@
-A51 MACRO ASSEMBLER  PROYECTO                                                             11/16/2022 16:08:37 PAGE     1
+A51 MACRO ASSEMBLER  PROYECTO                                                             11/16/2022 18:01:32 PAGE     1
 
 
 MACRO ASSEMBLER A51 V6.14
@@ -8,7 +8,7 @@ ASSEMBLER INVOKED BY: C:\Keil\C51\BIN\A51.EXE .\proyecto.a SET(SMALL) DEBUG EP
 LOC  OBJ            LINE     SOURCE
 
                        1     ;==========================================================================================
-                             =====;
+                             ====;
                        2                                     ;VARIABLES GLOBALES
   0020                 3     ESTADO EQU 0x20                 ;BYTE DONDE SE GUARDA EL ESTADO
   0021                 4     EVENTO EQU 0x21                 ;BYTE DONDE SE GUARDA EL EVENTO
@@ -65,7 +65,7 @@ LOC  OBJ            LINE     SOURCE
 007B                  50     ORG 0x007b
 007B                  51     INICIO:
 007B 1190             52             ACALL INIT
-A51 MACRO ASSEMBLER  PROYECTO                                                             11/16/2022 16:08:37 PAGE     2
+A51 MACRO ASSEMBLER  PROYECTO                                                             11/16/2022 18:01:32 PAGE     2
 
 007D                  53     MAIN:
 007D 1181             54             ACALL FSM
@@ -79,7 +79,7 @@ LOC  OBJ            LINE     SOURCE
 0088 01E6             62             AJMP ESTADO0            ;REPOSO
 008A 2116             63             AJMP ESTADO1            ;ESPERA
 008C 2190             64             AJMP ESTADO2            ;CALENTAR
-008E 413F             65             AJMP ESTADO3            ;TRANSICION
+008E 413B             65             AJMP ESTADO3            ;TRANSICION
                       66     ;=============================================INIT=========================================
                              ====;
 0090                  67     INIT:
@@ -133,7 +133,7 @@ LOC  OBJ            LINE     SOURCE
                      115     ;========================================ESTADO0_REPOSO====================================
                              ====;
 00E6                 116     ESTADO0:
-A51 MACRO ASSEMBLER  PROYECTO                                                             11/16/2022 16:08:37 PAGE     3
+A51 MACRO ASSEMBLER  PROYECTO                                                             11/16/2022 18:01:32 PAGE     3
 
 00E6 310A            117             ACALL ES0_GEN_EV
 00E8 E521            118             MOV A, EVENTO
@@ -144,19 +144,19 @@ LOC  OBJ            LINE     SOURCE
 00EF 01F5            123             AJMP ES0_EV0
 00F1 01F6            124             AJMP ES0_EV1
 00F3 01F9            125             AJMP ES0_EV2
-00F5                 126     ES0_EV0:
+00F5                 126     ES0_EV0:                        ;EVENTO VACIO
 00F5 22              127             RET
-00F6                 128     ES0_EV1:                        ;EVENTO VACIO
-00F6 615A            129             AJMP ACTIVAR_IDL
+00F6                 128     ES0_EV1:                        ;EVENTO IDL
+00F6 6160            129             AJMP ACTIVAR_IDL
 00F8 22              130             RET
 00F9                 131     ES0_EV2:                        ;EVENTO ESPERA
 00F9 752200          132             MOV VALOR_DISPLAY, #0
                      133     
-00FC 51C6            134             ACALL UPDATE_DISPLAY
-00FE 5198            135             ACALL ENCENDER_PARPADEO 
-0100 5187            136             ACALL ENCENDER_LED      
-0102 713F            137             ACALL ENCENDER_ZUMBADOR 
-0104 7181            138             ACALL ENCENDER_TIMER    
+00FC 51CC            134             ACALL UPDATE_DISPLAY
+00FE 519E            135             ACALL ENCENDER_PARPADEO 
+0100 5183            136             ACALL ENCENDER_LED      
+0102 7145            137             ACALL ENCENDER_ZUMBADOR 
+0104 7187            138             ACALL ENCENDER_TIMER    
                      139     
 0106 752001          140             MOV ESTADO, #1
 0109 22              141             RET
@@ -189,11 +189,11 @@ LOC  OBJ            LINE     SOURCE
 012C 752600          167             MOV CONT_ZUMB, #0
 012F 752700          168             MOV CONT_PARPADEO, #0
                      169             
-0132 51BF            170             ACALL APAGAR_DISPLAY
-0134 519E            171             ACALL APAGAR_PARPADEO
-0136 7145            172             ACALL APAGAR_ZUMBADOR
-0138 518A            173             ACALL APAGAR_LED
-013A 7193            174             ACALL APAGAR_TIMER
+0132 51C5            170             ACALL APAGAR_DISPLAY
+0134 51A4            171             ACALL APAGAR_PARPADEO
+0136 714B            172             ACALL APAGAR_ZUMBADOR
+0138 5186            173             ACALL APAGAR_LED
+013A 7199            174             ACALL APAGAR_TIMER
                      175     
 013C 752000          176             MOV ESTADO, #0
 013F 22              177             RET
@@ -201,15 +201,15 @@ LOC  OBJ            LINE     SOURCE
                      179                                     ;RESETEAR VARIABLES DE ESTADO
 0140 752A00          180             MOV ES1_CONT_MS, #0
 0143 752B00          181             MOV ES1_CONT_S, #0
-A51 MACRO ASSEMBLER  PROYECTO                                                             11/16/2022 16:08:37 PAGE     4
+A51 MACRO ASSEMBLER  PROYECTO                                                             11/16/2022 18:01:32 PAGE     4
 
 0146 752600          182             MOV CONT_ZUMB, #0
 0149 752700          183             MOV CONT_PARPADEO, #0
                      184             
-014C 519E            185             ACALL APAGAR_PARPADEO
-014E 51C3            186             ACALL ENCENDER_DISPLAY
-0150 7145            187             ACALL APAGAR_ZUMBADOR
-0152 518D            188             ACALL ENCENDER_PWM
+014C 51A4            185             ACALL APAGAR_PARPADEO
+014E 51C9            186             ACALL ENCENDER_DISPLAY
+0150 714B            187             ACALL APAGAR_ZUMBADOR
+0152 5189            188             ACALL ENCENDER_PWM
                      189     
 0154 752002          190             MOV ESTADO, #2
 0157 22              191             RET     
@@ -254,7 +254,7 @@ LOC  OBJ            LINE     SOURCE
                      230     ;=======================================ESTADO2_CALENTAR===================================
                              ====;
 0190                 231     ESTADO2:
-0190 31CF            232             ACALL ES2_GEN_EV
+0190 31CB            232             ACALL ES2_GEN_EV
 0192 E521            233             MOV A, EVENTO
 0194 23              234             RL A
 0195 900199          235             MOV DPTR, #ES2_EV_TAB
@@ -263,20 +263,20 @@ LOC  OBJ            LINE     SOURCE
 0199 21A1            238             AJMP ES2_EV0
 019B 21A2            239             AJMP ES2_EV1
 019D 21B7            240             AJMP ES2_EV2
-019F 21C3            241             AJMP ES2_EV3
+019F 21C1            241             AJMP ES2_EV3
 01A1                 242     ES2_EV0:                        ;EVENTO VACIO
 01A1 22              243             RET
 01A2                 244     ES2_EV1:                        ;EVENTO TRANSICION
 01A2 752C00          245             MOV ES2_CONT_MS, #0
 01A5 752D00          246             MOV ES2_CONT1_S, #0
-A51 MACRO ASSEMBLER  PROYECTO                                                             11/16/2022 16:08:37 PAGE     5
+A51 MACRO ASSEMBLER  PROYECTO                                                             11/16/2022 18:01:32 PAGE     5
 
 01A8 752E00          247             MOV ES2_CONT2_S, #0
                      248     
-01AB 713F            249             ACALL ENCENDER_ZUMBADOR
-01AD 518A            250             ACALL APAGAR_LED
-01AF 7170            251             ACALL ENCENDER_ADC
-01B1 5191            252             ACALL APAGAR_PWM
+01AB 7145            249             ACALL ENCENDER_ZUMBADOR
+01AD 5186            250             ACALL APAGAR_LED
+01AF 7176            251             ACALL ENCENDER_ADC
+01B1 518D            252             ACALL APAGAR_PWM
                      253     
 01B3 752003          254             MOV ESTADO, #3          
 01B6 22              255             RET
@@ -284,397 +284,406 @@ LOC  OBJ            LINE     SOURCE
 01B7 7400            257             MOV A, #0
 01B9 C3              258             CLR C
 01BA 9522            259             SUBB A, VALOR_DISPLAY
-01BC 607A            260             JZ ES2_NOTHING
+01BC 6076            260             JZ ES2_NOTHING
                      261     
-01BE 1522            262             DEC VALOR_DISPLAY
-01C0 51C6            263             ACALL UPDATE_DISPLAY
-                     264     
-01C2 22              265             RET
-01C3                 266     ES2_EV3:                        ;EVENTO PULSAR BOTON MAS
-01C3 740A            267             MOV A, #10
-01C5 C3              268             CLR C
-01C6 9522            269             SUBB A, VALOR_DISPLAY
-01C8 606E            270             JZ ES2_NOTHING
-                     271     
-01CA 0522            272             INC VALOR_DISPLAY
-01CC 51C6            273             ACALL UPDATE_DISPLAY
-                     274     
-01CE 22              275             RET
-01CF                 276     ES2_GEN_EV:
-                     277             
-01CF A2B2            278             MOV C, SWITCH
-01D1 5010            279             JNC ES2_SWITCH          ;SALTO SI SE PULSA EL BOTON ON/OFF      
-                     280             
-01D3 A2B1            281             MOV C, MINUS            ;SALTO SI SE PULSA EL BOTON -
-01D5 4010            282             JC ES2_MINUS            
-                     283             
-01D7 A2B0            284             MOV C, PLUS             ;SALTO SI SE PULSA EL BOTON +   
-01D9 4010            285             JC ES2_PLUS             
-                     286             
-01DB A228            287             MOV C, TICK             ;SALTO SI HAN PASADO 100MS
-01DD 4010            288             JC ES2_TICK             
-                     289     
-01DF 752100          290             MOV EVENTO, #0
-01E2 22              291             RET
-01E3                 292     ES2_SWITCH:                     ;SE HA PULSADO EL BOTON ON/OFF  
-01E3 752101          293             MOV EVENTO, #1
-01E6 22              294             RET
-01E7                 295     ES2_MINUS:                      ;SE HA PULSADO EL BOTON DE MENOS
-01E7 752102          296             MOV EVENTO, #2
-01EA 22              297             RET
-01EB                 298     ES2_PLUS:                       ;SE HA PULSADO EL BOTON DE MAS
-01EB 752103          299             MOV EVENTO, #3
-01EE 22              300             RET
-01EF                 301     ES2_TICK:                       ;PASA 100MS
-01EF C228            302             CLR TICK
-01F1 052C            303             INC ES2_CONT_MS
-01F3 740A            304             MOV A, #10
-01F5 C3              305             CLR C
-01F6 952C            306             SUBB A, ES2_CONT_MS
-01F8 6001            307             JZ ES2_1S
-01FA 22              308             RET
-01FB                 309     ES2_1S:                         ;PASA 1S
-01FB 752C00          310             MOV ES2_CONT_MS, #0
-01FE 5114            311             ACALL ES2_SENSOR
-0200 22              312             RET
-A51 MACRO ASSEMBLER  PROYECTO                                                             11/16/2022 16:08:37 PAGE     6
+01BE 5194            262             ACALL DECREMENTAR_FOGON
+                     263     
+01C0 22              264             RET
+01C1                 265     ES2_EV3:                        ;EVENTO PULSAR BOTON MAS
+01C1 740A            266             MOV A, #10
+01C3 C3              267             CLR C
+01C4 9522            268             SUBB A, VALOR_DISPLAY
+01C6 606C            269             JZ ES2_NOTHING
+                     270     
+01C8 5199            271             ACALL INCREMENTAR_FOGON
+                     272     
+01CA 22              273             RET
+01CB                 274     ES2_GEN_EV:
+                     275             
+01CB A2B2            276             MOV C, SWITCH
+01CD 5010            277             JNC ES2_SWITCH          ;SALTO SI SE PULSA EL BOTON ON/OFF      
+                     278             
+01CF A2B1            279             MOV C, MINUS            ;SALTO SI SE PULSA EL BOTON -
+01D1 4010            280             JC ES2_MINUS            
+                     281             
+01D3 A2B0            282             MOV C, PLUS             ;SALTO SI SE PULSA EL BOTON +   
+01D5 4010            283             JC ES2_PLUS             
+                     284             
+01D7 A228            285             MOV C, TICK             ;SALTO SI HAN PASADO 100MS
+01D9 4010            286             JC ES2_TICK             
+                     287     
+01DB 752100          288             MOV EVENTO, #0
+01DE 22              289             RET
+01DF                 290     ES2_SWITCH:                     ;SE HA PULSADO EL BOTON ON/OFF  
+01DF 752101          291             MOV EVENTO, #1
+01E2 22              292             RET
+01E3                 293     ES2_MINUS:                      ;SE HA PULSADO EL BOTON DE MENOS
+01E3 752102          294             MOV EVENTO, #2
+01E6 22              295             RET
+01E7                 296     ES2_PLUS:                       ;SE HA PULSADO EL BOTON DE MAS
+01E7 752103          297             MOV EVENTO, #3
+01EA 22              298             RET
+01EB                 299     ES2_TICK:                       ;PASA 100MS
+01EB C228            300             CLR TICK
+01ED 052C            301             INC ES2_CONT_MS
+01EF 740A            302             MOV A, #10
+01F1 C3              303             CLR C
+01F2 952C            304             SUBB A, ES2_CONT_MS
+01F4 6001            305             JZ ES2_1S
+01F6 22              306             RET
+01F7                 307     ES2_1S:                         ;PASA 1S
+01F7 752C00          308             MOV ES2_CONT_MS, #0
+01FA 5110            309             ACALL ES2_SENSOR
+01FC 22              310             RET
+01FD                 311     ES2_30S:                        ;PASAN 30S 
+01FD 752D00          312             MOV ES2_CONT1_S, #0
+A51 MACRO ASSEMBLER  PROYECTO                                                             11/16/2022 18:01:32 PAGE     6
 
-0201                 313     ES2_30S:                        ;PASAN 30S 
-0201 752D00          314             MOV ES2_CONT1_S, #0
-0204 752E00          315             MOV ES2_CONT2_S, #0
-0207 752101          316             MOV EVENTO, #1
-020A 22              317             RET
-020B                 318     ES2_60S:                        ;PASAN 60S
-020B 752D00          319             MOV ES2_CONT1_S, #0
-020E 752E00          320             MOV ES2_CONT2_S, #0
-0211 752101          321             MOV EVENTO, #1
-0214                 322     ES2_SENSOR:                     ;DICE SI EL RECIPIENTE ESTA O NO
-0214 A2B5            323             MOV C, SENSOR
-0216 4002            324             JC ES2_SENSOR_ON
-0218 5011            325             JNC ES2_SENSOR_OFF
-021A                 326     ES2_SENSOR_ON:                  ;SI ESTA RECIPIENTE SE CUENTA HASTA 60S
-021A E522            327             MOV A, VALOR_DISPLAY
-021C 701A            328             JNZ ES2_NOTHING
-021E 752D00          329             MOV ES2_CONT1_S, #0
-0221 052E            330             INC ES2_CONT2_S
-0223 743C            331             MOV A, #60
-0225 C3              332             CLR C
-0226 952E            333             SUBB A, ES2_CONT2_S
-0228 60E1            334             JZ ES2_60S
-022A 22              335             RET
-022B                 336     ES2_SENSOR_OFF:                 ;NO ESTA RECIPIENTE SE CUENTA HASTA 30S
-022B 752E00          337             MOV ES2_CONT2_S, #0
-022E 052D            338             INC ES2_CONT1_S
-0230 741E            339             MOV A, #30
-0232 C3              340             CLR C
-0233 952D            341             SUBB A, ES2_CONT1_S
-0235 60CA            342             JZ ES2_30S
-0237 22              343             RET
-0238                 344     ES2_NOTHING:                    ;RESET DE LOS CONTADORES
-0238 752D00          345             MOV ES2_CONT1_S, #0
-023B 752D00          346             MOV ES2_CONT1_S, #0
-023E 22              347             RET
-                     348     ;======================================ESTADO3_TRANSICION==================================
+0200 752E00          313             MOV ES2_CONT2_S, #0
+0203 752101          314             MOV EVENTO, #1
+0206 22              315             RET
+0207                 316     ES2_60S:                        ;PASAN 60S
+0207 752D00          317             MOV ES2_CONT1_S, #0
+020A 752E00          318             MOV ES2_CONT2_S, #0
+020D 752101          319             MOV EVENTO, #1
+0210                 320     ES2_SENSOR:                     ;DICE SI EL RECIPIENTE ESTA O NO
+0210 A2B5            321             MOV C, SENSOR
+0212 4002            322             JC ES2_SENSOR_ON
+0214 5011            323             JNC ES2_SENSOR_OFF
+0216                 324     ES2_SENSOR_ON:                  ;SI ESTA RECIPIENTE SE CUENTA HASTA 60S
+0216 E522            325             MOV A, VALOR_DISPLAY
+0218 701A            326             JNZ ES2_NOTHING
+021A 752D00          327             MOV ES2_CONT1_S, #0
+021D 052E            328             INC ES2_CONT2_S
+021F 743C            329             MOV A, #60
+0221 C3              330             CLR C
+0222 952E            331             SUBB A, ES2_CONT2_S
+0224 60E1            332             JZ ES2_60S
+0226 22              333             RET
+0227                 334     ES2_SENSOR_OFF:                 ;NO ESTA RECIPIENTE SE CUENTA HASTA 30S
+0227 752E00          335             MOV ES2_CONT2_S, #0
+022A 052D            336             INC ES2_CONT1_S
+022C 741E            337             MOV A, #30
+022E C3              338             CLR C
+022F 952D            339             SUBB A, ES2_CONT1_S
+0231 60CA            340             JZ ES2_30S
+0233 22              341             RET
+0234                 342     ES2_NOTHING:                    ;RESET DE LOS CONTADORES
+0234 752D00          343             MOV ES2_CONT1_S, #0
+0237 752D00          344             MOV ES2_CONT1_S, #0
+023A 22              345             RET
+                     346     ;======================================ESTADO3_TRANSICION==================================
                              ====;
-023F                 349     ESTADO3:
-023F 5159            350             ACALL ES3_GEN_EV
-0241 E521            351             MOV A, EVENTO
-0243 23              352             RL A
-0244 900248          353             MOV DPTR, #ES3_EV_TAB
-0247 73              354             JMP @A+DPTR
-0248                 355     ES3_EV_TAB:
-0248 414C            356             AJMP ES3_EV0
-024A 414D            357             AJMP ES3_EV1
-024C                 358     ES3_EV0:                        ;EVENTO VACIO
-024C 22              359             RET
-024D                 360     ES3_EV1:                        ;EVENTO ESPERA
-024D 7193            361             ACALL APAGAR_TIMER
-024F 7145            362             ACALL APAGAR_ZUMBADOR
-0251 51BF            363             ACALL APAGAR_DISPLAY
-0253 7177            364             ACALL APAGAR_ADC
-                     365     
-0255 752000          366             MOV ESTADO, #0
-0258 22              367             RET
-0259                 368     ES3_GEN_EV:
-0259 A22A            369             MOV C, FADC
-025B 4004            370             JC ES3_ADC              ;EL ADC HA TERMINADO LA CONVERSION
-025D 752100          371             MOV EVENTO, #0
-0260 22              372             RET
-0261                 373     ES3_ADC:                        ;UNA VEZ TERMINADO SE LEE EL VALOR Y SE GUARDA EN B PARA LU
+023B                 347     ESTADO3:
+023B 5155            348             ACALL ES3_GEN_EV
+023D E521            349             MOV A, EVENTO
+023F 23              350             RL A
+0240 900244          351             MOV DPTR, #ES3_EV_TAB
+0243 73              352             JMP @A+DPTR
+0244                 353     ES3_EV_TAB:
+0244 4148            354             AJMP ES3_EV0
+0246 4149            355             AJMP ES3_EV1
+0248                 356     ES3_EV0:                        ;EVENTO VACIO
+0248 22              357             RET
+0249                 358     ES3_EV1:                        ;EVENTO ESPERA
+0249 7199            359             ACALL APAGAR_TIMER
+024B 714B            360             ACALL APAGAR_ZUMBADOR
+024D 51C5            361             ACALL APAGAR_DISPLAY
+024F 717D            362             ACALL APAGAR_ADC
+                     363     
+0251 752000          364             MOV ESTADO, #0
+0254 22              365             RET
+0255                 366     ES3_GEN_EV:
+0255 A22A            367             MOV C, FADC
+0257 4004            368             JC ES3_ADC              ;EL ADC HA TERMINADO LA CONVERSION
+0259 752100          369             MOV EVENTO, #0
+025C 22              370             RET
+025D                 371     ES3_ADC:                        ;UNA VEZ TERMINADO SE LEE EL VALOR Y SE GUARDA EN B PARA LU
                              EGO COMPARARLO       
-0261 717B            374             ACALL LEER_ADC
-                     375             
-0263 E5F0            376             MOV A, B
-A51 MACRO ASSEMBLER  PROYECTO                                                             11/16/2022 16:08:37 PAGE     7
+025D 7181            372             ACALL LEER_ADC
+                     373             
+025F E5F0            374             MOV A, B
+0261 C3              375             CLR C
+0262 9414            376             SUBB A, #20d
+A51 MACRO ASSEMBLER  PROYECTO                                                             11/16/2022 18:01:32 PAGE     7
 
-0265 C3              377             CLR C
-0266 9414            378             SUBB A, #20d
-0268 4009            379             JC ES3_40
-026A E5F0            380             MOV A, B
-026C C3              381             CLR C
-026D 9428            382             SUBB A, #40d
-026F 500E            383             JNC ES3_80
-0271 4177            384             AJMP ES3_60
-0273                 385     ES3_40:                         ;LA TEMPERATURA ES MENOS A 40
-0273 752101          386             MOV EVENTO, #1
-0276 22              387             RET
-0277                 388     ES3_60:                         ;LA TEMPERATURA ESTA ENTRE 40 Y 80
-0277 75220B          389             MOV VALOR_DISPLAY, #11
-027A 51C6            390             ACALL UPDATE_DISPLAY
-027C 7170            391             ACALL ENCENDER_ADC
-027E 22              392             RET
-027F                 393     ES3_80:                         ;LA TEMPERATURA ES MAYOR A 80
-027F 75220C          394             MOV VALOR_DISPLAY, #12
-0282 51C6            395             ACALL UPDATE_DISPLAY
-0284 7170            396             ACALL ENCENDER_ADC
-0286 22              397             RET
-                     398     ;==============================================LED=========================================
+0264 4009            377             JC ES3_40
+0266 E5F0            378             MOV A, B
+0268 C3              379             CLR C
+0269 9428            380             SUBB A, #40d
+026B 500E            381             JNC ES3_80
+026D 4173            382             AJMP ES3_60
+026F                 383     ES3_40:                         ;LA TEMPERATURA ES MENOS A 40
+026F 752101          384             MOV EVENTO, #1
+0272 22              385             RET
+0273                 386     ES3_60:                         ;LA TEMPERATURA ESTA ENTRE 40 Y 80
+0273 75220B          387             MOV VALOR_DISPLAY, #11
+0276 51CC            388             ACALL UPDATE_DISPLAY
+0278 7176            389             ACALL ENCENDER_ADC
+027A 22              390             RET
+027B                 391     ES3_80:                         ;LA TEMPERATURA ES MAYOR A 80
+027B 75220C          392             MOV VALOR_DISPLAY, #12
+027E 51CC            393             ACALL UPDATE_DISPLAY
+0280 7176            394             ACALL ENCENDER_ADC
+0282 22              395             RET
+                     396     ;==============================================LED=========================================
                              ====;
-0287                 399     ENCENDER_LED:                   ;ENCIENDE EL LED
-0287 D2A0            400             SETB LED
-0289 22              401             RET
-028A                 402     APAGAR_LED:                     ;APAGA EL LED
-028A C2A0            403             CLR LED
-028C 22              404             RET
-                     405     ;==============================================PWM=========================================
+0283                 397     ENCENDER_LED:                   ;ENCIENDE EL LED
+0283 D2A0            398             SETB LED
+0285 22              399             RET
+0286                 400     APAGAR_LED:                     ;APAGA EL LED
+0286 C2A0            401             CLR LED
+0288 22              402             RET
+                     403     ;==============================================PWM=========================================
                              ====;
-028D                 406     ENCENDER_PWM:                   ;ENCIENDE EL PWM
-028D 75FE04          407             MOV PWMP, #4d
-0290 22              408             RET
-0291                 409     APAGAR_PWM:                     ;APAGA EL PWM
-0291 75FE00          410             MOV PWMP, #0
-0294 75FCFF          411             MOV PWM0, #255
-0297 22              412             RET
-                     413     ;============================================DISPLAY=======================================
+0289                 404     ENCENDER_PWM:                   ;ENCIENDE EL PWM
+0289 75FE04          405             MOV PWMP, #4d
+028C 22              406             RET
+028D                 407     APAGAR_PWM:                     ;APAGA EL PWM
+028D 75FE00          408             MOV PWMP, #0
+0290 75FCFF          409             MOV PWM0, #255
+0293 22              410             RET
+                     411     ;
+0294                 412     DECREMENTAR_FOGON:
+0294 1522            413             DEC VALOR_DISPLAY
+0296 51CC            414             ACALL UPDATE_DISPLAY
+0298 22              415             RET
+0299                 416     INCREMENTAR_FOGON:
+0299 0522            417             INC VALOR_DISPLAY
+029B 51CC            418             ACALL UPDATE_DISPLAY
+029D 22              419             RET
+                     420     ;============================================DISPLAY=======================================
                              ====;
-0298                 414     ENCENDER_PARPADEO:              ;ACTIVA LA FUNCION DE PARPADEO
-0298 752700          415             MOV CONT_PARPADEO, #0
-029B D229            416             SETB PARPADEO           ;ACTIVA LA FLAG DE PARPADEO
-029D 22              417             RET
-029E                 418     APAGAR_PARPADEO:                ;DESACTIVA LA FUNCION DE PARPADEO
-029E 752700          419             MOV CONT_PARPADEO, #0
-02A1 C229            420             CLR PARPADEO            ;DESACTIVA LA FLAG DE PARPADEO
-02A3 22              421             RET
-02A4                 422     ESTADO_PARPADEO:                ;NOS DICE SI LA FLAG DE PARPADEO ESTA ACTIVA
-02A4 A229            423             MOV C, PARPADEO
-02A6 4001            424             JC PARPADEO_500MS
-02A8 22              425             RET
-02A9                 426     PARPADEO_500MS:                 ;MIRA SI HAN PASADO 500MS DESDE EL ULTIMO PARPADEO
-                     427             ;HAN PASADO 500MS?
-02A9 0527            428             INC CONT_PARPADEO
-02AB 7405            429             MOV A, #5
-02AD C3              430             CLR C
-02AE 9527            431             SUBB A, CONT_PARPADEO
-02B0 6001            432             JZ UPDATE_PARPADEO
-02B2 22              433             RET
-02B3                 434     UPDATE_PARPADEO:                ;SI HAN PASADO 500MS CAMBIA EL ESTADO DEL DISPLAY       
-02B3 752700          435             MOV CONT_PARPADEO, #0
-02B6 E580            436             MOV A, P0
-02B8 547F            437             ANL A, #01111111b
-02BA 7003            438             JNZ APAGAR_DISPLAY
-02BC 6005            439             JZ ENCENDER_DISPLAY
-A51 MACRO ASSEMBLER  PROYECTO                                                             11/16/2022 16:08:37 PAGE     8
+029E                 421     ENCENDER_PARPADEO:              ;ACTIVA LA FUNCION DE PARPADEO
+029E 752700          422             MOV CONT_PARPADEO, #0
+02A1 D229            423             SETB PARPADEO           ;ACTIVA LA FLAG DE PARPADEO
+02A3 22              424             RET
+02A4                 425     APAGAR_PARPADEO:                ;DESACTIVA LA FUNCION DE PARPADEO
+02A4 752700          426             MOV CONT_PARPADEO, #0
+02A7 C229            427             CLR PARPADEO            ;DESACTIVA LA FLAG DE PARPADEO
+02A9 22              428             RET
+02AA                 429     ESTADO_PARPADEO:                ;NOS DICE SI LA FLAG DE PARPADEO ESTA ACTIVA
+02AA A229            430             MOV C, PARPADEO
+02AC 4001            431             JC PARPADEO_500MS
+02AE 22              432             RET
+02AF                 433     PARPADEO_500MS:                 ;MIRA SI HAN PASADO 500MS DESDE EL ULTIMO PARPADEO
+                     434             ;HAN PASADO 500MS?
+02AF 0527            435             INC CONT_PARPADEO
+02B1 7405            436             MOV A, #5
+02B3 C3              437             CLR C
+02B4 9527            438             SUBB A, CONT_PARPADEO
+02B6 6001            439             JZ UPDATE_PARPADEO
+A51 MACRO ASSEMBLER  PROYECTO                                                             11/16/2022 18:01:32 PAGE     8
 
-02BE 22              440             RET
-02BF                 441     APAGAR_DISPLAY:                 ;APAGA EL DISPLAY
-02BF 538000          442             ANL P0, #0000000b
-02C2 22              443             RET
-02C3                 444     ENCENDER_DISPLAY:               ;ENCIENDE EL DISPLAY CARGANDO EL VALOR DE LA VARIABLE
-                     445                                     ;VALOR DISPLAY
-02C3 51C6            446             ACALL UPDATE_DISPLAY
-02C5 22              447             RET
-02C6                 448     UPDATE_DISPLAY:                 ;ACTUALIZA EL VALOR DEL DISPLAY Y DEL PWM!!!
-02C6 538000          449             ANL P0, #00000000b
-02C9 E522            450             MOV A, VALOR_DISPLAY
-02CB 23              451             RL A
-02CC 9002D0          452             MOV DPTR, #DISPLAY_FUNC
-02CF 73              453             JMP @A+DPTR
-02D0                 454     DISPLAY_FUNC:
-02D0 41EA            455             AJMP DISPLAY_0  ;0
-02D2 41F1            456             AJMP DISPLAY_1  ;1
-02D4 41F8            457             AJMP DISPLAY_2  ;2
-02D6 41FF            458             AJMP DISPLAY_3  ;3
-02D8 6106            459             AJMP DISPLAY_4  ;4
-02DA 610D            460             AJMP DISPLAY_5  ;5
-02DC 6114            461             AJMP DISPLAY_6  ;6
-02DE 611B            462             AJMP DISPLAY_7  ;7
-02E0 6122            463             AJMP DISPLAY_8  ;8
-02E2 6129            464             AJMP DISPLAY_9  ;9
-02E4 6130            465             AJMP DISPLAY_P  ;10
-02E6 6137            466             AJMP DISPLAY_H  ;11
-02E8 613B            467             AJMP DISPLAY_HH ;12
-02EA                 468     DISPLAY_0:      ;*gfedcba
-02EA 43803F          469             ORL P0, #00111111b
-02ED 75FCFF          470             MOV PWM0, #255          ;0%
-02F0 22              471             RET
-02F1                 472     DISPLAY_1:
-02F1 438006          473             ORL P0, #00000110b
-02F4 75FCE5          474             MOV PWM0, #229          ;10%
-02F7 22              475             RET
-02F8                 476     DISPLAY_2:
-02F8 43805B          477             ORL P0, #01011011b
-02FB 75FCCC          478             MOV PWM0, #204          ;20%
-02FE 22              479             RET
-02FF                 480     DISPLAY_3:
-02FF 43804F          481             ORL P0, #01001111b
-0302 75FCB2          482             MOV PWM0, #178          ;30%
-0305 22              483             RET
-0306                 484     DISPLAY_4:
-0306 43807F          485             ORL P0, #01111111b
-0309 75FC99          486             MOV PWM0, #153          ;40%
-030C 22              487             RET
-030D                 488     DISPLAY_5:
-030D 43806D          489             ORL P0, #01101101b
-0310 857FFC          490             MOV PWM0, 127           ;50%
-0313 22              491             RET
-0314                 492     DISPLAY_6:
-0314 43807D          493             ORL P0, #01111101b
-0317 75FC66          494             MOV PWM0, #102          ;60%
-031A 22              495             RET
-031B                 496     DISPLAY_7:
-031B 43800F          497             ORL P0, #00001111b
-031E 75FC4C          498             MOV PWM0, #76           ;70%
-0321 22              499             RET
-0322                 500     DISPLAY_8:
-0322 43807F          501             ORL P0, #01111111b
-0325 75FC33          502             MOV PWM0, #51           ;80%
-0328 22              503             RET
-0329                 504     DISPLAY_9:
-0329 43806F          505             ORL P0, #01101111b
-A51 MACRO ASSEMBLER  PROYECTO                                                             11/16/2022 16:08:37 PAGE     9
+02B8 22              440             RET
+02B9                 441     UPDATE_PARPADEO:                ;SI HAN PASADO 500MS CAMBIA EL ESTADO DEL DISPLAY       
+02B9 752700          442             MOV CONT_PARPADEO, #0
+02BC E580            443             MOV A, P0
+02BE 547F            444             ANL A, #01111111b
+02C0 7003            445             JNZ APAGAR_DISPLAY
+02C2 6005            446             JZ ENCENDER_DISPLAY
+02C4 22              447             RET
+02C5                 448     APAGAR_DISPLAY:                 ;APAGA EL DISPLAY
+02C5 538000          449             ANL P0, #0000000b
+02C8 22              450             RET
+02C9                 451     ENCENDER_DISPLAY:               ;ENCIENDE EL DISPLAY CARGANDO EL VALOR DE LA VARIABLE
+                     452                                     ;VALOR DISPLAY
+02C9 51CC            453             ACALL UPDATE_DISPLAY
+02CB 22              454             RET
+02CC                 455     UPDATE_DISPLAY:                 ;ACTUALIZA EL VALOR DEL DISPLAY Y DEL PWM!!!
+02CC 538000          456             ANL P0, #00000000b
+02CF E522            457             MOV A, VALOR_DISPLAY
+02D1 23              458             RL A
+02D2 9002D6          459             MOV DPTR, #DISPLAY_FUNC
+02D5 73              460             JMP @A+DPTR
+02D6                 461     DISPLAY_FUNC:
+02D6 41F0            462             AJMP DISPLAY_0  ;0
+02D8 41F7            463             AJMP DISPLAY_1  ;1
+02DA 41FE            464             AJMP DISPLAY_2  ;2
+02DC 6105            465             AJMP DISPLAY_3  ;3
+02DE 610C            466             AJMP DISPLAY_4  ;4
+02E0 6113            467             AJMP DISPLAY_5  ;5
+02E2 611A            468             AJMP DISPLAY_6  ;6
+02E4 6121            469             AJMP DISPLAY_7  ;7
+02E6 6128            470             AJMP DISPLAY_8  ;8
+02E8 612F            471             AJMP DISPLAY_9  ;9
+02EA 6136            472             AJMP DISPLAY_P  ;10
+02EC 613D            473             AJMP DISPLAY_H  ;11
+02EE 6141            474             AJMP DISPLAY_HH ;12
+02F0                 475     DISPLAY_0:      ;*gfedcba
+02F0 43803F          476             ORL P0, #00111111b
+02F3 75FCFF          477             MOV PWM0, #255          ;0%
+02F6 22              478             RET
+02F7                 479     DISPLAY_1:
+02F7 438006          480             ORL P0, #00000110b
+02FA 75FCE5          481             MOV PWM0, #229          ;10%
+02FD 22              482             RET
+02FE                 483     DISPLAY_2:
+02FE 43805B          484             ORL P0, #01011011b
+0301 75FCCC          485             MOV PWM0, #204          ;20%
+0304 22              486             RET
+0305                 487     DISPLAY_3:
+0305 43804F          488             ORL P0, #01001111b
+0308 75FCB2          489             MOV PWM0, #178          ;30%
+030B 22              490             RET
+030C                 491     DISPLAY_4:
+030C 438066          492             ORL P0, #01100110b
+030F 75FC99          493             MOV PWM0, #153          ;40%
+0312 22              494             RET
+0313                 495     DISPLAY_5:
+0313 43806D          496             ORL P0, #01101101b
+0316 857FFC          497             MOV PWM0, 127           ;50%
+0319 22              498             RET
+031A                 499     DISPLAY_6:
+031A 43807D          500             ORL P0, #01111101b
+031D 75FC66          501             MOV PWM0, #102          ;60%
+0320 22              502             RET
+0321                 503     DISPLAY_7:
+0321 43800F          504             ORL P0, #00001111b
+0324 75FC4C          505             MOV PWM0, #76           ;70%
+A51 MACRO ASSEMBLER  PROYECTO                                                             11/16/2022 18:01:32 PAGE     9
 
-032C 75FC19          506             MOV PWM0, #25           ;90%
-032F 22              507             RET
-0330                 508     DISPLAY_P:
-0330 438073          509             ORL P0, #01110011b
-0333 75FC00          510             MOV PWM0, #0            ;100%
-0336 22              511             RET
-0337                 512     DISPLAY_H:
-0337 438074          513             ORL P0, #01110100b
-033A 22              514             RET
-033B                 515     DISPLAY_HH:
-033B 438076          516             ORL P0, #01110110b
-033E 22              517             RET
-                     518     ;============================================ZUMBADOR======================================
+0327 22              506             RET
+0328                 507     DISPLAY_8:
+0328 43807F          508             ORL P0, #01111111b
+032B 75FC33          509             MOV PWM0, #51           ;80%
+032E 22              510             RET
+032F                 511     DISPLAY_9:
+032F 43806F          512             ORL P0, #01101111b
+0332 75FC19          513             MOV PWM0, #25           ;90%
+0335 22              514             RET
+0336                 515     DISPLAY_P:
+0336 438073          516             ORL P0, #01110011b
+0339 75FC00          517             MOV PWM0, #0            ;100%
+033C 22              518             RET
+033D                 519     DISPLAY_H:
+033D 438074          520             ORL P0, #01110100b
+0340 22              521             RET
+0341                 522     DISPLAY_HH:
+0341 438076          523             ORL P0, #01110110b
+0344 22              524             RET
+                     525     ;============================================ZUMBADOR======================================
                              ====;
-033F                 519     ENCENDER_ZUMBADOR:              ;ENCIENDE EL ZUMBADO A NIVEL BAJO!
-033F 752600          520             MOV CONT_ZUMB, #0
-0342 C2A1            521             CLR ZUMBADOR
-0344 22              522             RET
-0345                 523     APAGAR_ZUMBADOR:                ;APAGA EL ZUMBADOR
-0345 752600          524             MOV CONT_ZUMB, #0
-0348 D2A1            525             SETB ZUMBADOR
-034A 22              526             RET
-034B                 527     ZUMBADOR_ESTADO:                ;NOS DICE SI EL ZUMBADOR ESTA ENCENDIDO O NO    
-034B A2A1            528             MOV C, ZUMBADOR
-034D 5001            529             JNC ZUMBADOR_200MS
-034F 22              530             RET
-0350                 531     ZUMBADOR_200MS:                 ;COMPRUEBA SI HAN PASADO 200MS DESDE ENCENDER EL ZUMBADOR
-0350 0526            532             INC CONT_ZUMB
-0352 7402            533             MOV A, #2
-0354 C3              534             CLR C
-0355 9526            535             SUBB A, CONT_ZUMB
-0357 60EC            536             JZ APAGAR_ZUMBADOR
-0359 22              537             RET
-                     538     ;==============================================IDL=========================================
+0345                 526     ENCENDER_ZUMBADOR:              ;ENCIENDE EL ZUMBADO A NIVEL BAJO!
+0345 752600          527             MOV CONT_ZUMB, #0
+0348 C2A1            528             CLR ZUMBADOR
+034A 22              529             RET
+034B                 530     APAGAR_ZUMBADOR:                ;APAGA EL ZUMBADOR
+034B 752600          531             MOV CONT_ZUMB, #0
+034E D2A1            532             SETB ZUMBADOR
+0350 22              533             RET
+0351                 534     ZUMBADOR_ESTADO:                ;NOS DICE SI EL ZUMBADOR ESTA ENCENDIDO O NO    
+0351 A2A1            535             MOV C, ZUMBADOR
+0353 5001            536             JNC ZUMBADOR_200MS
+0355 22              537             RET
+0356                 538     ZUMBADOR_200MS:                 ;COMPRUEBA SI HAN PASADO 200MS DESDE ENCENDER EL ZUMBADOR
+0356 0526            539             INC CONT_ZUMB
+0358 7402            540             MOV A, #2
+035A C3              541             CLR C
+035B 9526            542             SUBB A, CONT_ZUMB
+035D 60EC            543             JZ APAGAR_ZUMBADOR
+035F 22              544             RET
+                     545     ;==============================================IDL=========================================
                              ====;
-035A                 539     ACTIVAR_IDL:                    ;ACTIVA EL MODO IDL Y LAS INTERRUPCIONES EXTERNAS
-035A 43A881          540             ORL IEN0, #10000001b
-035D 438701          541             ORL PCON, #00000001b 
-0360 22              542             RET     
-0361                 543     DESACTIVAR_IDL:                 ;DESACTIVA TANTO EL IDL COMO LAS INTERRUPCIONES EXTERNAS
-0361 C0D0            544             PUSH PSW
-0363 C0E0            545             PUSH ACC
-0365 53A800          546             ANL IEN0, #00000000b
-0368 538700          547             ANL PCON, #00000000b
-036B D0E0            548             POP ACC
-036D D0D0            549             POP PSW
-036F 22              550             RET
-                     551     ;==============================================ADC=========================================
+0360                 546     ACTIVAR_IDL:                    ;ACTIVA EL MODO IDL Y LAS INTERRUPCIONES EXTERNAS
+0360 43A881          547             ORL IEN0, #10000001b
+0363 438701          548             ORL PCON, #00000001b 
+0366 22              549             RET     
+0367                 550     DESACTIVAR_IDL:                 ;DESACTIVA TANTO EL IDL COMO LAS INTERRUPCIONES EXTERNAS
+0367 C0D0            551             PUSH PSW
+0369 C0E0            552             PUSH ACC
+036B 53A800          553             ANL IEN0, #00000000b
+036E 538700          554             ANL PCON, #00000000b
+0371 D0E0            555             POP ACC
+0373 D0D0            556             POP PSW
+0375 22              557             RET
+                     558     ;==============================================ADC=========================================
                              ====;
-0370                 552     ENCENDER_ADC:                   ;ENCIENDE EL ADC Y LO CONFIGURA
-0370 43A8C0          553             ORL IEN0,#11000000b
-0373 43C508          554             ORL ADCON, #00001000b
-0376 22              555             RET     
-0377                 556     APAGAR_ADC:                     ;APAGA EL ADC
-0377 53A800          557             ANL IEN0, #00000000b
-037A 22              558             RET
-037B                 559     LEER_ADC:                       ;LEE EL VALOR DEL ADC Y LO GUARDA EN B
-037B C22A            560             CLR FADC
-037D 85C6F0          561             MOV B, ADCH
-0380 22              562             RET
-                     563     ;=============================================TIMER========================================
-                             ====;
-0381                 564     ENCENDER_TIMER:                 ;ENCIENDE EL TIMER Y LE CONFIGURA EL VALOR DE AUTORECARGA
-0381 43A882          565             ORL IEN0, #10000010b
-0384 758C38          566             MOV TH0, #56d
-0387 758A38          567             MOV TL0, #56d
-A51 MACRO ASSEMBLER  PROYECTO                                                             11/16/2022 16:08:37 PAGE    10
+0376                 559     ENCENDER_ADC:                   ;ENCIENDE EL ADC Y LO CONFIGURA
+0376 43A8C0          560             ORL IEN0,#11000000b
+0379 43C508          561             ORL ADCON, #00001000b
+037C 22              562             RET     
+037D                 563     APAGAR_ADC:                     ;APAGA EL ADC
+037D 53A800          564             ANL IEN0, #00000000b
+0380 22              565             RET
+0381                 566     LEER_ADC:                       ;LEE EL VALOR DEL ADC Y LO GUARDA EN B
+0381 C22A            567             CLR FADC
+0383 85C6F0          568             MOV B, ADCH
+A51 MACRO ASSEMBLER  PROYECTO                                                             11/16/2022 18:01:32 PAGE    10
 
-038A 752300          568             MOV T_CONT1, #0
-038D 752400          569             MOV T_CONT2, #0
-0390 D28C            570             SETB TR0
-0392 22              571             RET
-0393                 572     APAGAR_TIMER:                   ;APAGA EL TIMER
-0393 53A800          573             ANL IEN0, #00000000b
-0396 C28C            574             CLR TR0
-0398 22              575             RET
-0399                 576     TIMER_FUNC:                     ;FUNCION DEL TIMER
-0399 C0D0            577             PUSH PSW
-039B C0E0            578             PUSH ACC
-                     579     
-039D 0523            580             INC T_CONT1
-039F E57D            581             MOV A, TIMER_CONT_1
-03A1 C3              582             CLR C
-03A2 9523            583             SUBB A, T_CONT1
-03A4 701A            584             JNZ CONDTIMER
-                     585     
-03A6 752300          586             MOV T_CONT1, #0
-                     587     
-03A9 0524            588             INC T_CONT2
-03AB E508            589             MOV A, TIMER_CONT_2
-03AD C3              590             CLR C
-03AE 9524            591             SUBB A, T_CONT2
-03B0 700E            592             JNZ CONDTIMER
-                     593     
-03B2 752400          594             MOV T_CONT2, #0
-                     595     
-03B5 D228            596             SETB TICK               ;HA PASADO 100ms!
-                     597     
-03B7 714B            598             ACALL ZUMBADOR_ESTADO
-03B9 51A4            599             ACALL ESTADO_PARPADEO
+0386 22              569             RET
+                     570     ;=============================================TIMER========================================
+                             ====;
+0387                 571     ENCENDER_TIMER:                 ;ENCIENDE EL TIMER Y LE CONFIGURA EL VALOR DE AUTORECARGA
+0387 43A882          572             ORL IEN0, #10000010b
+038A 758C38          573             MOV TH0, #56
+038D 758A38          574             MOV TL0, #56
+0390 752300          575             MOV T_CONT1, #0
+0393 752400          576             MOV T_CONT2, #0
+0396 D28C            577             SETB TR0
+0398 22              578             RET
+0399                 579     APAGAR_TIMER:                   ;APAGA EL TIMER
+0399 53A800          580             ANL IEN0, #00000000b
+039C C28C            581             CLR TR0
+039E 22              582             RET
+039F                 583     TIMER_FUNC:                     ;FUNCION DEL TIMER
+039F C0D0            584             PUSH PSW
+03A1 C0E0            585             PUSH ACC
+                     586     
+03A3 0523            587             INC T_CONT1
+03A5 747D            588             MOV A, #TIMER_CONT_1
+03A7 C3              589             CLR C
+03A8 9523            590             SUBB A, T_CONT1
+03AA 701A            591             JNZ CONDTIMER
+                     592     
+03AC 752300          593             MOV T_CONT1, #0
+                     594     
+03AF 0524            595             INC T_CONT2
+03B1 7408            596             MOV A, #TIMER_CONT_2
+03B3 C3              597             CLR C
+03B4 9524            598             SUBB A, T_CONT2
+03B6 700E            599             JNZ CONDTIMER
                      600     
-03BB D0E0            601             POP ACC
-03BD D0D0            602             POP PSW
-03BF 22              603             RET
-03C0                 604     CONDTIMER:                      ;SI NO SE CUMPLE UN CONTADOR DEL TIMER
-03C0 D0E0            605             POP ACC
-03C2 D0D0            606             POP PSW
-03C4 22              607             RET
-                     608     ;=========================================INTERRUPCIONES===================================
+03B8 752400          601             MOV T_CONT2, #0
+                     602     
+03BB D228            603             SETB TICK               ;HA PASADO 100ms!
+                     604     
+03BD 7151            605             ACALL ZUMBADOR_ESTADO
+03BF 51AA            606             ACALL ESTADO_PARPADEO
+                     607     
+03C1 D0E0            608             POP ACC
+03C3 D0D0            609             POP PSW
+03C5 22              610             RET
+03C6                 611     CONDTIMER:                      ;SI NO SE CUMPLE UN CONTADOR DEL TIMER
+03C6 D0E0            612             POP ACC
+03C8 D0D0            613             POP PSW
+03CA 22              614             RET
+                     615     ;=========================================INTERRUPCIONES===================================
                              ====;
-0003                 609     ORG 0x03
-0003                 610     INTERRUPCION_EXTERNA:
-0003 7161            611             ACALL DESACTIVAR_IDL
-0005 32              612             RETI
-000B                 613     ORG 0x0B
-000B                 614     INTERRUPCION_TIMER:
-000B 7199            615             ACALL TIMER_FUNC
-000D 32              616             RETI
-0053                 617     ORG 0x53
-0053                 618     INTERRUPCION_ADC:
-0053 C0D0            619             PUSH PSW
-0055 C0E0            620             PUSH ACC        
-                     621             
-0057 D22A            622             SETB FADC
-                     623             
-0059 D0E0            624             POP ACC
-005B D0D0            625             POP PSW
-005D 32              626             RETI
-                     627     ;==============================================END=========================================
+0003                 616     ORG 0x03
+0003                 617     INTERRUPCION_EXTERNA:
+0003 7167            618             ACALL DESACTIVAR_IDL
+0005 32              619             RETI
+000B                 620     ORG 0x0B
+000B                 621     INTERRUPCION_TIMER:
+000B 719F            622             ACALL TIMER_FUNC
+000D 32              623             RETI
+0053                 624     ORG 0x53
+0053                 625     INTERRUPCION_ADC:
+0053 C0D0            626             PUSH PSW
+0055 C0E0            627             PUSH ACC        
+                     628             
+0057 D22A            629             SETB FADC
+                     630             
+0059 D0E0            631             POP ACC
+005B D0D0            632             POP PSW
+A51 MACRO ASSEMBLER  PROYECTO                                                             11/16/2022 18:01:32 PAGE    11
+
+005D 32              633             RETI
+                     634     ;==============================================END=========================================
                              ====;
-                     628     END
-A51 MACRO ASSEMBLER  PROYECTO                                                             11/16/2022 16:08:37 PAGE    11
+                     635     END
+A51 MACRO ASSEMBLER  PROYECTO                                                             11/16/2022 18:01:32 PAGE    12
 
 SYMBOL TABLE LISTING
 ------ ----- -------
@@ -683,42 +692,43 @@ SYMBOL TABLE LISTING
 N A M E               T Y P E  V A L U E   ATTRIBUTES
 
 ACC. . . . . . . . .  D ADDR   00E0H   A   
-ACTIVAR_IDL. . . . .  C ADDR   035AH   A   
+ACTIVAR_IDL. . . . .  C ADDR   0360H   A   
 ADCH . . . . . . . .  N NUMB   00C6H   A   
 ADCON. . . . . . . .  N NUMB   00C5H   A   
-APAGAR_ADC . . . . .  C ADDR   0377H   A   
-APAGAR_DISPLAY . . .  C ADDR   02BFH   A   
-APAGAR_LED . . . . .  C ADDR   028AH   A   
-APAGAR_PARPADEO. . .  C ADDR   029EH   A   
-APAGAR_PWM . . . . .  C ADDR   0291H   A   
-APAGAR_TIMER . . . .  C ADDR   0393H   A   
-APAGAR_ZUMBADOR. . .  C ADDR   0345H   A   
+APAGAR_ADC . . . . .  C ADDR   037DH   A   
+APAGAR_DISPLAY . . .  C ADDR   02C5H   A   
+APAGAR_LED . . . . .  C ADDR   0286H   A   
+APAGAR_PARPADEO. . .  C ADDR   02A4H   A   
+APAGAR_PWM . . . . .  C ADDR   028DH   A   
+APAGAR_TIMER . . . .  C ADDR   0399H   A   
+APAGAR_ZUMBADOR. . .  C ADDR   034BH   A   
 B. . . . . . . . . .  D ADDR   00F0H   A   
-CONDTIMER. . . . . .  C ADDR   03C0H   A   
+CONDTIMER. . . . . .  C ADDR   03C6H   A   
 CONT_PARPADEO. . . .  N NUMB   0027H   A   
 CONT_ZUMB. . . . . .  N NUMB   0026H   A   
-DESACTIVAR_IDL . . .  C ADDR   0361H   A   
-DISPLAY_0. . . . . .  C ADDR   02EAH   A   
-DISPLAY_1. . . . . .  C ADDR   02F1H   A   
-DISPLAY_2. . . . . .  C ADDR   02F8H   A   
-DISPLAY_3. . . . . .  C ADDR   02FFH   A   
-DISPLAY_4. . . . . .  C ADDR   0306H   A   
-DISPLAY_5. . . . . .  C ADDR   030DH   A   
-DISPLAY_6. . . . . .  C ADDR   0314H   A   
-DISPLAY_7. . . . . .  C ADDR   031BH   A   
-DISPLAY_8. . . . . .  C ADDR   0322H   A   
-DISPLAY_9. . . . . .  C ADDR   0329H   A   
-DISPLAY_FUNC . . . .  C ADDR   02D0H   A   
-DISPLAY_H. . . . . .  C ADDR   0337H   A   
-DISPLAY_HH . . . . .  C ADDR   033BH   A   
-DISPLAY_P. . . . . .  C ADDR   0330H   A   
-ENCENDER_ADC . . . .  C ADDR   0370H   A   
-ENCENDER_DISPLAY . .  C ADDR   02C3H   A   
-ENCENDER_LED . . . .  C ADDR   0287H   A   
-ENCENDER_PARPADEO. .  C ADDR   0298H   A   
-ENCENDER_PWM . . . .  C ADDR   028DH   A   
-ENCENDER_TIMER . . .  C ADDR   0381H   A   
-ENCENDER_ZUMBADOR. .  C ADDR   033FH   A   
+DECREMENTAR_FOGON. .  C ADDR   0294H   A   
+DESACTIVAR_IDL . . .  C ADDR   0367H   A   
+DISPLAY_0. . . . . .  C ADDR   02F0H   A   
+DISPLAY_1. . . . . .  C ADDR   02F7H   A   
+DISPLAY_2. . . . . .  C ADDR   02FEH   A   
+DISPLAY_3. . . . . .  C ADDR   0305H   A   
+DISPLAY_4. . . . . .  C ADDR   030CH   A   
+DISPLAY_5. . . . . .  C ADDR   0313H   A   
+DISPLAY_6. . . . . .  C ADDR   031AH   A   
+DISPLAY_7. . . . . .  C ADDR   0321H   A   
+DISPLAY_8. . . . . .  C ADDR   0328H   A   
+DISPLAY_9. . . . . .  C ADDR   032FH   A   
+DISPLAY_FUNC . . . .  C ADDR   02D6H   A   
+DISPLAY_H. . . . . .  C ADDR   033DH   A   
+DISPLAY_HH . . . . .  C ADDR   0341H   A   
+DISPLAY_P. . . . . .  C ADDR   0336H   A   
+ENCENDER_ADC . . . .  C ADDR   0376H   A   
+ENCENDER_DISPLAY . .  C ADDR   02C9H   A   
+ENCENDER_LED . . . .  C ADDR   0283H   A   
+ENCENDER_PARPADEO. .  C ADDR   029EH   A   
+ENCENDER_PWM . . . .  C ADDR   0289H   A   
+ENCENDER_TIMER . . .  C ADDR   0387H   A   
+ENCENDER_ZUMBADOR. .  C ADDR   0345H   A   
 ES0_EV0. . . . . . .  C ADDR   00F5H   A   
 ES0_EV1. . . . . . .  C ADDR   00F6H   A   
 ES0_EV2. . . . . . .  C ADDR   00F9H   A   
@@ -737,61 +747,62 @@ ES1_GEN_EV . . . . .  C ADDR   0158H   A
 ES1_SENSOR . . . . .  C ADDR   016CH   A   
 ES1_SWITCH . . . . .  C ADDR   0168H   A   
 ES1_TICK . . . . . .  C ADDR   0170H   A   
-ES2_1S . . . . . . .  C ADDR   01FBH   A   
-ES2_30S. . . . . . .  C ADDR   0201H   A   
-ES2_60S. . . . . . .  C ADDR   020BH   A   
+ES2_1S . . . . . . .  C ADDR   01F7H   A   
+ES2_30S. . . . . . .  C ADDR   01FDH   A   
+ES2_60S. . . . . . .  C ADDR   0207H   A   
 ES2_CONT1_S. . . . .  N NUMB   002DH   A   
-ES2_CONT2_S. . . . .  N NUMB   002EH   A   
-A51 MACRO ASSEMBLER  PROYECTO                                                             11/16/2022 16:08:37 PAGE    12
+A51 MACRO ASSEMBLER  PROYECTO                                                             11/16/2022 18:01:32 PAGE    13
 
+ES2_CONT2_S. . . . .  N NUMB   002EH   A   
 ES2_CONT_MS. . . . .  N NUMB   002CH   A   
 ES2_EV0. . . . . . .  C ADDR   01A1H   A   
 ES2_EV1. . . . . . .  C ADDR   01A2H   A   
 ES2_EV2. . . . . . .  C ADDR   01B7H   A   
-ES2_EV3. . . . . . .  C ADDR   01C3H   A   
+ES2_EV3. . . . . . .  C ADDR   01C1H   A   
 ES2_EV_TAB . . . . .  C ADDR   0199H   A   
-ES2_GEN_EV . . . . .  C ADDR   01CFH   A   
-ES2_MINUS. . . . . .  C ADDR   01E7H   A   
-ES2_NOTHING. . . . .  C ADDR   0238H   A   
-ES2_PLUS . . . . . .  C ADDR   01EBH   A   
-ES2_SENSOR . . . . .  C ADDR   0214H   A   
-ES2_SENSOR_OFF . . .  C ADDR   022BH   A   
-ES2_SENSOR_ON. . . .  C ADDR   021AH   A   
-ES2_SWITCH . . . . .  C ADDR   01E3H   A   
-ES2_TICK . . . . . .  C ADDR   01EFH   A   
-ES3_40 . . . . . . .  C ADDR   0273H   A   
-ES3_60 . . . . . . .  C ADDR   0277H   A   
-ES3_80 . . . . . . .  C ADDR   027FH   A   
-ES3_ADC. . . . . . .  C ADDR   0261H   A   
-ES3_EV0. . . . . . .  C ADDR   024CH   A   
-ES3_EV1. . . . . . .  C ADDR   024DH   A   
-ES3_EV_TAB . . . . .  C ADDR   0248H   A   
-ES3_GEN_EV . . . . .  C ADDR   0259H   A   
+ES2_GEN_EV . . . . .  C ADDR   01CBH   A   
+ES2_MINUS. . . . . .  C ADDR   01E3H   A   
+ES2_NOTHING. . . . .  C ADDR   0234H   A   
+ES2_PLUS . . . . . .  C ADDR   01E7H   A   
+ES2_SENSOR . . . . .  C ADDR   0210H   A   
+ES2_SENSOR_OFF . . .  C ADDR   0227H   A   
+ES2_SENSOR_ON. . . .  C ADDR   0216H   A   
+ES2_SWITCH . . . . .  C ADDR   01DFH   A   
+ES2_TICK . . . . . .  C ADDR   01EBH   A   
+ES3_40 . . . . . . .  C ADDR   026FH   A   
+ES3_60 . . . . . . .  C ADDR   0273H   A   
+ES3_80 . . . . . . .  C ADDR   027BH   A   
+ES3_ADC. . . . . . .  C ADDR   025DH   A   
+ES3_EV0. . . . . . .  C ADDR   0248H   A   
+ES3_EV1. . . . . . .  C ADDR   0249H   A   
+ES3_EV_TAB . . . . .  C ADDR   0244H   A   
+ES3_GEN_EV . . . . .  C ADDR   0255H   A   
 ESTADO . . . . . . .  N NUMB   0020H   A   
 ESTADO0. . . . . . .  C ADDR   00E6H   A   
 ESTADO1. . . . . . .  C ADDR   0116H   A   
 ESTADO2. . . . . . .  C ADDR   0190H   A   
-ESTADO3. . . . . . .  C ADDR   023FH   A   
-ESTADO_PARPADEO. . .  C ADDR   02A4H   A   
+ESTADO3. . . . . . .  C ADDR   023BH   A   
+ESTADO_PARPADEO. . .  C ADDR   02AAH   A   
 EST_TAB. . . . . . .  C ADDR   0088H   A   
 EVENTO . . . . . . .  N NUMB   0021H   A   
 FADC . . . . . . . .  B ADDR   0025H.2 A   
 FSM. . . . . . . . .  C ADDR   0081H   A   
 IEN0 . . . . . . . .  N NUMB   00A8H   A   
+INCREMENTAR_FOGON. .  C ADDR   0299H   A   
 INICIO . . . . . . .  C ADDR   007BH   A   
 INIT . . . . . . . .  C ADDR   0090H   A   
 INTERRUPCION_ADC . .  C ADDR   0053H   A   
 INTERRUPCION_EXTERNA  C ADDR   0003H   A   
 INTERRUPCION_TIMER .  C ADDR   000BH   A   
 LED. . . . . . . . .  B ADDR   00A0H.0 A   
-LEER_ADC . . . . . .  C ADDR   037BH   A   
+LEER_ADC . . . . . .  C ADDR   0381H   A   
 MAIN . . . . . . . .  C ADDR   007DH   A   
 MINUS. . . . . . . .  B ADDR   00B0H.1 A   
 P0 . . . . . . . . .  D ADDR   0080H   A   
 P2 . . . . . . . . .  D ADDR   00A0H   A   
 P3 . . . . . . . . .  D ADDR   00B0H   A   
 PARPADEO . . . . . .  B ADDR   0025H.1 A   
-PARPADEO_500MS . . .  C ADDR   02A9H   A   
+PARPADEO_500MS . . .  C ADDR   02AFH   A   
 PCON . . . . . . . .  D ADDR   0087H   A   
 PLUS . . . . . . . .  B ADDR   00B0H.0 A   
 PSW. . . . . . . . .  D ADDR   00D0H   A   
@@ -803,20 +814,20 @@ TH0. . . . . . . . .  D ADDR   008CH   A
 TICK . . . . . . . .  B ADDR   0025H.0 A   
 TIMER_CONT_1 . . . .  N NUMB   007DH   A   
 TIMER_CONT_2 . . . .  N NUMB   0008H   A   
-TIMER_FUNC . . . . .  C ADDR   0399H   A   
+TIMER_FUNC . . . . .  C ADDR   039FH   A   
 TL0. . . . . . . . .  D ADDR   008AH   A   
 TMOD . . . . . . . .  D ADDR   0089H   A   
 TR0. . . . . . . . .  B ADDR   0088H.4 A   
 T_CONT1. . . . . . .  N NUMB   0023H   A   
-T_CONT2. . . . . . .  N NUMB   0024H   A   
-UPDATE_DISPLAY . . .  C ADDR   02C6H   A   
-A51 MACRO ASSEMBLER  PROYECTO                                                             11/16/2022 16:08:37 PAGE    13
+A51 MACRO ASSEMBLER  PROYECTO                                                             11/16/2022 18:01:32 PAGE    14
 
-UPDATE_PARPADEO. . .  C ADDR   02B3H   A   
+T_CONT2. . . . . . .  N NUMB   0024H   A   
+UPDATE_DISPLAY . . .  C ADDR   02CCH   A   
+UPDATE_PARPADEO. . .  C ADDR   02B9H   A   
 VALOR_DISPLAY. . . .  N NUMB   0022H   A   
 ZUMBADOR . . . . . .  B ADDR   00A0H.1 A   
-ZUMBADOR_200MS . . .  C ADDR   0350H   A   
-ZUMBADOR_ESTADO. . .  C ADDR   034BH   A   
+ZUMBADOR_200MS . . .  C ADDR   0356H   A   
+ZUMBADOR_ESTADO. . .  C ADDR   0351H   A   
 
 
 REGISTER BANK(S) USED: 0 
