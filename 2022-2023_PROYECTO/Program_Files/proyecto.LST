@@ -1,4 +1,4 @@
-A51 MACRO ASSEMBLER  PROYECTO                                                             11/16/2022 18:01:32 PAGE     1
+A51 MACRO ASSEMBLER  PROYECTO                                                             12/17/2022 18:10:20 PAGE     1
 
 
 MACRO ASSEMBLER A51 V6.14
@@ -65,7 +65,7 @@ LOC  OBJ            LINE     SOURCE
 007B                  50     ORG 0x007b
 007B                  51     INICIO:
 007B 1190             52             ACALL INIT
-A51 MACRO ASSEMBLER  PROYECTO                                                             11/16/2022 18:01:32 PAGE     2
+A51 MACRO ASSEMBLER  PROYECTO                                                             12/17/2022 18:10:20 PAGE     2
 
 007D                  53     MAIN:
 007D 1181             54             ACALL FSM
@@ -133,7 +133,7 @@ LOC  OBJ            LINE     SOURCE
                      115     ;========================================ESTADO0_REPOSO====================================
                              ====;
 00E6                 116     ESTADO0:
-A51 MACRO ASSEMBLER  PROYECTO                                                             11/16/2022 18:01:32 PAGE     3
+A51 MACRO ASSEMBLER  PROYECTO                                                             12/17/2022 18:10:20 PAGE     3
 
 00E6 310A            117             ACALL ES0_GEN_EV
 00E8 E521            118             MOV A, EVENTO
@@ -201,7 +201,7 @@ LOC  OBJ            LINE     SOURCE
                      179                                     ;RESETEAR VARIABLES DE ESTADO
 0140 752A00          180             MOV ES1_CONT_MS, #0
 0143 752B00          181             MOV ES1_CONT_S, #0
-A51 MACRO ASSEMBLER  PROYECTO                                                             11/16/2022 18:01:32 PAGE     4
+A51 MACRO ASSEMBLER  PROYECTO                                                             12/17/2022 18:10:20 PAGE     4
 
 0146 752600          182             MOV CONT_ZUMB, #0
 0149 752700          183             MOV CONT_PARPADEO, #0
@@ -269,7 +269,7 @@ LOC  OBJ            LINE     SOURCE
 01A2                 244     ES2_EV1:                        ;EVENTO TRANSICION
 01A2 752C00          245             MOV ES2_CONT_MS, #0
 01A5 752D00          246             MOV ES2_CONT1_S, #0
-A51 MACRO ASSEMBLER  PROYECTO                                                             11/16/2022 18:01:32 PAGE     5
+A51 MACRO ASSEMBLER  PROYECTO                                                             12/17/2022 18:10:20 PAGE     5
 
 01A8 752E00          247             MOV ES2_CONT2_S, #0
                      248     
@@ -337,7 +337,7 @@ LOC  OBJ            LINE     SOURCE
 01FC 22              310             RET
 01FD                 311     ES2_30S:                        ;PASAN 30S 
 01FD 752D00          312             MOV ES2_CONT1_S, #0
-A51 MACRO ASSEMBLER  PROYECTO                                                             11/16/2022 18:01:32 PAGE     6
+A51 MACRO ASSEMBLER  PROYECTO                                                             12/17/2022 18:10:20 PAGE     6
 
 0200 752E00          313             MOV ES2_CONT2_S, #0
 0203 752101          314             MOV EVENTO, #1
@@ -405,7 +405,7 @@ LOC  OBJ            LINE     SOURCE
 025F E5F0            374             MOV A, B
 0261 C3              375             CLR C
 0262 9414            376             SUBB A, #20d
-A51 MACRO ASSEMBLER  PROYECTO                                                             11/16/2022 18:01:32 PAGE     7
+A51 MACRO ASSEMBLER  PROYECTO                                                             12/17/2022 18:10:20 PAGE     7
 
 0264 4009            377             JC ES3_40
 0266 E5F0            378             MOV A, B
@@ -473,7 +473,7 @@ LOC  OBJ            LINE     SOURCE
 02B3 C3              437             CLR C
 02B4 9527            438             SUBB A, CONT_PARPADEO
 02B6 6001            439             JZ UPDATE_PARPADEO
-A51 MACRO ASSEMBLER  PROYECTO                                                             11/16/2022 18:01:32 PAGE     8
+A51 MACRO ASSEMBLER  PROYECTO                                                             12/17/2022 18:10:20 PAGE     8
 
 02B8 22              440             RET
 02B9                 441     UPDATE_PARPADEO:                ;SI HAN PASADO 500MS CAMBIA EL ESTADO DEL DISPLAY       
@@ -541,7 +541,7 @@ LOC  OBJ            LINE     SOURCE
 0321                 503     DISPLAY_7:
 0321 43800F          504             ORL P0, #00001111b
 0324 75FC4C          505             MOV PWM0, #76           ;70%
-A51 MACRO ASSEMBLER  PROYECTO                                                             11/16/2022 18:01:32 PAGE     9
+A51 MACRO ASSEMBLER  PROYECTO                                                             12/17/2022 18:10:20 PAGE     9
 
 0327 22              506             RET
 0328                 507     DISPLAY_8:
@@ -609,7 +609,7 @@ LOC  OBJ            LINE     SOURCE
 0381                 566     LEER_ADC:                       ;LEE EL VALOR DEL ADC Y LO GUARDA EN B
 0381 C22A            567             CLR FADC
 0383 85C6F0          568             MOV B, ADCH
-A51 MACRO ASSEMBLER  PROYECTO                                                             11/16/2022 18:01:32 PAGE    10
+A51 MACRO ASSEMBLER  PROYECTO                                                             12/17/2022 18:10:20 PAGE    10
 
 0386 22              569             RET
                      570     ;=============================================TIMER========================================
@@ -677,13 +677,13 @@ LOC  OBJ            LINE     SOURCE
                      630             
 0059 D0E0            631             POP ACC
 005B D0D0            632             POP PSW
-A51 MACRO ASSEMBLER  PROYECTO                                                             11/16/2022 18:01:32 PAGE    11
+A51 MACRO ASSEMBLER  PROYECTO                                                             12/17/2022 18:10:20 PAGE    11
 
 005D 32              633             RETI
                      634     ;==============================================END=========================================
                              ====;
                      635     END
-A51 MACRO ASSEMBLER  PROYECTO                                                             11/16/2022 18:01:32 PAGE    12
+A51 MACRO ASSEMBLER  PROYECTO                                                             12/17/2022 18:10:20 PAGE    12
 
 SYMBOL TABLE LISTING
 ------ ----- -------
@@ -751,7 +751,7 @@ ES2_1S . . . . . . .  C ADDR   01F7H   A
 ES2_30S. . . . . . .  C ADDR   01FDH   A   
 ES2_60S. . . . . . .  C ADDR   0207H   A   
 ES2_CONT1_S. . . . .  N NUMB   002DH   A   
-A51 MACRO ASSEMBLER  PROYECTO                                                             11/16/2022 18:01:32 PAGE    13
+A51 MACRO ASSEMBLER  PROYECTO                                                             12/17/2022 18:10:20 PAGE    13
 
 ES2_CONT2_S. . . . .  N NUMB   002EH   A   
 ES2_CONT_MS. . . . .  N NUMB   002CH   A   
@@ -819,7 +819,7 @@ TL0. . . . . . . . .  D ADDR   008AH   A
 TMOD . . . . . . . .  D ADDR   0089H   A   
 TR0. . . . . . . . .  B ADDR   0088H.4 A   
 T_CONT1. . . . . . .  N NUMB   0023H   A   
-A51 MACRO ASSEMBLER  PROYECTO                                                             11/16/2022 18:01:32 PAGE    14
+A51 MACRO ASSEMBLER  PROYECTO                                                             12/17/2022 18:10:20 PAGE    14
 
 T_CONT2. . . . . . .  N NUMB   0024H   A   
 UPDATE_DISPLAY . . .  C ADDR   02CCH   A   

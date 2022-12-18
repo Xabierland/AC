@@ -65,10 +65,6 @@ EST_TAB:
 	AJMP ESTADO3		;TRANSICION
 ;=============================================INIT=============================================;
 INIT:
-				;DEBUG
-	MOV P0, #0
-	MOV P2, #0
-	MOV P3, #0
 				;VALORES GLOBALES
 	MOV ESTADO, #0
 	MOV EVENTO, #0
